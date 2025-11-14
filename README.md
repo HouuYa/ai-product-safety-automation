@@ -118,7 +118,7 @@ Automated product incident news detection and dissemination.
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
 | **Automation** | n8n (cloud) | Workflow orchestration |
-| **AI/ML** | Gemini 2.0 Flash, GPT-4, GPT-4 Vision | Translation, classification, analysis |
+| **AI/ML** | Gemini 2.5 Pro, GPT-4, GPT-4 Vision | Translation, classification, analysis |
 | **Database** | Supabase (PostgreSQL) | Structured data storage |
 | **Scraping** | ScrapingBee, Puppeteer | Web data extraction |
 | **API** | REST, RSS, Webhooks | System integrations |
