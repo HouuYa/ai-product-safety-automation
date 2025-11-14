@@ -1,4 +1,7 @@
-# AI-Powered Product Recall and Incident Information Management System
+# AI-Powered Product Recall & Incident Management System for Government
+(Automation Pipeline using n8n, GPT-4, Supabase, OECD Integration)
+
+> A full-stack AI automation system for government product recall management, integrating OECD GlobalRecalls, n8n workflows, Supabase data pipelines, multimodal AI analysis, and marketplace surveillance with real-time monitoring.
 
 > **Transforming government operations through AI automation: 95% cost reduction, 83% time savings**
 
