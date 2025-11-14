@@ -200,7 +200,7 @@ This system aligns with:
 **Background:**
 Not a software engineer by training, but a telecom standards expert who learned to leverage AI and automation tools to solve real-world government challenges.
 
-[View full CV](./about.md)
+[View full CV](https://github.com/HouuYa/HouuYa.github.io/blob/master/_pages/about.md)
 
 ---
 
