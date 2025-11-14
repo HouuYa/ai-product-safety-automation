@@ -221,7 +221,7 @@ This project documentation is licensed under the MIT License - see the [LICENSE]
 
 ## 🤝 Connect
 
-- LinkedIn: [linkedin.com/in/seungho-bae](#)
+- LinkedIn: [linkedin.com/in/houuya](#)
 - Email: [givnhevn@gmail.com](#)
 - Project: Korea Product Safety Information Portal ([safetykorea.kr](https://www.safetykorea.kr))
 
