@@ -1,4 +1,4 @@
-# AI-Powered Product Recall Information Management System
+# AI-Powered Product Recall and Incidence Information Management System
 
 > **Transforming government operations through AI automation: 95% cost reduction, 83% time savings**
 
@@ -112,10 +112,10 @@ Automated product incident news detection and dissemination.
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
-| **Automation** | n8n (self-hosted) | Workflow orchestration |
-| **AI/ML** | GPT-4, GPT-4 Vision | Translation, classification, analysis |
+| **Automation** | n8n (cloud) | Workflow orchestration |
+| **AI/ML** | Gemini, GPT-4, GPT-4 Vision | Translation, classification, analysis |
 | **Database** | Supabase (PostgreSQL) | Structured data storage |
-| **Scraping** | ScrapingBee, Puppeteer | Web data extraction |
+| **Scraping** | ScrapingBee | Web data extraction |
 | **API** | REST, RSS, Webhooks | System integrations |
 | **Alerts** | Telegram API | Real-time notifications |
 
@@ -215,12 +215,12 @@ This project documentation is licensed under the MIT License - see the [LICENSE]
 ## 🤝 Connect
 
 - LinkedIn: [linkedin.com/in/seungho-bae](#)
-- Email: [sh.bae@example.com](#)
+- Email: [givnhevn@gmail.com](#)
 - Project: Korea Product Safety Information Portal ([safetykorea.kr](https://www.safetykorea.kr))
 
 ---
 
-## 🎯 Key Takeaways for Technical Recruiters
+## 🎯 Key Takeaways
 
 1. **Problem-solving mindset:** Identified inefficiencies and designed solutions
 2. **Technical execution:** Built production systems using modern AI/automation stack
