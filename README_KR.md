@@ -15,7 +15,7 @@
 
 AI를 활용한 엔드투엔드 자동화 시스템:
 - **43개국** 리콜 제품 정보 수집·관리
-- **OECD 글로벌 리콜 포털**과 실시간 연계
+- **국내 리콜정보를 OECD 글로벌 리콜 포털**과 실시간 연계
 - **온라인 쇼핑몰** 리콜제품 유통 및 사고징후 감시
 - **뉴스 포털**에서 제품사고 실시간 탐지
 - **소비자 후기·문의** 분석을 통한 조기 경보
@@ -132,8 +132,8 @@ AI 기반 리콜제품 판매 탐지 및 사고 징후 분석
 | 계층 | 기술 | 용도 |
 |-------|-----------|---------|
 | **자동화** | n8n (cloud) | 워크플로우 오케스트레이션 |
-| **AI/ML** | Gemini 2.0 Flash, GPT-4, GPT-4 Vision | 번역, 분류, 분석 |
-| **데이터베이스** | Supabase (PostgreSQL) | 구조화된 데이터 저장 |
+| **AI/ML** | Gemini 2.5 Pro, GPT-4, GPT-4 Vision | 번역, 분류, 분석 |
+| **데이터베이스** | Supabase (PostgreSQL), Google sheets | 구조화된 데이터 저장 |
 | **스크래핑** | ScrapingBee, Puppeteer | 웹 데이터 추출 |
 | **API** | REST, RSS, Webhooks | 시스템 통합 |
 | **알림** | Telegram API | 실시간 알림 |
@@ -211,17 +211,17 @@ AI 기반 리콜제품 판매 탐지 및 사고 징후 분석
 
 ---
 
-## 👤 저자 소개
+## 👤 소개
 
-**배승호** | 공업연구관, 한국산업기술시험원(KTL) / 전 국가기술표준원(KATS) 제품안전정보과
+**배승호** | 공업연구관, 국가기술표준원(KATS) 제품안전정보과/제품시장관리과
 
 - 광주과학기술원(GIST) 정보통신 석사 (2006)
 - 정부 제품안전 규제 분야 10년+ 경력
-- 전 3GPP/IEEE 표준 전문가 (이동통신)
-- 수상: 국무총리 표창 (2021)
+- 전 3GPP/IEEE 표준, 시험인증 및 검증 전문가 (이동통신)
+- 수상: 국무총리 우수공무원 표창 (2021)
 
 **배경:**
-소프트웨어 엔지니어가 아닌 통신 표준 전문가가 AI와 자동화 도구를 활용하여 실제 정부 문제를 해결한 사례
+소프트웨어 엔지니어가 아닌 실무 공무원이 AI와 자동화 도구를 활용하여 실제 정부 문제를 해결
 
 [전체 이력서 보기 →](https://github.com/HouuYa/HouuYa.github.io/blob/master/_pages/about.md)
 
@@ -237,7 +237,7 @@ AI 기반 리콜제품 판매 탐지 및 사고 징후 분석
 
 ## 🤝 연락처
 
-- LinkedIn: [linkedin.com/in/seungho-bae](#)
+- LinkedIn: [linkedin.com/in/houuya](#)
 - Email: [givnhevn@gmail.com](mailto:givnhevn@gmail.com)
 - 프로젝트: 제품안전정보 포털 ([safetykorea.kr](https://www.safetykorea.kr))
 - GitHub: [github.com/HouuYa](https://github.com/HouuYa)
