@@ -1,4 +1,4 @@
-# AI-Powered Product Recall and Incidence Information Management System
+# AI-Powered Product Recall and Incident Information Management System
 
 > **Transforming government operations through AI automation: 95% cost reduction, 83% time savings**
 
@@ -8,7 +8,12 @@
 
 ## 🎯 Overview
 
-An end-to-end AI-powered automation system that manages product recall information across 43 countries, integrates with OECD's Global Recall Portal, and monitors online marketplaces for recalled products.
+An end-to-end AI-powered automation system that:
+- **Collects & manages** product recall information from 43 countries
+- **Integrates** with OECD's Global Recall Portal for international data sharing
+- **Monitors** online marketplaces for recalled products and incident signals
+- **Detects** product safety incidents from news sources in real-time
+- **Analyzes** consumer reviews and Q&A to identify early warning signs
 
 **Built by a government official, not a professional developer** — demonstrating that modern AI and low-code tools can enable non-technical experts to build enterprise-grade automation systems.
 
@@ -113,11 +118,13 @@ Automated product incident news detection and dissemination.
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
 | **Automation** | n8n (cloud) | Workflow orchestration |
-| **AI/ML** | Gemini, GPT-4, GPT-4 Vision | Translation, classification, analysis |
+| **AI/ML** | Gemini 2.0 Flash, GPT-4, GPT-4 Vision | Translation, classification, analysis |
 | **Database** | Supabase (PostgreSQL) | Structured data storage |
-| **Scraping** | ScrapingBee | Web data extraction |
+| **Scraping** | ScrapingBee, Puppeteer | Web data extraction |
 | **API** | REST, RSS, Webhooks | System integrations |
 | **Alerts** | Telegram API | Real-time notifications |
+
+**Why Gemini 2.0 Flash?** Free tier with high rate limits, ideal for government budget constraints while maintaining quality.
 
 ---
 
