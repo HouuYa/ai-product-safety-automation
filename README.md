@@ -1,3 +1,5 @@
+Context: AI-based product safety and recall monitoring in real-world regulatory environments.
+
 # AI-Powered Product Recall & Incident Management System for Government
 (Automation Pipeline using n8n, GPT-4, Supabase, OECD Integration)
 
@@ -8,6 +10,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![n8n](https://img.shields.io/badge/Built%20with-n8n-FF6D5A)](https://n8n.io)
 [![OpenAI](https://img.shields.io/badge/Powered%20by-OpenAI-412991)](https://openai.com)
+
 
 ## 🎯 Overview
 
