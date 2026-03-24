@@ -275,6 +275,7 @@
   }
   .module-screenshot img {
     width: 100%; display: block; opacity: 0.88;
+    max-height: 220px; object-fit: cover; object-position: top;
     transition: opacity 0.3s;
   }
   .module-card:hover .module-screenshot img { opacity: 1; }
@@ -331,7 +332,7 @@
     background: linear-gradient(135deg, rgba(255,180,0,0.05), rgba(255,180,0,0.02));
     border: 1px solid rgba(255,180,0,0.2);
     border-radius: 12px; padding: 40px 48px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+    display: grid; grid-template-columns: 3fr 2fr; gap: 32px; align-items: start;
   }
   .award-section h3 { font-size: 22px; font-weight: 800; color: var(--white); margin-bottom: 16px; }
   .award-section p  { font-size: 14px; color: var(--muted); line-height: 1.8; }
@@ -343,8 +344,12 @@
   }
   .award-screenshot {
     border: 1px solid rgba(255,180,0,0.25); border-radius: 8px; overflow: hidden;
+    align-self: start;
   }
-  .award-screenshot img { width: 100%; display: block; }
+  .award-screenshot img {
+    width: 100%; display: block;
+    max-height: 340px; object-fit: cover; object-position: top;
+  }
 
   /* ── ABOUT ── */
   .about-card {
@@ -515,14 +520,14 @@
     <div class="ba-side before">
       <div class="ba-label before" data-kr>이전 방식 (Before)</div>
       <div class="ba-label before" data-en>Before</div>
-      <div class="ba-item"><span class="ba-icon">⏱</span><span class="ba-text" data-kr>OECD 등록: 8년간 외주 위탁, <strong>연 2,000만원</strong> 지출</span></div>
-      <div class="ba-item"><span class="ba-icon">⏱</span><span class="ba-text" data-en>OECD registration: 8-year outsourcing contract, <strong>$20K/year</strong></span></div>
-      <div class="ba-item"><span class="ba-icon">📋</span><span class="ba-text" data-kr>해외 리콜: 수동 수집·번역·DB화에 <strong>최대 4일</strong> 소요</span></div>
-      <div class="ba-item"><span class="ba-icon">📋</span><span class="ba-text" data-en>Overseas recall: Manual collection, translation, DB entry taking <strong>up to 4 days</strong></span></div>
-      <div class="ba-item"><span class="ba-icon">🛒</span><span class="ba-text" data-kr>유통감시: 담당자가 직접 쇼핑몰 방문, <strong>수작업 검색</strong></span></div>
-      <div class="ba-item"><span class="ba-icon">🛒</span><span class="ba-text" data-en>Marketplace: Manual shopping site visits, <strong>keyword search by hand</strong></span></div>
-      <div class="ba-item"><span class="ba-icon">📰</span><span class="ba-text" data-kr>제품사고 뉴스: 매일 수동 검색, <strong>빠른 대응 불가</strong></span></div>
-      <div class="ba-item"><span class="ba-icon">📰</span><span class="ba-text" data-en>News monitoring: Daily manual search, <strong>delayed response</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">⏱</span><span class="ba-text">OECD 등록: 8년간 외주 위탁, <strong>연 2,000만원</strong> 지출</span></div>
+      <div class="ba-item" data-en><span class="ba-icon">⏱</span><span class="ba-text">OECD registration: 8-year outsourcing contract, <strong>$20K/year</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">📋</span><span class="ba-text">해외 리콜: 수동 수집·번역·DB화에 <strong>최대 4일</strong> 소요</span></div>
+      <div class="ba-item" data-en><span class="ba-icon">📋</span><span class="ba-text">Overseas recall: Manual collection, translation, DB entry taking <strong>up to 4 days</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">🛒</span><span class="ba-text">유통감시: 담당자가 직접 쇼핑몰 방문, <strong>수작업 검색</strong></span></div>
+      <div class="ba-item" data-en><span class="ba-icon">🛒</span><span class="ba-text">Marketplace: Manual shopping site visits, <strong>keyword search by hand</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">📰</span><span class="ba-text">제품사고 뉴스: 매일 수동 검색, <strong>빠른 대응 불가</strong></span></div>
+      <div class="ba-item" data-en><span class="ba-icon">📰</span><span class="ba-text">News monitoring: Daily manual search, <strong>delayed response</strong></span></div>
     </div>
     <div class="ba-arrow">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
@@ -530,14 +535,14 @@
     <div class="ba-side">
       <div class="ba-label after" data-kr>AI 자동화 이후 (After)</div>
       <div class="ba-label after" data-en>After AI Automation</div>
-      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-kr>OECD 등록: 외주 계약 종료, <strong>연 100만원</strong>으로 완전 자동화</span></div>
-      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-en>OECD registration: Contract terminated, <strong>$1K/year</strong>, fully automated</span></div>
-      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-kr>해외 리콜: 매일 자동 수집·다국어 번역, <strong>1시간 이내</strong> 처리</span></div>
-      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-en>Overseas recall: Auto-collected, multilingual AI translation, processed in <strong>&lt;1 hour</strong></span></div>
-      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-kr>유통감시: AI 멀티모달 분석, 24/7 <strong>자동 감시·위해성 평가</strong></span></div>
-      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-en>Marketplace: AI multimodal analysis, 24/7 <strong>automated surveillance</strong></span></div>
-      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-kr>제품사고 뉴스: 2시간 주기 자동 탐지, <strong>Telegram 즉시 전파</strong></span></div>
-      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-en>News monitoring: Auto-detected every 2 hours, <strong>instant Telegram alerts</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">✅</span><span class="ba-text">OECD 등록: 외주 계약 종료, <strong>연 100만원</strong>으로 완전 자동화</span></div>
+      <div class="ba-item" data-en><span class="ba-icon">✅</span><span class="ba-text">OECD registration: Contract terminated, <strong>$1K/year</strong>, fully automated</span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">✅</span><span class="ba-text">해외 리콜: 매일 자동 수집·다국어 번역, <strong>1시간 이내</strong> 처리</span></div>
+      <div class="ba-item" data-en><span class="ba-icon">✅</span><span class="ba-text">Overseas recall: Auto-collected, multilingual AI translation, processed in <strong>&lt;1 hour</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">✅</span><span class="ba-text">유통감시: AI 멀티모달 분석, 24/7 <strong>자동 감시·위해성 평가</strong></span></div>
+      <div class="ba-item" data-en><span class="ba-icon">✅</span><span class="ba-text">Marketplace: AI multimodal analysis, 24/7 <strong>automated surveillance</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">✅</span><span class="ba-text">제품사고 뉴스: 2시간 주기 자동 탐지, <strong>Telegram 즉시 전파</strong></span></div>
+      <div class="ba-item" data-en><span class="ba-icon">✅</span><span class="ba-text">News monitoring: Auto-detected every 2 hours, <strong>instant Telegram alerts</strong></span></div>
     </div>
   </div>
 </section>
@@ -660,7 +665,7 @@
       <div class="module-screenshot" style="padding:24px 28px; background: var(--navy3);">
         <div class="screenshot-label" style="margin-bottom:12px;" data-kr>시스템 운영 체계 개요</div>
         <div class="screenshot-label" style="margin-bottom:12px;" data-en>System Architecture Overview</div>
-        <img src="screenshots/workflow-news.png" alt="Safety Management System Architecture" loading="lazy" style="border-radius:6px; opacity:0.9;">
+        <img src="screenshots/workflow-news.png" alt="Safety Management System Architecture" loading="lazy" style="border-radius:6px; opacity:0.9; max-height:200px; width:100%; object-fit:cover; object-position:top;">
       </div>
     </div>
 
