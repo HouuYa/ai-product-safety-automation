@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Based Recall & Product Safety Automation | 배승호 · Seungho Bae</title>
+<meta name="description" content="AI 기반 리콜·사고 위해제품 정보 관리 자동화 체계 | 2025 산업부 적극행정 우수사례 선정">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #07111F;
+    --navy2:   #0D1C2E;
+    --navy3:   #122236;
+    --card:    #0F1E30;
+    --teal:    #00CFA8;
+    --teal2:   #00A888;
+    --gold:    #FFB400;
+    --gold2:   #E09E00;
+    --orange:  #FF6B35;
+    --blue:    #3A9BD5;
+    --text:    #D8E4EE;
+    --muted:   #6B8FAD;
+    --border:  #1A3048;
+    --white:   #F0F6FC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans KR', 'Space Grotesk', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── LANG TOGGLE ── */
+  .lang-bar {
+    position: fixed; top: 0; right: 0; z-index: 999;
+    display: flex; gap: 0; padding: 10px 20px;
+  }
+  .lang-btn {
+    padding: 5px 14px; font-size: 12px; font-weight: 600;
+    background: var(--navy3); color: var(--muted);
+    border: 1px solid var(--border); cursor: pointer;
+    transition: all 0.2s; letter-spacing: 0.05em;
+  }
+  .lang-btn:first-child { border-radius: 4px 0 0 4px; }
+  .lang-btn:last-child  { border-radius: 0 4px 4px 0; }
+  .lang-btn.active { background: var(--teal); color: var(--navy); border-color: var(--teal); }
+  .lang-btn:hover:not(.active) { color: var(--white); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(7,17,31,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex; align-items: center; gap: 32px;
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--teal); font-weight: 500;
+    text-decoration: none; white-space: nowrap;
+  }
+  .nav-links { display: flex; gap: 24px; margin-left: auto; margin-right: 120px; }
+  .nav-links a {
+    font-size: 13px; color: var(--muted); text-decoration: none;
+    transition: color 0.2s; font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 80px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,207,168,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -100px; left: -100px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(58,155,213,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .award-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, rgba(255,180,0,0.12), rgba(255,180,0,0.05));
+    border: 1px solid rgba(255,180,0,0.35);
+    border-radius: 100px; padding: 8px 20px;
+    margin-bottom: 32px; width: fit-content;
+    animation: fadeInDown 0.6s ease;
+  }
+  .award-badge .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold); box-shadow: 0 0 8px var(--gold);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .award-badge span {
+    font-size: 13px; font-weight: 600; color: var(--gold);
+    letter-spacing: 0.03em;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 900; line-height: 1.15;
+    color: var(--white); margin-bottom: 8px;
+    animation: fadeInUp 0.7s ease 0.1s both;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--teal), var(--blue));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero .subtitle {
+    font-size: clamp(14px, 2vw, 18px); color: var(--muted);
+    margin-bottom: 16px; font-weight: 400;
+    animation: fadeInUp 0.7s ease 0.2s both;
+  }
+  .hero .desc {
+    max-width: 660px; font-size: 16px; color: var(--text);
+    margin-bottom: 48px; line-height: 1.8;
+    animation: fadeInUp 0.7s ease 0.3s both;
+  }
+
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeInUp 0.7s ease 0.4s both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal); color: var(--navy);
+    padding: 13px 28px; border-radius: 6px;
+    font-weight: 700; font-size: 14px; text-decoration: none;
+    transition: all 0.2s; letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { background: var(--teal2); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1.5px solid var(--border); color: var(--text);
+    padding: 13px 28px; border-radius: 6px;
+    font-weight: 500; font-size: 14px; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+  @keyframes fadeInDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:none; } }
+  @keyframes fadeInUp   { from { opacity:0; transform:translateY(20px);  } to { opacity:1; transform:none; } }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 1px; background: var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-item {
+    background: var(--navy2); padding: 28px 24px; text-align: center;
+    transition: background 0.2s;
+  }
+  .stat-item:hover { background: var(--navy3); }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 3.5vw, 44px); font-weight: 700;
+    color: var(--teal); line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-num.gold { color: var(--gold); }
+  .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; line-height: 1.4; }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 80px; }
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 12px; display: block;
+  }
+  .section-title {
+    font-size: clamp(22px, 3vw, 34px); font-weight: 800;
+    color: var(--white); margin-bottom: 16px; line-height: 1.25;
+  }
+  .section-desc {
+    font-size: 16px; color: var(--muted); max-width: 640px; line-height: 1.8;
+    margin-bottom: 48px;
+  }
+
+  /* ── PROBLEM/SOLUTION ── */
+  .before-after {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 0;
+    align-items: stretch; margin-bottom: 64px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .ba-side { padding: 36px 32px; }
+  .ba-side.before { border-right: 1px solid var(--border); }
+  .ba-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .ba-label.before { color: var(--orange); }
+  .ba-label.after  { color: var(--teal); }
+  .ba-arrow {
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px; background: var(--navy3);
+  }
+  .ba-arrow svg { color: var(--teal); }
+  .ba-item { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+  .ba-icon { font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+  .ba-text { font-size: 14px; color: var(--text); line-height: 1.6; }
+  .ba-text strong { color: var(--white); }
+
+  /* ── MODULES GRID ── */
+  .modules-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .module-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .module-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+  .module-header {
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .module-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600; color: var(--teal);
+    background: rgba(0,207,168,0.08); border: 1px solid rgba(0,207,168,0.2);
+    border-radius: 4px; padding: 3px 8px; white-space: nowrap; margin-top: 3px;
+  }
+  .module-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .module-impact {
+    display: inline-block; font-size: 12px; font-weight: 600;
+    color: var(--gold); background: rgba(255,180,0,0.1);
+    border-radius: 4px; padding: 2px 8px;
+  }
+  .module-body { padding: 24px 28px; }
+  .module-body p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+  .process-steps { display: flex; flex-direction: column; gap: 8px; }
+  .step {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--text);
+  }
+  .step-num {
+    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+    background: rgba(0,207,168,0.12); border: 1px solid rgba(0,207,168,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; color: var(--teal);
+  }
+  .module-screenshot {
+    margin: 0; border-top: 1px solid var(--border);
+    background: var(--navy3);
+    overflow: hidden;
+  }
+  .module-screenshot img {
+    width: 100%; display: block; opacity: 0.88;
+    transition: opacity 0.3s;
+  }
+  .module-card:hover .module-screenshot img { opacity: 1; }
+  .screenshot-label {
+    padding: 8px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--muted); letter-spacing: 0.08em;
+  }
+
+  /* ── STACK TABLE ── */
+  .stack-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .stack-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 22px;
+  }
+  .stack-layer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600; color: var(--teal);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .stack-tech { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .stack-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── ECOSYSTEM ── */
+  .forum-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    margin-bottom: 40px;
+  }
+  .forum-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px;
+  }
+  .forum-name {
+    font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 8px;
+  }
+  .forum-members {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--teal); margin-bottom: 10px;
+  }
+  .forum-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* ── ARCHITECTURE IMAGE ── */
+  .arch-image-wrap {
+    border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    background: white;
+  }
+  .arch-image-wrap img { width: 100%; display: block; }
+
+  /* ── AWARD SECTION ── */
+  .award-section {
+    background: linear-gradient(135deg, rgba(255,180,0,0.05), rgba(255,180,0,0.02));
+    border: 1px solid rgba(255,180,0,0.2);
+    border-radius: 12px; padding: 40px 48px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+  }
+  .award-section h3 { font-size: 22px; font-weight: 800; color: var(--white); margin-bottom: 16px; }
+  .award-section p  { font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .award-highlight {
+    font-size: 15px; font-weight: 600; color: var(--gold);
+    background: rgba(255,180,0,0.08); border-left: 3px solid var(--gold);
+    padding: 14px 18px; border-radius: 0 6px 6px 0; margin-top: 16px;
+    line-height: 1.7;
+  }
+  .award-screenshot {
+    border: 1px solid rgba(255,180,0,0.25); border-radius: 8px; overflow: hidden;
+  }
+  .award-screenshot img { width: 100%; display: block; }
+
+  /* ── ABOUT ── */
+  .about-card {
+    display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: start;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 40px 48px;
+  }
+  .about-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--blue));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; font-weight: 900; color: var(--navy); flex-shrink: 0;
+  }
+  .about-name { font-size: 22px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+  .about-title { font-size: 14px; color: var(--teal); font-weight: 500; margin-bottom: 20px; }
+  .about-items { display: flex; flex-direction: column; gap: 8px; }
+  .about-item { font-size: 14px; color: var(--text); display: flex; gap: 10px; align-items: flex-start; }
+  .about-item::before { content: '─'; color: var(--teal); flex-shrink: 0; margin-top: 2px; }
+  .about-links { display: flex; gap: 12px; margin-top: 24px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy2); border-top: 1px solid var(--border);
+    padding: 32px 80px; text-align: center;
+    font-size: 13px; color: var(--muted);
+  }
+  footer a { color: var(--teal); text-decoration: none; }
+
+  /* ── LANG CONTENT ── */
+  [data-kr], [data-en] { }
+  body.lang-en [data-kr] { display: none; }
+  body.lang-en [data-en] { }
+  body.lang-kr [data-en] { display: none; }
+  body.lang-kr [data-kr] { }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    section { padding: 60px 24px; }
+    .stats-strip { grid-template-columns: repeat(3, 1fr); }
+    .modules-grid { grid-template-columns: 1fr; }
+    .stack-grid { grid-template-columns: repeat(2, 1fr); }
+    .forum-grid { grid-template-columns: repeat(2, 1fr); }
+    .award-section { grid-template-columns: 1fr; }
+    .about-card { grid-template-columns: 1fr; }
+    .before-after { grid-template-columns: 1fr; }
+    .ba-arrow { display: none; }
+    footer { padding: 24px 20px; }
+  }
+
+  /* ── COUNTER ANIMATION ── */
+  .count-up { transition: all 0.5s ease; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: all 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body class="lang-kr">
+
+<!-- Language Toggle -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('kr')">한국어</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- Navigation -->
+<nav>
+  <a href="#" class="nav-logo">ai-product-safety-automation</a>
+  <div class="nav-links">
+    <a href="#overview" data-kr>개요</a><a href="#overview" data-en>Overview</a>
+    <a href="#modules" data-kr>주요기능</a><a href="#modules" data-en>Features</a>
+    <a href="#stack" data-kr>기술스택</a><a href="#stack" data-en>Tech Stack</a>
+    <a href="#ecosystem" data-kr>협력생태계</a><a href="#ecosystem" data-en>Ecosystem</a>
+    <a href="#award" data-kr>수상</a><a href="#award" data-en>Award</a>
+    <a href="#about" data-kr>소개</a><a href="#about" data-en>About</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="award-badge">
+    <div class="dot"></div>
+    <span data-kr>2025 산업통상자원부 적극행정 우수사례 선정 (3·4분기)</span>
+    <span data-en>2025 Ministry of Trade Proactive Administration Excellence Award (Q3·Q4)</span>
+  </div>
+
+  <h1 data-kr>AI 기반 <em>리콜·위해제품</em><br>정보 관리 자동화 체계</h1>
+  <h1 data-en>AI-Powered <em>Recall & Hazard</em><br>Product Safety Automation</h1>
+
+  <p class="subtitle" data-kr>국가기술표준원 제품안전정보과 &middot; n8n + GPT-4 + Supabase + OECD 연동</p>
+  <p class="subtitle" data-en>Korea Agency for Technology and Standards &middot; n8n + GPT-4 + Supabase + OECD Integration</p>
+
+  <p class="desc" data-kr>
+    전문 개발자 없이, 공무원 실무자가 직접 구축한 엔터프라이즈급 AI 자동화 시스템.<br>
+    연간 2,000만원 외주 예산을 100만원으로 줄이고, 처리 시간을 4일에서 1시간으로 단축했습니다.
+    Low-Code와 AI 도구만으로 가능함을 증명한 정부 혁신 사례입니다.
+  </p>
+  <p class="desc" data-en>
+    An enterprise-grade AI automation system built entirely by a government official — no professional developers.
+    Reduced annual outsourcing budget from $20K to $1K, and processing time from 4 days to under 1 hour.
+    A proof-of-concept that public servants can build world-class systems with modern Low-Code/AI tools.
+  </p>
+
+  <div class="hero-cta">
+    <a href="https://github.com/HouuYa/ai-product-safety-automation" class="btn-primary" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+    <a href="https://github.com/HouuYa/ai-product-safety-automation/blob/main/README_KR.md" class="btn-outline" target="_blank">
+      <span data-kr>한국어 문서</span><span data-en>Korean Docs</span>
+    </a>
+    <a href="https://www.safetykorea.kr" class="btn-outline" target="_blank">
+      <span data-kr>제품안전정보 포털</span><span data-en>Safety Korea Portal</span>
+    </a>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip" id="overview">
+  <div class="stat-item">
+    <div class="stat-num">95%</div>
+    <div class="stat-label" data-kr>연간 예산 절감<br>2,000만 → 100만원</div>
+    <div class="stat-label" data-en>Cost Reduction<br>$20K → $1K/year</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">83%</div>
+    <div class="stat-label" data-kr>처리시간 단축<br>30분 → 5분/건</div>
+    <div class="stat-label" data-en>Time Savings<br>30min → 5min/recall</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">43</div>
+    <div class="stat-label" data-kr>해외 리콜 수집 국가<br>자동화 대상</div>
+    <div class="stat-label" data-en>Countries Automated<br>International Recall Data</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">50<span style="font-size:0.55em;color:var(--muted)">+</span></div>
+    <div class="stat-label" data-kr>오픈포럼 참여 기업<br>4개 분과위원회</div>
+    <div class="stat-label" data-en>Forum Partner Companies<br>4 Subcommittees</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num gold">4K<span style="font-size:0.55em;color:var(--muted)">+</span></div>
+    <div class="stat-label" data-kr>연간 처리 리콜 건수<br>실시간 자동화</div>
+    <div class="stat-label" data-en>Recalls Processed/Year<br>Real-time Automation</div>
+  </div>
+</div>
+
+<!-- BEFORE / AFTER -->
+<section>
+  <span class="section-tag" data-kr>배경 &amp; 문제점</span>
+  <span class="section-tag" data-en>Background &amp; Problem</span>
+  <h2 class="section-title" data-kr>수작업·외주 의존에서 AI 자동화로</h2>
+  <h2 class="section-title" data-en>From Manual Outsourcing to AI Automation</h2>
+  <p class="section-desc" data-kr>
+    연간 300건 이상 국내 리콜, 43개국 해외 리콜 정보를 담당자가 수동으로 처리하는 구조는
+    업무 비효율과 정보 공유 지연을 초래했습니다.
+  </p>
+  <p class="section-desc" data-en>
+    Processing 300+ domestic recalls and international data from 43 countries manually created systemic inefficiency and delayed information sharing.
+  </p>
+
+  <div class="before-after reveal">
+    <div class="ba-side before">
+      <div class="ba-label before" data-kr>이전 방식 (Before)</div>
+      <div class="ba-label before" data-en>Before</div>
+      <div class="ba-item"><span class="ba-icon">⏱</span><span class="ba-text" data-kr>OECD 등록: 8년간 외주 위탁, <strong>연 2,000만원</strong> 지출</span></div>
+      <div class="ba-item"><span class="ba-icon">⏱</span><span class="ba-text" data-en>OECD registration: 8-year outsourcing contract, <strong>$20K/year</strong></span></div>
+      <div class="ba-item"><span class="ba-icon">📋</span><span class="ba-text" data-kr>해외 리콜: 수동 수집·번역·DB화에 <strong>최대 4일</strong> 소요</span></div>
+      <div class="ba-item"><span class="ba-icon">📋</span><span class="ba-text" data-en>Overseas recall: Manual collection, translation, DB entry taking <strong>up to 4 days</strong></span></div>
+      <div class="ba-item"><span class="ba-icon">🛒</span><span class="ba-text" data-kr>유통감시: 담당자가 직접 쇼핑몰 방문, <strong>수작업 검색</strong></span></div>
+      <div class="ba-item"><span class="ba-icon">🛒</span><span class="ba-text" data-en>Marketplace: Manual shopping site visits, <strong>keyword search by hand</strong></span></div>
+      <div class="ba-item"><span class="ba-icon">📰</span><span class="ba-text" data-kr>제품사고 뉴스: 매일 수동 검색, <strong>빠른 대응 불가</strong></span></div>
+      <div class="ba-item"><span class="ba-icon">📰</span><span class="ba-text" data-en>News monitoring: Daily manual search, <strong>delayed response</strong></span></div>
+    </div>
+    <div class="ba-arrow">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+    <div class="ba-side">
+      <div class="ba-label after" data-kr>AI 자동화 이후 (After)</div>
+      <div class="ba-label after" data-en>After AI Automation</div>
+      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-kr>OECD 등록: 외주 계약 종료, <strong>연 100만원</strong>으로 완전 자동화</span></div>
+      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-en>OECD registration: Contract terminated, <strong>$1K/year</strong>, fully automated</span></div>
+      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-kr>해외 리콜: 매일 자동 수집·다국어 번역, <strong>1시간 이내</strong> 처리</span></div>
+      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-en>Overseas recall: Auto-collected, multilingual AI translation, processed in <strong>&lt;1 hour</strong></span></div>
+      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-kr>유통감시: AI 멀티모달 분석, 24/7 <strong>자동 감시·위해성 평가</strong></span></div>
+      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-en>Marketplace: AI multimodal analysis, 24/7 <strong>automated surveillance</strong></span></div>
+      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-kr>제품사고 뉴스: 2시간 주기 자동 탐지, <strong>Telegram 즉시 전파</strong></span></div>
+      <div class="ba-item"><span class="ba-icon">✅</span><span class="ba-text" data-en>News monitoring: Auto-detected every 2 hours, <strong>instant Telegram alerts</strong></span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MODULES -->
+<section id="modules">
+  <span class="section-tag" data-kr>주요 기능</span>
+  <span class="section-tag" data-en>Key Features</span>
+  <h2 class="section-title" data-kr>4개 자동화 모듈</h2>
+  <h2 class="section-title" data-en>4 Automation Modules</h2>
+  <p class="section-desc" data-kr>각 모듈은 독립적으로 운영되며, n8n 워크플로우로 오케스트레이션됩니다.</p>
+  <p class="section-desc" data-en>Each module operates independently, orchestrated via n8n workflows.</p>
+
+  <div class="modules-grid">
+
+    <!-- Module 1 -->
+    <div class="module-card reveal">
+      <div class="module-header">
+        <div class="module-num">MOD 01</div>
+        <div>
+          <div class="module-title" data-kr>국내 리콜 → OECD 자동 등록</div>
+          <div class="module-title" data-en>Domestic Recall → OECD Registration</div>
+          <span class="module-impact" data-kr>외주 대체 · 연 1,900만원 절감</span>
+          <span class="module-impact" data-en>Replaced 8-yr contract · $19K saved</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <p data-kr>제품안전정보 포털에서 신규 리콜을 매일 자동 수집하고, AI로 영문 번역·GPC 코드 부여 후 OECD 글로벌 리콜 포털에 자동 제출.</p>
+        <p data-en>Daily auto-collection from safety portal, GPT-4 translation + GPC classification, auto-submission to OECD Global Recall Portal.</p>
+        <div class="process-steps">
+          <div class="step"><div class="step-num">1</div><span data-kr>safetykorea.kr API 수집 (매일 오전)</span><span data-en>safetykorea.kr API pull (daily AM)</span></div>
+          <div class="step"><div class="step-num">2</div><span data-kr>GPT-4 영문 번역 + 이미지 리사이징</span><span data-en>GPT-4 English translation + image resize</span></div>
+          <div class="step"><div class="step-num">3</div><span data-kr>GPC 국제표준 제품분류 자동 부여</span><span data-en>Auto GPC classification (OECD standard)</span></div>
+          <div class="step"><div class="step-num">4</div><span data-kr>OECD XML 생성 → 담당자 검토(5분) → 자동 등록</span><span data-en>OECD XML → 5-min review → auto-submit</span></div>
+        </div>
+      </div>
+      <div class="module-screenshot">
+        <div class="screenshot-label">n8n workflow · OECD registration pipeline</div>
+        <img src="screenshots/workflow-oecd.png" alt="n8n OECD Registration Workflow" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Module 2 -->
+    <div class="module-card reveal">
+      <div class="module-header">
+        <div class="module-num">MOD 02</div>
+        <div>
+          <div class="module-title" data-kr>해외 리콜 정보 수집 (43개국)</div>
+          <div class="module-title" data-en>Overseas Recall Collection (43 Countries)</div>
+          <span class="module-impact" data-kr>4일 → 1시간 이내 (75% 단축)</span>
+          <span class="module-impact" data-en>4 days → &lt;1 hour (75% faster)</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <p data-kr>미국·캐나다·일본·중국·EU 등 13개 정부 사이트를 매일 스크래핑, 다국어 AI 번역 후 구조화 DB 저장 및 Telegram 실시간 알림.</p>
+        <p data-en>Daily scraping of 13 government sites (US, Canada, Japan, China, EU), multilingual AI translation, structured DB storage, real-time Telegram alerts.</p>
+        <div class="process-steps">
+          <div class="step"><div class="step-num">1</div><span data-kr>13개 사이트 스크래핑 (리콜문, 이미지, PDF)</span><span data-en>Scrape 13 sites (notices, images, PDFs)</span></div>
+          <div class="step"><div class="step-num">2</div><span data-kr>Gemini/GPT 다국어 번역 (영·중·일·독·불)</span><span data-en>Gemini/GPT multilingual translation</span></div>
+          <div class="step"><div class="step-num">3</div><span data-kr>위해 유형·화학물질 AI 분류 → Supabase 저장</span><span data-en>AI hazard classification → Supabase storage</span></div>
+          <div class="step"><div class="step-num">4</div><span data-kr>중대 리콜 → Telegram 실시간 알림</span><span data-en>Critical recalls → Telegram instant alert</span></div>
+        </div>
+      </div>
+      <div class="module-screenshot">
+        <div class="screenshot-label">n8n workflow · marketplace surveillance pipeline</div>
+        <img src="screenshots/workflow-marketplace.png" alt="n8n Marketplace Workflow" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Module 3 -->
+    <div class="module-card reveal">
+      <div class="module-header">
+        <div class="module-num">MOD 03</div>
+        <div>
+          <div class="module-title" data-kr>온라인 쇼핑몰 유통 감시</div>
+          <div class="module-title" data-en>Online Marketplace Surveillance</div>
+          <span class="module-impact" data-kr>분석시간 60% 단축 · AI 멀티모달</span>
+          <span class="module-impact" data-en>60% faster analysis · GPT-4 Vision</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <p data-kr>쿠팡·네이버쇼핑 등에서 리콜 제품 모델번호를 기반으로 판매 여부를 자동 탐지. GPT-4 Vision으로 제품 이미지·후기·문의를 멀티모달 분석.</p>
+        <p data-en>Auto-detects recalled products on Coupang, Naver Shopping using model numbers. GPT-4 Vision analyzes product images, reviews, and Q&A for risk signals.</p>
+        <div class="process-steps">
+          <div class="step"><div class="step-num">1</div><span data-kr>ScrapingBee로 쿠키 기반 상품정보 자동 수집</span><span data-en>Cookie-based scraping with ScrapingBee</span></div>
+          <div class="step"><div class="step-num">2</div><span data-kr>제조사·모델명·KC 인증번호 교차 검증</span><span data-en>Cross-check maker, model, KC certification</span></div>
+          <div class="step"><div class="step-num">3</div><span data-kr>GPT-4 Vision: 이미지·후기 멀티모달 분석</span><span data-en>GPT-4 Vision: image + review multimodal analysis</span></div>
+          <div class="step"><div class="step-num">4</div><span data-kr>위해성 평가 보고서 생성 → 담당자 최종 판단</span><span data-en>Risk report → human final decision</span></div>
+        </div>
+      </div>
+      <div class="module-screenshot">
+        <div class="screenshot-label">n8n workflow · news monitoring &amp; alert pipeline</div>
+        <img src="screenshots/workflow-news.png" alt="n8n News Monitoring Workflow" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Module 4 -->
+    <div class="module-card reveal">
+      <div class="module-header">
+        <div class="module-num">MOD 04</div>
+        <div>
+          <div class="module-title" data-kr>제품사고 뉴스 모니터링</div>
+          <div class="module-title" data-en>Product Incident News Monitoring</div>
+          <span class="module-impact" data-kr>2시간 주기 자동 탐지 · 즉시 전파</span>
+          <span class="module-impact" data-en>2-hour cycle · instant dissemination</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <p data-kr>네이버 뉴스·소방방재신문을 2시간마다 자동 모니터링. AI가 화재·폭발·감전 등 제품사고 키워드를 분류하고 관계자에게 Telegram으로 즉시 전파.</p>
+        <p data-en>Auto-monitors Naver News and fire/safety journals every 2 hours. AI classifies fire, explosion, electric shock incidents and sends instant Telegram alerts to stakeholders.</p>
+        <div class="process-steps">
+          <div class="step"><div class="step-num">1</div><span data-kr>뉴스 포털 RSS/크롤링 (2시간 주기)</span><span data-en>News portal RSS/crawl (every 2 hours)</span></div>
+          <div class="step"><div class="step-num">2</div><span data-kr>AI 제품사고 키워드 분류 (화재·폭발·감전)</span><span data-en>AI incident classification (fire, explosion, shock)</span></div>
+          <div class="step"><div class="step-num">3</div><span data-kr>제품명·위해 내용·출처 자동 추출</span><span data-en>Auto-extract product, hazard, source</span></div>
+          <div class="step"><div class="step-num">4</div><span data-kr>Telegram 채널로 담당자 즉시 알림</span><span data-en>Instant Telegram notification to team</span></div>
+        </div>
+      </div>
+      <div class="module-screenshot" style="padding:24px 28px; background: var(--navy3);">
+        <div class="screenshot-label" style="margin-bottom:12px;" data-kr>시스템 운영 체계 개요</div>
+        <div class="screenshot-label" style="margin-bottom:12px;" data-en>System Architecture Overview</div>
+        <img src="screenshots/safety-system.png" alt="Safety Management System Architecture" loading="lazy" style="border-radius:6px; opacity:0.9;">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TECH STACK -->
+<section id="stack">
+  <span class="section-tag">Tech Stack</span>
+  <h2 class="section-title" data-kr>기술 스택</h2>
+  <h2 class="section-title" data-en>Technology Stack</h2>
+  <p class="section-desc" data-kr>
+    서버 관리 없는 클라우드 네이티브 구성. Low-Code 도구로 전문 개발자 없이 운영 가능합니다.<br>
+    <em style="color:var(--teal)">Gemini 2.0 Flash 선택 이유</em>: 무료 티어의 높은 요청 한도 → 정부 예산 절감에 최적
+  </p>
+  <p class="section-desc" data-en>
+    Cloud-native, serverless architecture. Operable without professional developers using Low-Code tools.<br>
+    <em style="color:var(--teal)">Why Gemini 2.0 Flash?</em>: High free-tier rate limits → ideal for government budget constraints
+  </p>
+
+  <div class="stack-grid reveal">
+    <div class="stack-card">
+      <div class="stack-layer">Automation</div>
+      <div class="stack-tech">n8n Cloud</div>
+      <div class="stack-desc" data-kr>워크플로우 오케스트레이션. 서버 관리 불필요, 빠른 구축.</div>
+      <div class="stack-desc" data-en>Workflow orchestration. No server management, rapid deployment.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-layer">AI / ML</div>
+      <div class="stack-tech">GPT-4 · Gemini 2.5</div>
+      <div class="stack-desc" data-kr>번역, GPC 분류, 멀티모달 이미지 분석, 위해성 평가.</div>
+      <div class="stack-desc" data-en>Translation, GPC classification, multimodal image analysis, risk assessment.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-layer">Database</div>
+      <div class="stack-tech">Supabase (PostgreSQL)</div>
+      <div class="stack-desc" data-kr>구조화 데이터 저장, REST API 자동 생성, 실시간 쿼리.</div>
+      <div class="stack-desc" data-en>Structured storage, auto-generated REST API, real-time queries.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-layer">Web Scraping</div>
+      <div class="stack-tech">ScrapingBee · Puppeteer</div>
+      <div class="stack-desc" data-kr>봇 방지 우회, 쿠키 기반 쇼핑몰 데이터 추출.</div>
+      <div class="stack-desc" data-en>Bot protection bypass, cookie-based e-commerce data extraction.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-layer">Integration</div>
+      <div class="stack-tech">REST · RSS · Webhooks</div>
+      <div class="stack-desc" data-kr>OECD 포털, safetykorea.kr, 쇼핑몰 API 연동.</div>
+      <div class="stack-desc" data-en>OECD portal, safetykorea.kr, marketplace API integration.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-layer">Alerts</div>
+      <div class="stack-tech">Telegram API</div>
+      <div class="stack-desc" data-kr>담당자 실시간 알림. 중대 리콜·사고 즉시 전파.</div>
+      <div class="stack-desc" data-en>Real-time staff notifications. Instant critical recall and incident alerts.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ECOSYSTEM -->
+<section id="ecosystem">
+  <span class="section-tag" data-kr>민관 협력 생태계</span>
+  <span class="section-tag" data-en>Public-Private Ecosystem</span>
+  <h2 class="section-title" data-kr>제품안전정보 오픈포럼</h2>
+  <h2 class="section-title" data-en>Product Safety Information Open Forum</h2>
+  <p class="section-desc" data-kr>
+    50개 기업, 4개 분과위원회로 구성된 민관 협력 플랫폼.
+    AI 기반 제품안전 관리의 노하우를 업계와 공유하고 자율 규제 표준을 개발합니다.
+  </p>
+  <p class="section-desc" data-en>
+    A public-private collaboration platform of 50+ companies across 4 subcommittees.
+    Sharing AI-based product safety expertise with industry and developing voluntary standards.
+  </p>
+
+  <div class="forum-grid reveal">
+    <div class="forum-card">
+      <div class="forum-name" data-kr>쇼핑몰 유통 분과</div>
+      <div class="forum-name" data-en>E-Commerce Distribution</div>
+      <div class="forum-members" data-kr>쿠팡, 카카오, 11번가 등 25개사</div>
+      <div class="forum-members" data-en>Coupang, Kakao, 11st + 25 companies</div>
+      <div class="forum-desc" data-kr>리콜제품 유통 차단 기술, AI 검색 자동화 도입 논의</div>
+      <div class="forum-desc" data-en>Automated AI surveillance, distribution blockade tech</div>
+    </div>
+    <div class="forum-card">
+      <div class="forum-name" data-kr>소프트웨어 분과</div>
+      <div class="forum-name" data-en>Software Subcommittee</div>
+      <div class="forum-members" data-kr>이씨티컴플라이언스 등 10개사</div>
+      <div class="forum-members" data-en>ECT Compliance + 10 companies</div>
+      <div class="forum-desc" data-kr>AI 업무 자동화 기술 피드백, 워크플로우 개선</div>
+      <div class="forum-desc" data-en>AI automation tech feedback, workflow improvement</div>
+    </div>
+    <div class="forum-card">
+      <div class="forum-name" data-kr>제품안전산업 분과</div>
+      <div class="forum-name" data-en>Product Safety Industry</div>
+      <div class="forum-members" data-kr>한샘 등 18개사</div>
+      <div class="forum-members" data-en>Hanssem + 18 companies</div>
+      <div class="forum-desc" data-kr>제품안전정보 활용 확산, 사례 교육</div>
+      <div class="forum-desc" data-en>Safety data utilization, case study education</div>
+    </div>
+    <div class="forum-card">
+      <div class="forum-name" data-kr>중개유통 분과</div>
+      <div class="forum-name" data-en>Intermediary Distribution</div>
+      <div class="forum-members" data-kr>지앤지커머스 등 5개사</div>
+      <div class="forum-members" data-en>G&Z Commerce + 5 companies</div>
+      <div class="forum-desc" data-kr>B2B 사업자 불법·불량제품 유통 차단 기술</div>
+      <div class="forum-desc" data-en>B2B illegal product distribution prevention</div>
+    </div>
+  </div>
+
+  <!-- AX 역량 -->
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-top:0;" class="reveal">
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px 28px;">
+      <div class="stack-layer" data-kr>조직 AX 역량 내재화</div>
+      <div class="stack-layer" data-en>Organizational AI Transformation</div>
+      <div style="font-size:20px; font-weight:800; color:var(--white); margin:10px 0 12px;" data-kr>공무원도 AI 시스템을 직접 만든다</div>
+      <div style="font-size:20px; font-weight:800; color:var(--white); margin:10px 0 12px;" data-en>Civil Servants Can Build AI Systems</div>
+      <div style="font-size:14px; color:var(--muted); line-height:1.7;" data-kr>
+        6회 실습 워크샵 (100명+ 교육), AI 참고 도서 27권 배포, Low-Code/No-Code 도구 도입.
+        "공무원은 코딩 못한다"는 편견을 깨는 조직 역량 구축.
+      </div>
+      <div style="font-size:14px; color:var(--muted); line-height:1.7;" data-en>
+        6 hands-on workshops (100+ staff trained), 27 AI books distributed, Low-Code adoption.
+        Breaking the stereotype that "civil servants can't code."
+      </div>
+    </div>
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px 28px;">
+      <div class="stack-layer">International Standards</div>
+      <div style="font-size:20px; font-weight:800; color:var(--white); margin:10px 0 12px;" data-kr>국제 표준 정렬</div>
+      <div style="font-size:20px; font-weight:800; color:var(--white); margin:10px 0 12px;" data-en>Aligned with International Standards</div>
+      <div style="font-size:14px; color:var(--muted); line-height:1.7;">
+        <strong style="color:var(--teal)">OECD</strong> Global Recall Portal (XML schema)<br>
+        <strong style="color:var(--teal)">GPC</strong> Global Product Classification taxonomy<br>
+        <strong style="color:var(--teal)">ISO/IEC</strong> Data quality &amp; governance<br>
+        <strong style="color:var(--teal)">EU AI Act</strong> Transparency &amp; human oversight
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- AWARD -->
+<section id="award">
+  <span class="section-tag" data-kr>수상 및 인정</span>
+  <span class="section-tag" data-en>Recognition &amp; Awards</span>
+  <h2 class="section-title" data-kr>2025 산업부 적극행정 우수사례 선정</h2>
+  <h2 class="section-title" data-en>2025 Ministry of Trade — Proactive Administration Award</h2>
+
+  <div class="award-section reveal">
+    <div>
+      <h3 data-kr>'25년 3·4분기 우수사례 연속 선정</h3>
+      <h3 data-en>Q3 &amp; Q4 2025 — Back-to-back Award Selection</h3>
+      <p data-kr>산업통상자원부 적극행정위원회에서 심사 · 선정. 민간 전문가 위원회 평가를 통해
+      적극행정 우수공무원으로 인정받았으며, 성과평가 최고등급(S등급) 및 포상금 수여.</p>
+      <p data-en>Selected by the Ministry of Trade, Industry and Energy Proactive Administration Committee. Recognized as an excellent proactive administration civil servant by a private expert panel, receiving top performance grade (S) and commendation.</p>
+      <div class="award-highlight" data-kr>
+        우수사례명: "신속하게 위해제품 정보를 수집·분석·제공하는<br>
+        AI기반 체계를 도입하여 국민 안전 확보"
+      </div>
+      <div class="award-highlight" data-en>
+        Case title: "Establishing an AI-based system for rapid collection,<br>
+        analysis, and dissemination of hazardous product information to ensure public safety"
+      </div>
+    </div>
+    <div class="award-screenshot">
+      <img src="screenshots/award-2025.png" alt="2025 Proactive Administration Award Selection" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <span class="section-tag" data-kr>저자 소개</span>
+  <span class="section-tag" data-en>About the Author</span>
+
+  <div class="about-card reveal">
+    <div class="about-avatar">B</div>
+    <div>
+      <div class="about-name" data-kr>배승호 (Seungho Bae)</div>
+      <div class="about-name" data-en>Seungho Bae (배승호)</div>
+      <div class="about-title" data-kr>공업연구관 | 국가기술표준원 제품안전정보과</div>
+      <div class="about-title" data-en>Deputy Director | Product Safety Info Division, KATS (Ministry of Trade, Industry &amp; Energy, Korea)</div>
+      <div class="about-items">
+        <div class="about-item" data-kr>광주과학기술원(GIST) 정보통신 석사 (2006)</div>
+        <div class="about-item" data-en>M.S. in Information &amp; Communications, GIST (2006)</div>
+        <div class="about-item" data-kr>전 3GPP/IEEE 이동통신 표준, 시험인증 전문가 (10년+)</div>
+        <div class="about-item" data-en>Former 3GPP/IEEE standards expert, mobile communications (10+ years)</div>
+        <div class="about-item" data-kr>국무총리 우수공무원 표창 (2021)</div>
+        <div class="about-item" data-en>Prime Minister's Commendation for Excellent Civil Servant (2021)</div>
+        <div class="about-item" data-kr>산업부 적극행정 우수사례 선정 (2025 Q3·Q4)</div>
+        <div class="about-item" data-en>MOTIE Proactive Administration Excellence (2025 Q3·Q4)</div>
+        <div class="about-item" data-kr>소프트웨어 엔지니어가 아닌 실무 공무원으로서 AI·자동화 도구를 활용하여 실제 행정 문제를 해결</div>
+        <div class="about-item" data-en>Not a software engineer — a domain expert who leveraged AI and automation tools to solve real government challenges</div>
+      </div>
+      <div class="about-links">
+        <a href="https://github.com/HouuYa/ai-product-safety-automation" class="btn-primary" target="_blank" style="font-size:13px; padding:10px 20px;">
+          GitHub Repository
+        </a>
+        <a href="mailto:givnhevn@gmail.com" class="btn-outline" style="font-size:13px; padding:10px 20px;">
+          Contact
+        </a>
+        <a href="https://www.safetykorea.kr" class="btn-outline" target="_blank" style="font-size:13px; padding:10px 20px;">
+          safetykorea.kr
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:8px;">
+    <a href="https://github.com/HouuYa/ai-product-safety-automation" target="_blank">ai-product-safety-automation</a>
+    &nbsp;·&nbsp;
+    <span data-kr>국가기술표준원 (KATS) | 산업통상자원부</span>
+    <span data-en>Korea Agency for Technology and Standards (KATS) | Ministry of Trade, Industry and Energy</span>
+  </p>
+  <p style="font-size:12px;" data-kr>본 레포지토리는 비식별화된 워크플로우 샘플과 문서만 포함합니다. 실제 API 키 및 민감 데이터는 미포함.</p>
+  <p style="font-size:12px;" data-en>This repository contains de-identified sample workflows and documentation only. Production credentials and sensitive data are not included.</p>
+</footer>
+
+<script>
+  // Language toggle
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase().includes(lang) ||
+        (lang === 'kr' && btn.textContent === '한국어'));
+    });
+    document.documentElement.lang = lang === 'kr' ? 'ko' : 'en';
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
