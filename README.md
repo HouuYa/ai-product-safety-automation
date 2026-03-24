@@ -164,7 +164,6 @@ Beyond building systems, this project cultivated AI capabilities within the orga
 - 6 hands-on workshops (100+ staff trained)
 - Low-code/no-code tool adoption
 - 27 AI reference books distributed
-- Government Innovation Award (2025)
 
 **Key Insight:** Civil servants can build AI solutions when given the right tools and training.
 
@@ -200,6 +199,7 @@ This system aligns with:
 - 10+ years in government product safety regulation
 - Former 3GPP/IEEE standards expert (mobile communications)
 - Recipient: Prime Minister's Commendation (2021)
+
 
 **Background:**
 Not a software engineer by training, but a telecom standards expert who learned to leverage AI and automation tools to solve real-world government challenges.
@@ -240,5 +240,3 @@ This project documentation is licensed under the MIT License - see the [LICENSE]
 - Build sustainable, maintainable systems without vendor lock-in
 
 ---
-
-*Built with ❤️ by a civil servant who believes government can innovate*
