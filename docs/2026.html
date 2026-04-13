@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 AI-Based Product Safety AX Plan | 배승호 · Seungho Bae</title>
+<meta name="description" content="2026년 제품안전 AX 추진 계획 — 세부과제 6종 + 기반과제(포털 고도화) | 제품안전정보과">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #07111F;
+    --navy2:   #0D1C2E;
+    --navy3:   #122236;
+    --card:    #0F1E30;
+    --teal:    #00CFA8;
+    --teal2:   #00A888;
+    --gold:    #FFB400;
+    --gold2:   #E09E00;
+    --orange:  #FF6B35;
+    --blue:    #3A9BD5;
+    --purple:  #8B5CF6;
+    --text:    #D8E4EE;
+    --muted:   #6B8FAD;
+    --border:  #1A3048;
+    --white:   #F0F6FC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans KR', 'Space Grotesk', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── LANG TOGGLE ── */
+  .lang-bar {
+    position: fixed; top: 0; right: 0; z-index: 999;
+    display: flex; gap: 0; padding: 10px 20px;
+  }
+  .lang-btn {
+    padding: 5px 14px; font-size: 12px; font-weight: 600;
+    background: var(--navy3); color: var(--muted);
+    border: 1px solid var(--border); cursor: pointer;
+    transition: all 0.2s; letter-spacing: 0.05em;
+  }
+  .lang-btn:first-child { border-radius: 4px 0 0 4px; }
+  .lang-btn:last-child  { border-radius: 0 4px 4px 0; }
+  .lang-btn.active { background: var(--teal); color: var(--navy); border-color: var(--teal); }
+  .lang-btn:hover:not(.active) { color: var(--white); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(7,17,31,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex; align-items: center; gap: 32px;
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--teal); font-weight: 500;
+    text-decoration: none; white-space: nowrap;
+  }
+  .nav-links { display: flex; gap: 24px; margin-left: auto; margin-right: 120px; }
+  .nav-links a {
+    font-size: 13px; color: var(--muted); text-decoration: none;
+    transition: color 0.2s; font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 80px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,207,168,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -100px; left: -100px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .plan-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, rgba(0,207,168,0.12), rgba(0,207,168,0.05));
+    border: 1px solid rgba(0,207,168,0.35);
+    border-radius: 100px; padding: 8px 20px;
+    margin-bottom: 32px; width: fit-content;
+    animation: fadeInDown 0.6s ease;
+  }
+  .plan-badge .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--teal); box-shadow: 0 0 8px var(--teal);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .plan-badge span {
+    font-size: 13px; font-weight: 600; color: var(--teal);
+    letter-spacing: 0.03em;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 900; line-height: 1.15;
+    color: var(--white); margin-bottom: 8px;
+    animation: fadeInUp 0.7s ease 0.1s both;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--teal), var(--blue));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero .subtitle {
+    font-size: clamp(14px, 2vw, 18px); color: var(--muted);
+    margin-bottom: 16px; font-weight: 400;
+    animation: fadeInUp 0.7s ease 0.2s both;
+  }
+  .hero .desc {
+    max-width: 660px; font-size: 16px; color: var(--text);
+    margin-bottom: 48px; line-height: 1.8;
+    animation: fadeInUp 0.7s ease 0.3s both;
+  }
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeInUp 0.7s ease 0.4s both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal); color: var(--navy);
+    padding: 13px 28px; border-radius: 6px;
+    font-weight: 700; font-size: 14px; text-decoration: none;
+    transition: all 0.2s; letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { background: var(--teal2); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1.5px solid var(--border); color: var(--text);
+    padding: 13px 28px; border-radius: 6px;
+    font-weight: 500; font-size: 14px; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+  @keyframes fadeInDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:none; } }
+  @keyframes fadeInUp   { from { opacity:0; transform:translateY(20px);  } to { opacity:1; transform:none; } }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 1px; background: var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-item {
+    background: var(--navy2); padding: 28px 24px; text-align: center;
+    transition: background 0.2s;
+  }
+  .stat-item:hover { background: var(--navy3); }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 3.5vw, 44px); font-weight: 700;
+    color: var(--teal); line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-num.gold   { color: var(--gold); }
+  .stat-num.purple { color: var(--purple); }
+  .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; line-height: 1.4; }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 80px; }
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 12px; display: block;
+  }
+  .section-title {
+    font-size: clamp(22px, 3vw, 34px); font-weight: 800;
+    color: var(--white); margin-bottom: 16px; line-height: 1.25;
+  }
+  .section-desc {
+    font-size: 16px; color: var(--muted); max-width: 640px; line-height: 1.8;
+    margin-bottom: 48px;
+  }
+
+  /* ── ROADMAP ── */
+  .roadmap {
+    display: flex; align-items: stretch; gap: 0;
+    margin-bottom: 64px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .rm-step {
+    flex: 1; padding: 28px 24px; border-right: 1px solid var(--border);
+    position: relative; transition: background 0.2s;
+  }
+  .rm-step:last-child { border-right: none; }
+  .rm-step:hover { background: var(--navy3); }
+  .rm-step.active { background: rgba(0,207,168,0.06); border-color: rgba(0,207,168,0.3); }
+  .rm-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    margin-bottom: 8px;
+    color: var(--muted);
+  }
+  .rm-step.active .rm-year { color: var(--teal); }
+  .rm-name { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .rm-budget {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px; font-weight: 700; color: var(--teal); margin-bottom: 8px;
+  }
+  .rm-step:not(.active) .rm-budget { color: var(--muted); font-size: 16px; }
+  .rm-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* ── BEFORE/AFTER (2025→2026) ── */
+  .before-after {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 0;
+    align-items: stretch; margin-bottom: 64px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .ba-side { padding: 36px 32px; }
+  .ba-side.before { border-right: 1px solid var(--border); }
+  .ba-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .ba-label.before { color: var(--blue); }
+  .ba-label.after  { color: var(--teal); }
+  .ba-arrow {
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px; background: var(--navy3);
+  }
+  .ba-arrow svg { color: var(--teal); }
+  .ba-item { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+  .ba-icon { font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+  .ba-text { font-size: 14px; color: var(--text); line-height: 1.6; }
+  .ba-text strong { color: var(--white); }
+
+  /* ── MODULES GRID ── */
+  .modules-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .module-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .module-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+  .module-card.base-task {
+    grid-column: 1 / -1;
+    border-color: rgba(255,180,0,0.3);
+    background: linear-gradient(135deg, rgba(255,180,0,0.04), var(--card));
+  }
+  .module-card.base-task:hover { border-color: var(--gold); }
+  .module-header {
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .module-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600; color: var(--teal);
+    background: rgba(0,207,168,0.08); border: 1px solid rgba(0,207,168,0.2);
+    border-radius: 4px; padding: 3px 8px; white-space: nowrap; margin-top: 3px;
+  }
+  .module-num.gold-num {
+    color: var(--gold);
+    background: rgba(255,180,0,0.08); border-color: rgba(255,180,0,0.25);
+  }
+  .module-num.internal {
+    color: var(--purple);
+    background: rgba(139,92,246,0.08); border-color: rgba(139,92,246,0.25);
+  }
+  .module-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .module-impact {
+    display: inline-block; font-size: 12px; font-weight: 600;
+    color: var(--gold); background: rgba(255,180,0,0.1);
+    border-radius: 4px; padding: 2px 8px;
+  }
+  .module-impact.teal {
+    color: var(--teal); background: rgba(0,207,168,0.1);
+  }
+  .module-impact.purple {
+    color: var(--purple); background: rgba(139,92,246,0.1);
+  }
+  .module-body { padding: 24px 28px; }
+  .module-body p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+  .process-steps { display: flex; flex-direction: column; gap: 8px; }
+  .step {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--text);
+  }
+  .step-num {
+    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+    background: rgba(0,207,168,0.12); border: 1px solid rgba(0,207,168,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; color: var(--teal);
+  }
+
+  /* ── BASE TASK LAYOUT ── */
+  .base-task-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  }
+  .base-task-inner .module-body { border-right: 1px solid var(--border); }
+  .base-task-right { padding: 24px 28px; }
+  .base-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .timeline-row {
+    display: flex; gap: 10px; margin-bottom: 12px; align-items: flex-start;
+  }
+  .tl-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700; color: var(--gold);
+    background: rgba(255,180,0,0.1); border-radius: 4px;
+    padding: 2px 8px; white-space: nowrap; margin-top: 2px;
+  }
+  .tl-desc { font-size: 13px; color: var(--text); line-height: 1.6; }
+
+  /* ── STACK TABLE ── */
+  .stack-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .stack-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 22px;
+  }
+  .stack-layer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600; color: var(--teal);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .stack-tech { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .stack-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy2); border-top: 1px solid var(--border);
+    padding: 32px 80px; text-align: center;
+    font-size: 13px; color: var(--muted);
+  }
+  footer a { color: var(--teal); text-decoration: none; }
+
+  /* ── LANG CONTENT ── */
+  body.lang-en [data-kr] { display: none; }
+  body.lang-kr [data-en] { display: none; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: all 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    section { padding: 60px 24px; }
+    .stats-strip { grid-template-columns: repeat(3, 1fr); }
+    .modules-grid { grid-template-columns: 1fr; }
+    .module-card.base-task { grid-column: 1; }
+    .stack-grid { grid-template-columns: repeat(2, 1fr); }
+    .before-after { grid-template-columns: 1fr; }
+    .ba-arrow { display: none; }
+    .roadmap { flex-direction: column; }
+    .rm-step { border-right: none; border-bottom: 1px solid var(--border); }
+    .base-task-inner { grid-template-columns: 1fr; }
+    .base-task-inner .module-body { border-right: none; border-bottom: 1px solid var(--border); }
+    footer { padding: 24px 20px; }
+  }
+</style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VM1JFKTGJX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VM1JFKTGJX');
+</script>
+
+<body class="lang-kr">
+
+<!-- Language Toggle -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('kr')">한국어</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- Navigation -->
+<nav>
+  <a href="index.html" class="nav-logo">ai-product-safety-automation</a>
+  <!-- 연도 이동 탭 -->
+  <div style="display:flex;gap:16px;margin-left:32px;">
+    <a href="index.html" style="color:var(--muted);font-weight:500;text-decoration:none;font-size:14px;">2025 성과</a>
+    <a href="2026.html" style="color:var(--teal);font-weight:700;text-decoration:none;font-size:14px;border-bottom:2px solid var(--teal);padding-bottom:2px;">2026 계획</a>
+  </div>
+  <div class="nav-links">
+    <a href="#overview" data-kr>개요</a><a href="#overview" data-en>Overview</a>
+    <a href="#tasks" data-kr>세부과제</a><a href="#tasks" data-en>Sub-Tasks</a>
+    <a href="#stack" data-kr>기술스택</a><a href="#stack" data-en>Tech Stack</a>
+    <a href="#base" data-kr>기반과제</a><a href="#base" data-en>Base Task</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="plan-badge">
+    <div class="dot"></div>
+  </div>
+
+  <h1 data-kr>2026 제품안전 <em>AX 추진 계획</em></h1>
+  <h1 data-en>2026 Product Safety <em>AX Implementation</em></h1>
+
+  <p class="subtitle" data-kr>세부과제 6종 + 기반과제(포털 고도화) &middot; 총 7.9억원 + 29.2억원('27 예산 확보 중)</p>
+  <p class="subtitle" data-en>6 Sub-Tasks + Base Task (Portal Enhancement) &middot; ₩790M + ₩2.92B (FY2027)</p>
+
+  <p class="desc" data-kr>
+    &bull; 2025년 4개 자동화 모듈(OECD 등록·해외리콜·유통감시·뉴스모니터링) 구축 성과를 확대<br>
+    &bull; 2026년에는 KC 안전기준 디지털화, SNS 사고 조기 경보, AI 콜센터 등 6종 선행 과제를 추진<br>
+    &bull; 이 모든 과제는 2027년 제품안전정보 포털 고도화(기반과제)의 기능 모듈로 설계되어, Migration 및 maintenance 비용을 최소화
+  </p>
+  <p class="desc" data-en>
+    &bull; Building on 2025's four automation modules (OECD, overseas recall, marketplace, news monitoring),<br>
+    &bull; 2026 advances six pilot tasks: KC standard digitization, SNS early warning, AI call center, and more.<br>
+    &bull; Each task is designed as a functional module for the 2027 portal upgrade, minimizing migration costs.
+  </p>
+
+  <div class="hero-cta">
+    <a href="#tasks" class="btn-primary" data-kr>세부과제 보기</a>
+    <a href="#tasks" class="btn-primary" data-en>View Sub-Tasks</a>
+    <a href="index.html" class="btn-outline" data-kr target="_blank" rel="noopener noreferrer">2025 성과 보기(새창)</a>
+    <a href="index.html" class="btn-outline" data-en target="_blank" rel="noopener noreferrer">View 2025 Results</a>
+    <a href="https://www.safetykorea.kr" class="btn-outline" target="_blank">
+      <span data-kr>제품안전정보 포털</span><span data-en>Product Safety Korea Portal</span>
+    </a>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip" id="overview">
+  <div class="stat-item">
+    <div class="stat-num">7.9<span style="font-size:0.45em;color:var(--muted)">억</span></div>
+    <div class="stat-label" data-kr>세부과제 총 예산<br>6종 합산 ('26년 기준)</div>
+    <div class="stat-label" data-en>Sub-Task Budget<br>6 Tasks Total (FY26)</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">6</div>
+    <div class="stat-label" data-kr>2026 세부과제<br>선행 수행</div>
+    <div class="stat-label" data-en>Sub-Tasks<br>Pilot Execution</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">330</div>
+    <div class="stat-label" data-kr>KC 안전기준 종<br>DB 구조화 대상</div>
+    <div class="stat-label" data-en>KC Safety Standards<br>to be Digitized</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">43</div>
+    <div class="stat-label" data-kr>해외 리콜 수집 국가<br>고도화 대상</div>
+    <div class="stat-label" data-en>Target Countries<br>Recall Monitoring</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num gold">29.2<span style="font-size:0.45em;color:var(--muted)">억</span></div>
+    <div class="stat-label" data-kr>기반과제 예산<br>2027년 포털 재구축</div>
+    <div class="stat-label" data-en>Base Task Budget<br>2027 Portal Rebuild</div>
+  </div>
+</div>
+
+<!-- ROADMAP -->
+<section id="overview">
+  <span class="section-tag">5-Year Roadmap</span>
+  <h2 class="section-title" data-kr>5개년 로드맵</h2>
+  <h2 class="section-title" data-en>5-Year Roadmap</h2>
+  <p class="section-desc" data-kr>
+    2025년 ISP 수립 및 AI활용 자동화 업무 혁신을 시작으로, <br>
+    2026년 신규 업무 혁신 등을 통해 선행 기술 검증과 2027년 포털 전면 재구축을 추진<br>
+    각 과제들은 유기적으로 연결되어 각 과제들의 결과물들이 포털 고도화와 통합<br>
+    (1개 기반과제 및 6개 세부과제들로 구성)
+  </p>
+  <p class="section-desc" data-en>
+    Starting from the 2025 ISP, 2026 pilot tasks validate technologies before the full 2027 portal rebuild.
+    Each stage is organically linked — outputs of one stage become inputs of the next.
+  </p>
+
+  <div class="roadmap reveal">
+    <div class="rm-step">
+      <div class="rm-year">'25년 완료</div>
+      <div class="rm-name" data-kr>제품안전정보 포털 고도화 ISP 수립 &amp; 업무 자동화 구축</div>
+      <div class="rm-name" data-en>ISP &amp; Automation</div>
+      <div class="rm-budget">0.5억</div>
+      <div class="rm-desc" data-kr>4개 자동화 모듈 구축. 해외 43개국 리콜, OECD 95% 절감, 유통감시 체계 완성.</div>
+      <div class="rm-desc" data-en>4 automation modules: 43-country recall, 95% OECD cost cut, marketplace surveillance.</div>
+    </div>
+    <div class="rm-step active">
+      <div class="rm-year">'26년 수행 중</div>
+      <div class="rm-name" data-kr>세부과제 6종 선행 수행</div>
+      <div class="rm-name" data-en>6 Sub-Task Pilots</div>
+      <div class="rm-budget">7.9억</div>
+      <div class="rm-desc" data-kr>KC 디지털화, SNS 조기경보, AI 콜센터 등 선행 검증. 포털 고도화 기능 모듈 설계.</div>
+      <div class="rm-desc" data-en>KC digitization, SNS early warning, AI call center pilots. Portal module design.</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-year">'27년 착수를 위해 예산확보 중</div>
+      <div class="rm-name" data-kr>포털 고도화 (기반과제)</div>
+      <div class="rm-name" data-en>Portal Rebuild (Base)</div>
+      <div class="rm-budget">29.2억</div>
+      <div class="rm-desc" data-kr>SafetyKorea 클라우드 재구축, 범정부 AI 에이전트, Office.SafetyKorea 운영체계.</div>
+      <div class="rm-desc" data-en>SafetyKorea cloud rebuild, gov't AI agent, Office.SafetyKorea operation.</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-year">'28~'29년</div>
+      <div class="rm-name" data-kr>AI 지능화 &amp; 고도화</div>
+      <div class="rm-name" data-en>AI Intelligence &amp; Scale</div>
+      <div class="rm-budget">14.5억</div>
+      <div class="rm-desc" data-kr>AI 지능화 개발(6.2억), 기능 고도화 및 확산(8.3억). 전국 확산 체계 완비.</div>
+      <div class="rm-desc" data-en>AI intelligence dev (₩620M), enhancement &amp; scaling (₩830M).</div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-year">'30년</div>
+      <div class="rm-name" data-kr>운영 안정화</div>
+      <div class="rm-name" data-en>Operations Stabilization</div>
+      <div class="rm-budget">4.55억</div>
+      <div class="rm-desc" data-kr>전체 시스템 운영 안정화 및 유지·관리 체계 확립.</div>
+      <div class="rm-desc" data-en>Full system stabilization and sustained operations.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 2025 → 2026 변화 -->
+<section>
+  <span class="section-tag" data-kr>2025 성과 → 2026 목표</span>
+  <span class="section-tag" data-en>2025 Achieved → 2026 Targets</span>
+  <h2 class="section-title" data-kr>자동화 기반에서 지능화로</h2>
+  <h2 class="section-title" data-en>From Automation Foundation to Intelligence</h2>
+  <p class="section-desc" data-kr>
+    2025년이 "AX 체계를 만드는 해"였다면, 2026년은 "AX 체계를 확장하고 깊게 파고드는 해"<br>
+    단순 자동화를 넘어 AI가 맥락을 이해하고 사전에 위험을 감지하는 체계를 구축
+  </p>
+  <p class="section-desc" data-en>
+    If 2025 was the year of building, 2026 is the year of expansion and depth.
+    Moving beyond simple automation to AI that understands context and proactively detects risks.
+  </p>
+
+  <div class="before-after reveal">
+    <div class="ba-side before">
+      <div class="ba-label before" data-kr>2025년 달성</div>
+      <div class="ba-label before" data-en>2025 Achievements</div>
+      <div class="ba-item" data-kr><span class="ba-icon">✔</span><span class="ba-text">OECD 등록 외주 종료 — <strong>연 1,900만원 절감</strong></span></div>
+      <div class="ba-item" data-en><span class="ba-icon">✔</span><span class="ba-text">OECD outsourcing ended — <strong>$19K/year saved</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">✔</span><span class="ba-text">해외 리콜 <strong>43개국</strong> 자동 수집 (4일→1시간)</span></div>
+      <div class="ba-item" data-en><span class="ba-icon">✔</span><span class="ba-text">Overseas recall <strong>43 countries</strong> automated (4 days→1 hour)</span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">✔</span><span class="ba-text">온라인 유통 해외리콜 제품 멀티모달 <strong>자동 감시</strong></span></div>
+      <div class="ba-item" data-en><span class="ba-icon">✔</span><span class="ba-text">AI multimodal <strong>marketplace surveillance</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">✔</span><span class="ba-text">제품사고 뉴스 2시간 주기 <strong>Telegram 자동 전파</strong></span></div>
+      <div class="ba-item" data-en><span class="ba-icon">✔</span><span class="ba-text">Product incident news <strong>auto-alert</strong> every 2 hours</span></div>
+    </div>
+    <div class="ba-arrow">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+    <div class="ba-side">
+      <div class="ba-label after" data-kr>2026년 목표</div>
+      <div class="ba-label after" data-en>2026 Targets</div>
+      <div class="ba-item" data-kr><span class="ba-icon">→</span><span class="ba-text">KC 안전기준 <strong>330종</strong> 전면 DB화·AI 자연어 검색</span></div>
+      <div class="ba-item" data-en><span class="ba-icon">→</span><span class="ba-text"><strong>330</strong> KC safety standards fully digitized with AI search</span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">→</span><span class="ba-text">해외 리콜 <strong>43개국 고도화</strong> + 해외직구 위해제품 감시 모범사례 구축</span></div>
+      <div class="ba-item" data-en><span class="ba-icon">→</span><span class="ba-text">Recall monitoring advanced for <strong>43 countries</strong> + cross-border e-commerce</span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">→</span><span class="ba-text">SNS·맘카페 제품사고 징후 <strong>조기 경보</strong> (1일→2시간 주기 단축)</span></div>
+      <div class="ba-item" data-en><span class="ba-icon">→</span><span class="ba-text">SNS/community <strong>early warning</strong> (1 day→2 hours)</span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">→</span><span class="ba-text">단순문의 <strong>55% AI 자동응대</strong> 제품사고 신고 콜센터 시범 구축</span></div>
+      <div class="ba-item" data-en><span class="ba-icon">→</span><span class="ba-text"><strong>55% AI auto-response</strong> Product incident report call center pilot launch</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 세부과제 6종 -->
+<section id="tasks">
+  <span class="section-tag" data-kr>2026 세부과제</span>
+  <span class="section-tag" data-en>2026 Sub-Tasks</span>
+  <h2 class="section-title" data-kr>6종 세부과제</h2>
+  <h2 class="section-title" data-en>6 Sub-Tasks</h2>
+  <p class="section-desc" data-kr>
+    각 과제는 독립적으로 성과를 내면서도, 2027년 포털 고도화의 기능 모듈로 직접 통합<br>
+    지금 만드는 코드와 데이터가 곧 포털의 엔진
+  </p>
+  <p class="section-desc" data-en>
+    Each task delivers independent results while functioning as a direct module for the 2027 portal upgrade.
+    The code and data built now become the portal's engine.
+  </p>
+
+  <div class="modules-grid">
+
+    <!-- 과제 1 -->
+    <div class="module-card reveal">
+      <div class="module-header">
+        <div class="module-num">과제 01</div>
+        <div>
+          <div class="module-title" data-kr>KC안전기준 디지털화</div>
+          <div class="module-title" data-en>KC Safety Standard Digitization</div>
+          <span class="module-impact" data-kr>총 2년간 4.45억 (1차년 1.97억) · 정부 R&D과제 기획 및 수행기관 선정 완료</span>
+          <span class="module-impact" data-en>Total ₩445M (Year 1: ₩197M) · R&D</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <p data-kr>330종 KC 안전기준을 HWP 고시 문서에서 구조화 DB로 변환하고, AI 자연어 검색 엔진을 구축<br>
+           "이 제품에 어떤 기준이 적용되나요?"라는 질문에 AI가 99% 정확도로 즉시 답변할 수 있는 수준을 목표</p>
+        <p data-en>Converts 330 KC safety standards from HWP notices into structured DB, building an AI natural language search engine. Target: AI answers "which standard applies to this product?" instantly with 99% accuracy.</p>
+        <div class="process-steps">
+          <div class="step"><div class="step-num">1</div><span data-kr>KC 안전기준 330종 HWP → 구조화 텍스트 추출</span><span data-en>330 KC standards HWP → structured text extraction</span></div>
+          <div class="step"><div class="step-num">2</div><span data-kr>조항·품목·시험방법 메타데이터 DB 설계·적재</span><span data-en>Clause, item, test method metadata DB design &amp; load</span></div>
+          <div class="step"><div class="step-num">3</div><span data-kr>RAG 기반 AI 자연어 검색 엔진 구현 (99% 검증)</span><span data-en>RAG-based AI natural language search engine build (99% verification)</span></div>
+          <div class="step"><div class="step-num">4</div><span data-kr>포털 연동 API 개발 (2027 기반과제 모듈 설계)</span><span data-en>Portal integration API (designed as 2027 portal module)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 과제 2 -->
+    <div class="module-card reveal">
+      <div class="module-header">
+        <div class="module-num">과제 02</div>
+        <div>
+          <div class="module-title" data-kr>해외리콜 모니터링 Phase 2</div>
+          <div class="module-title" data-en>Overseas Recall Monitoring Phase 2</div>
+          <span class="module-impact teal" data-kr>예산 0.8억 · 보조사업 및 연구용역</span>
+          <span class="module-impact teal" data-en>Budget ₩80M · Contracted</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <p data-kr>2025년 43개국 13개 사이트 자동 수집 체계를 고도화<br> 
+          해외직구 플랫폼(알리, 테무, 쿠팡 등)에서 위해제품 감시 체계를 신규 구축<br>
+          관리자 대시보드를 통해 승인·반려 워크플로우를 확립</p>
+        <p data-en>Advances 2025's 43-country system and builds new surveillance for cross-border shopping platforms (AliExpress, Temu, Coupang, etc.). Establishes an admin dashboard with approve/reject workflows.</p>
+        <div class="process-steps">
+          <div class="step"><div class="step-num">1</div><span data-kr>43개국 13개 사이트 수집 고도화 및 대시보드 구축</span><span data-en>Advance 43-country collection &amp; build admin dashboard</span></div>
+          <div class="step"><div class="step-num">2</div><span data-kr>해외직구 플랫폼 위해제품 탐지 모듈 시범 개발</span><span data-en>Cross-border e-commerce hazardous product detection module</span></div>
+          <div class="step"><div class="step-num">3</div><span data-kr>다국어 AI 번역 고도화 및 내/외부 API 분리</span><span data-en>Multilingual AI translation &amp; internal/external API separation</span></div>
+          <div class="step"><div class="step-num">4</div><span data-kr>위해성 등급 자동 분류 → 긴급 리콜 우선 처리</span><span data-en>Auto hazard grading → urgent recall prioritization</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 과제 3 -->
+    <div class="module-card reveal">
+      <div class="module-header">
+        <div class="module-num">과제 03</div>
+        <div>
+          <div class="module-title" data-kr>사고징후 선제포착 시스템</div>
+          <div class="module-title" data-en>Proactive Accident Signal Detection</div>
+          <span class="module-impact" data-kr>예산 1.97억 · 정부 R&D과제 기획 및 수행기관 선정 완료</span>
+          <span class="module-impact" data-en>Budget ₩197M · R&D</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <p data-kr>SNS, 맘카페, 소비자 게시판 등 공개 텍스트를 자연어 처리로 분석하여 리콜 공식화 이전에 사고 징후를 포착<br>
+           기존 30일이 걸리던 징후 포착 소요기간을 3일로 90% 단축하는 것을 목표</p>
+        <p data-en>Analyzes public text from SNS, parenting communities, and consumer boards via NLP to detect accident signals before official recall. Aims to reduce signal detection time by 90% (from 30 days to 3 days).</p>
+        <div class="process-steps">
+          <div class="step"><div class="step-num">1</div><span data-kr>수집 대상: SNS·맘카페·소비자 게시판 크롤링</span><span data-en>Collection targets: SNS, parenting forums, consumer boards</span></div>
+          <div class="step"><div class="step-num">2</div><span data-kr>NLP 모델(NER, 감정분석)로 위해유형 키워드 추출</span><span data-en>NLP model (NER, Sentiment) extracts hazard keywords</span></div>
+          <div class="step"><div class="step-num">3</div><span data-kr>이상 급증 패턴 감지 → 조기 경보 알고리즘</span><span data-en>Anomaly surge detection → early warning algorithm</span></div>
+          <div class="step"><div class="step-num">4</div><span data-kr>담당자 조기 경보 발령 + HITL(Human-In-The-Loop, 인력) 검증</span><span data-en>Early warning alert to staff + HITL verification</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 과제 4 -->
+    <div class="module-card reveal">
+      <div class="module-header">
+        <div class="module-num internal">과제 04</div>
+        <div>
+          <div class="module-title" data-kr>PHICS 위해요인 분류체계 수립</div>
+          <div class="module-title" data-en>PHICS Hazard Classification System</div>
+          <span class="module-impact purple" data-kr>내부 리서치를 통해 추진 중 · ISO 5665:2024, 영국 PRISM, 일본 METI Recall guidelines</span>
+          <span class="module-impact purple" data-en>Internal · ISO 5665:2024, UK PRISM, Japan METI Recall guidelines</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <p data-kr>PHICS(Product Hazard Information Classification System): 위해 원인(HF, Hazard Factor)과 피해 결과(DT, Damage Type)를 이중 코드로 분류하는 국제 표준(ISO 5665 및 영국, 일본 등) 정렬 체계<br>
+          리콜 통계와 사고조사 대장의 데이터 품질을 근본적으로 개선</p>
+        <p data-en>PHICS: Dual-code classification aligning Hazard Factor (HF, cause) and Damage Type (DT, outcome) with ISO 5665:2024 standards. Fundamentally improves recall statistics and accident investigation data quality.</p>
+        <div class="process-steps">
+          <div class="step"><div class="step-num">1</div><span data-kr>현행 리콜 통계·사고조사 분류체계 현황 진단</span><span data-en>Diagnose current recall stats &amp; investigation classification</span></div>
+          <div class="step"><div class="step-num">2</div><span data-kr>HF(위해원인) + DT(피해결과) 이중 코드 체계 설계</span><span data-en>Design dual-code: HF (hazard factor) + DT (damage type)</span></div>
+          <div class="step"><div class="step-num">3</div><span data-kr>ISO 5665:2024 국제 표준 매핑·검증</span><span data-en>Map and validate against ISO 5665:2024 international standard</span></div>
+          <div class="step"><div class="step-num">4</div><span data-kr>기존 데이터 소급 적용 및 DB 마이그레이션</span><span data-en>Retroactive application to existing data &amp; DB migration</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 과제 5 -->
+    <div class="module-card reveal">
+      <div class="module-header">
+        <div class="module-num">과제 05</div>
+        <div>
+          <div class="module-title" data-kr>제품사고 접수 AI 콜센터 시범 구축</div>
+          <div class="module-title" data-en>AI Call Center Pilot for Product Incidents</div>
+          <span class="module-impact teal" data-kr>예산 0.2억 · 보조금</span>
+          <span class="module-impact teal" data-en>Budget ₩20M · Subsidy</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <p data-kr>1670-4920(2번 내선) 전화 문의의 55%를 차지하는 단순·반복 민원을 AI 챗봇이 24시간 자동 응대<br>
+          개인정보 수집이 필요하거나, 복잡하거나 법적 판단이 필요한 민원만 담당자에게 연결, 실무자는 고부가가치 업무에 집중</p>
+        <p data-en>AI chatbot handles 55% of simple/repetitive inquiries on the 1670-4920 hotline 24/7. Only complex or legally-sensitive cases are escalated to staff, freeing officials to focus on high-value work.</p>
+        <div class="process-steps">
+          <div class="step"><div class="step-num">1</div><span data-kr>기존 콜센터 VOC 분석 — 단순문의 패턴 추출</span><span data-en>VOC analysis of existing call logs — extract simple inquiry patterns</span></div>
+          <div class="step"><div class="step-num">2</div><span data-kr>FAQ 기반 LLM 챗봇 개발 (RAG 적용)</span><span data-en>FAQ-based LLM chatbot development (RAG applied)</span></div>
+          <div class="step"><div class="step-num">3</div><span data-kr>24시간 자동 응대 · 처리 불가 시 담당자 연결</span><span data-en>24/7 auto-response; escalate unresolvable cases to staff</span></div>
+          <div class="step"><div class="step-num">4</div><span data-kr>응대 품질 모니터링 + HITL 지속 개선</span><span data-en>Response quality monitoring + HITL continuous improvement</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 과제 6 -->
+    <div class="module-card reveal">
+      <div class="module-header">
+        <div class="module-num">과제 06</div>
+        <div>
+          <div class="module-title" data-kr>기업 AX 확산 지원</div>
+          <div class="module-title" data-en>Corporate AX Adoption Support</div>
+          <span class="module-impact teal" data-kr>예산 0.5억 · 연구용역</span>
+          <span class="module-impact teal" data-en>Budget ₩50M · Contracted</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <p data-kr>제품안전 분야 중소 제조·유통사에 AI 도입 모범사례를 발굴·배포<br>
+          AI를 활용하여 숏츠 형식의 홍보 콘텐츠로 기업과 소비자의 자발적 AX를 촉진</p>
+        <p data-en>Identifies and distributes 10 AI adoption best practices for SME manufacturers/distributors in product safety, expands Open Forum to 100 companies, and promotes voluntary AX through AI short-form content.</p>
+        <div class="process-steps">
+          <div class="step"><div class="step-num">1</div><span data-kr>우수 기업 AX 모범사례 발굴 및 확산</span><span data-en>Identify &amp; document corporate AX best practices</span></div>
+          <div class="step"><div class="step-num">2</div><span data-kr>오픈포럼을 AI 중심으로 확대: 현 30개사 → 50개사</span><span data-en>Open Forum expansion: 30 → 50 companies</span></div>
+          <div class="step"><div class="step-num">3</div><span data-kr>AI 숏츠 홍보 콘텐츠 제작·배포</span><span data-en>AI short-form promotional content production &amp; distribution</span></div>
+          <div class="step"><div class="step-num">4</div><span data-kr>기업 AX 수준 진단</span><span data-en>AX maturity diagnostic tool development &amp; deployment</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 기반과제 -->
+<section id="base">
+  <span class="section-tag" data-kr>기반과제 · 2027년 착수 목표</span>
+  <span class="section-tag" data-en>Base Task · FY2027 Launch</span>
+  <h2 class="section-title" data-kr>제품안전정보 포털 고도화</h2>
+  <h2 class="section-title" data-en>Product Safety Info Portal Enhancement</h2>
+  <p class="section-desc" data-kr>
+    2026년 세부과제 6종은 모두 이 기반과제의 '사전 기술 검증 단계' <br> 
+    2027년에는 검증된 모듈들을 통합하여 SafetyKorea를 전면 재구축
+  </p>
+  <p class="section-desc" data-en>
+    All 6 sub-tasks serve as pre-validation for this base task. In 2027, validated modules are integrated into a full SafetyKorea rebuild.
+  </p>
+
+  <div class="module-card base-task reveal">
+    <div class="module-header">
+      <div class="module-num gold-num">기반과제</div>
+      <div>
+        <div class="module-title" data-kr>제품안전정보 포털 고도화 (SafetyKorea 재구축)</div>
+        <div class="module-title" data-en>Product Safety Info Portal Enhancement (SafetyKorea Rebuild)</div>
+        <span class="module-impact" data-kr>총 예산 48.3억 ('27~'30) · 2027년 착수 예산 29.2억</span>
+        <span class="module-impact" data-en>Total ₩4.83B ('27–'30) · FY2027 launch ₩2.92B</span>
+      </div>
+    </div>
+    <div class="base-task-inner">
+      <div class="module-body">
+        <p data-kr>SafetyKorea(제품안전정보 포털)를 클라우드·AI 네이티브로 전면 재구축 → 범정부 AI 에이전트를 커스터마이징하여 2026년에 검증된 6개 기능 모듈을 통합<br>
+          급증하는 해외직구 제품에 대한 안전관리 강화 법률 시행('26.6월)에 맞춰 법집행 정보 기반을 적기에 마련</p>
+        <p data-en>Full cloud-native rebuild of SafetyKorea portal, customizing government-wide AI agents, integrating 6 validated modules from 2026. Prepares the legal enforcement information base in time for the new direct overseas purchase safety laws (effective Jun 2026).</p>
+        <div class="process-steps">
+          <div class="step"><div class="step-num">1</div><span data-kr>SafetyKorea 클라우드 네이티브 재구축 (해외직구법 대응)</span><span data-en>SafetyKorea cloud-native rebuild (Overseas purchase law compliance)</span></div>
+          <div class="step"><div class="step-num">2</div><span data-kr>범정부 AI 에이전트 커스터마이징 (A2A 연계)</span><span data-en>Government AI agent customization (A2A integration)</span></div>
+          <div class="step"><div class="step-num">3</div><span data-kr>2026 세부과제 6종 → 포털 기능 모듈 통합</span><span data-en>2026 sub-tasks (6) → portal module integration</span></div>
+          <div class="step"><div class="step-num">4</div><span data-kr>Office.SafetyKorea 운영 체계 확립</span><span data-en>Office.SafetyKorea operation model establishment</span></div>
+        </div>
+      </div>
+      <div class="base-task-right">
+        <div class="base-tag" data-kr>연도별 예산 계획</div>
+        <div class="base-tag" data-en>Annual Budget Plan</div>
+        <div class="timeline-row">
+          <span class="tl-year">'27년</span>
+          <span class="tl-desc" data-kr><strong style="color:var(--white)">29.2억</strong> — 포털 전면 재구축, AI 에이전트 커스터마이징</span>
+          <span class="tl-desc" data-en><strong style="color:var(--white)">₩2.92B</strong> — Full portal rebuild, AI agent customization</span>
+        </div>
+        <div class="timeline-row">
+          <span class="tl-year">'28년</span>
+          <span class="tl-desc" data-kr><strong style="color:var(--white)">6.2억</strong> — AI 지능화 개발</span>
+          <span class="tl-desc" data-en><strong style="color:var(--white)">₩620M</strong> — AI intelligence development</span>
+        </div>
+        <div class="timeline-row">
+          <span class="tl-year">'29년</span>
+          <span class="tl-desc" data-kr><strong style="color:var(--white)">8.3억</strong> — 기능 고도화 및 확산</span>
+          <span class="tl-desc" data-en><strong style="color:var(--white)">₩830M</strong> — Feature enhancement &amp; scaling</span>
+        </div>
+        <div class="timeline-row">
+          <span class="tl-year">'30년</span>
+          <span class="tl-desc" data-kr><strong style="color:var(--white)">4.55억</strong> — 운영 안정화</span>
+          <span class="tl-desc" data-en><strong style="color:var(--white)">₩455M</strong> — Operations stabilization</span>
+        </div>
+        <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--border);">
+          <div class="base-tag" data-kr>근거 법률</div>
+          <div class="base-tag" data-en>Legal Basis</div>
+          <div style="font-size:13px; color:var(--muted); line-height:1.8;" data-kr>
+            제품안전기본법 (해외 직구 제품 안전관리 강화를 위해 '25.12월 개정, '26.6월 시행)
+          </div>
+          <div style="font-size:13px; color:var(--muted); line-height:1.8;" data-en>
+            Product Safety Framework Act (amended Dec 2025, effective Jun 2026)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TECH STACK -->
+<section id="stack">
+  <span class="section-tag">2026 Tech Stack</span>
+  <h2 class="section-title" data-kr>2026 핵심 기술</h2>
+  <h2 class="section-title" data-en>2026 Key Technologies</h2>
+  <p class="section-desc" data-kr>
+    2025년 Low-Code 자동화 기반 위에 RAG·A2A·HITL 등 고급 AI 아키텍처를 추가<br>
+    모든 기술은 2027년 포털 고도화와의 연계를 전제로 선택
+  </p>
+  <p class="section-desc" data-en>
+    Advanced AI architectures (RAG, A2A, HITL) are layered on top of 2025's Low-Code automation base.
+    All technology choices are made with 2027 portal integration in mind.
+  </p>
+
+  <div class="stack-grid reveal">
+    <div class="stack-card">
+      <div class="stack-layer">Document AI</div>
+      <div class="stack-tech">RAG · Vector DB</div>
+      <div class="stack-desc" data-kr>KC 안전기준 330종 자연어 검색. 문서를 분해하여 AI가 맥락 기반으로 답변</div>
+      <div class="stack-desc" data-en>Natural language search for 330 KC standards. AI answers context-based queries from chunked documents.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-layer">AI Agent</div>
+      <div class="stack-tech">A2A (Agent-to-Agent) Interface</div>
+      <div class="stack-desc" data-kr>시스템 간 자동 연계. 담당자 개입 없이 에이전트끼리 데이터를 주고받는 구조</div>
+      <div class="stack-desc" data-en>Automated system-to-system connectivity. Agents exchange data without human intervention.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-layer">Validation</div>
+      <div class="stack-tech">HITL (Human-In-The-Loop)</div>
+      <div class="stack-desc" data-kr>AI 결과의 사람 검증 단계. 정확도를 보장하면서 자동화 효율을 유지하는 균형 구조</div>
+      <div class="stack-desc" data-en>Human verification of AI outputs. Balances automation efficiency with accuracy assurance.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-layer">NLP / Signal</div>
+      <div class="stack-tech">자연어 처리 · 이상탐지</div>
+      <div class="stack-desc" data-kr>SNS 사고 징후 조기 포착. 비정형 텍스트에서 위해 신호를 추출.</div>
+      <div class="stack-desc" data-en>Early detection of accident signals from SNS. Extracts hazard signals from unstructured text.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-layer">Automation</div>
+      <div class="stack-tech">n8n · LLM API</div>
+      <div class="stack-desc" data-kr>2025년 워크플로우 확장, ChatGPT/Claude/gemini 기반 고도화된 자동화 파이프라인</div>
+      <div class="stack-desc" data-en>Extension of 2025 workflows. Advanced automation pipelines powered by ChatGPT/Claude/gemini</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-layer">Platform</div>
+      <div class="stack-tech">Supabase · Cloud Native</div>
+      <div class="stack-desc" data-kr>2027 포털 고도화를 위한 데이터 자산 선제 구축, 확장성 우선 설계</div>
+      <div class="stack-desc" data-en>Pre-building data assets for 2027 portal upgrade. Scalability-first architecture.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:8px;">
+    <a href="https://github.com/HouuYa/ai-product-safety-automation" target="_blank">ai-product-safety-automation(Github page)</a>
+    &nbsp;·&nbsp;
+  </p>
+  <p style="font-size:12px;" data-kr>본 레포지토리는 비식별화된 워크플로우 샘플과 문서만 포함합니다. 실제 API 키 및 민감 데이터는 미포함.</p>
+  <p style="font-size:12px;" data-en>This repository contains de-identified sample workflows and documentation only. Production credentials and sensitive data are not included.</p>
+</footer>
+
+<script>
+  // Language toggle
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase().includes(lang) ||
+        (lang === 'kr' && btn.textContent === '한국어'));
+    });
+    document.documentElement.lang = lang === 'kr' ? 'ko' : 'en';
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
