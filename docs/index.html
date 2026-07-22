@@ -35,6 +35,8 @@
     color: var(--text);
     line-height: 1.7;
     overflow-x: hidden;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   /* ── LANG TOGGLE ── */
@@ -284,6 +286,37 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px; color: var(--muted); letter-spacing: 0.08em;
   }
+
+  /* ── VIDEO TRIGGER + MODAL ── */
+  .video-trigger {
+    display: flex; align-items: center; gap: 10px;
+    width: 100%; padding: 13px 16px;
+    background: rgba(255,180,0,0.08); border: none; border-top: 2px solid rgba(255,180,0,0.35);
+    color: var(--gold); font-size: 13px; font-weight: 600; font-family: inherit;
+    cursor: pointer; text-align: left; transition: background 0.2s, border-color 0.2s;
+  }
+  .video-trigger:hover { background: rgba(255,180,0,0.16); border-top-color: var(--gold); }
+  .video-trigger .play-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+    background: var(--gold); color: var(--navy); font-size: 11px;
+  }
+  .video-modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(7,17,31,0.92); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 60px 20px;
+  }
+  .video-modal-overlay.open { display: flex; }
+  .video-modal-box { position: relative; width: 100%; max-width: 900px; }
+  .video-modal-box video { width: 100%; display: block; border-radius: 8px; background: #000; }
+  .video-modal-label { color: var(--muted); font-size: 13px; margin-top: 10px; text-align: center; }
+  .video-modal-close {
+    position: absolute; top: -44px; right: 0;
+    background: none; border: 1px solid var(--border); border-radius: 6px;
+    color: var(--text); font-size: 20px; line-height: 1; cursor: pointer;
+    width: 36px; height: 36px;
+  }
+  .video-modal-close:hover { border-color: var(--teal); color: var(--teal); }
 
   /* ── STACK TABLE ── */
   .stack-grid {
@@ -538,7 +571,7 @@
       <div class="ba-item" data-en><span class="ba-icon">📋</span><span class="ba-text">Overseas recall: Manual collection, translation, DB entry taking <strong>up to 4 days</strong></span></div>
       <div class="ba-item" data-kr><span class="ba-icon">🛒</span><span class="ba-text">유통감시: 담당자가 직접 쇼핑몰 방문, <strong>수작업 검색</strong></span></div>
       <div class="ba-item" data-en><span class="ba-icon">🛒</span><span class="ba-text">Marketplace: Manual shopping site visits, <strong>keyword search by hand</strong></span></div>
-      <div class="ba-item" data-kr><span class="ba-icon">📰</span><span class="ba-text">제품사고 뉴스: 매일 수동 검색, <strong>빠른 대응 불가</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">📰</span><span class="ba-text">주요 제품사고 뉴스: 매일 수동 검색, <strong>빠른 대응 불가</strong></span></div>
       <div class="ba-item" data-en><span class="ba-icon">📰</span><span class="ba-text">News monitoring: Daily manual search, <strong>delayed response</strong></span></div>
     </div>
     <div class="ba-arrow">
@@ -547,14 +580,14 @@
     <div class="ba-side">
       <div class="ba-label after" data-kr>AI 자동화 이후 (After)</div>
       <div class="ba-label after" data-en>After AI Automation</div>
-      <div class="ba-item" data-kr><span class="ba-icon">✅</span><span class="ba-text">OECD 등록: 외주 계약 종료, <strong>연 100만원</strong>으로 완전 자동화</span></div>
-      <div class="ba-item" data-en><span class="ba-icon">✅</span><span class="ba-text">OECD registration: Contract terminated, <strong>$1K/year</strong>, fully automated</span></div>
-      <div class="ba-item" data-kr><span class="ba-icon">✅</span><span class="ba-text">해외 리콜: 매일 자동 수집·다국어 번역, <strong>1시간 이내</strong> 처리</span></div>
-      <div class="ba-item" data-en><span class="ba-icon">✅</span><span class="ba-text">Overseas recall: Auto-collected, multilingual AI translation, processed in <strong>&lt;1 hour</strong></span></div>
-      <div class="ba-item" data-kr><span class="ba-icon">✅</span><span class="ba-text">유통감시: AI 멀티모달 분석, 24/7 <strong>자동 감시·위해성 평가</strong></span></div>
-      <div class="ba-item" data-en><span class="ba-icon">✅</span><span class="ba-text">Marketplace: AI multimodal analysis, 24/7 <strong>automated surveillance</strong></span></div>
-      <div class="ba-item" data-kr><span class="ba-icon">✅</span><span class="ba-text">제품사고 뉴스: 2시간 주기 자동 탐지, <strong>Telegram 즉시 전파</strong></span></div>
-      <div class="ba-item" data-en><span class="ba-icon">✅</span><span class="ba-text">News monitoring: Auto-detected every 2 hours, <strong>instant Telegram alerts</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">✅</span><span class="ba-text">외주 계약 종료, <strong>연 100만원</strong>으로 완전 자동화</span></div>
+      <div class="ba-item" data-en><span class="ba-icon">✅</span><span class="ba-text">Contract terminated, <strong>$1K/year</strong>, fully automated</span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">✅</span><span class="ba-text">매일 자동 수집·다국어 번역, <strong>1시간 이내</strong> 처리</span></div>
+      <div class="ba-item" data-en><span class="ba-icon">✅</span><span class="ba-text">Auto-collected, multilingual AI translation, processed in <strong>&lt;1 hour</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">✅</span><span class="ba-text">AI 멀티모달 분석, 실시간 <strong>자동 감시·위해성 평가</strong></span></div>
+      <div class="ba-item" data-en><span class="ba-icon">✅</span><span class="ba-text">AI multimodal analysis, real-time <strong>automated surveillance</strong></span></div>
+      <div class="ba-item" data-kr><span class="ba-icon">✅</span><span class="ba-text">2시간 주기 자동 탐지, <strong>Telegram 즉시 전파</strong></span></div>
+      <div class="ba-item" data-en><span class="ba-icon">✅</span><span class="ba-text">Auto-detected every 2 hours, <strong>instant Telegram alerts</strong></span></div>
     </div>
   </div>
 </section>
@@ -567,7 +600,7 @@
   <span class="section-tag" data-en>Key Features</span>
   <h2 class="section-title" data-kr>4개 AI 기반 자동화 모듈</h2>
   <h2 class="section-title" data-en>4 AI Automation Modules</h2>
-  <p class="section-desc" data-kr>각 모듈은 독립적으로 운영되며, n8n 워크플로우로 오케스트레이션됩니다.</p>
+  <p class="section-desc" data-kr>각 모듈은 독립적으로 운영되며, n8n 자동화 도구가 오케스트레이션</p>
   <p class="section-desc" data-en>Each module operates independently, orchestrated via n8n workflows.</p>
 
   <div class="modules-grid">
@@ -597,6 +630,10 @@
         <div class="screenshot-label">n8n workflow · OECD registration pipeline</div>
         <img src="screenshots/workflow-oecd.png" alt="n8n OECD Registration Workflow" loading="lazy">
       </div>
+      <button class="video-trigger" onclick="openVideoModal('videos/oecd-auto-registration.mp4','시연 영상 · 국내리콜 OECD 자동등록','Demo video · Domestic recall OECD auto-registration')">
+        <span class="play-icon">&#9654;</span>
+        <span data-kr>시연 영상 보기 · 국내리콜 OECD 자동등록</span><span data-en>Watch demo video · OECD auto-registration</span>
+      </button>
     </div>
 
     <!-- Module 2 -->
@@ -638,7 +675,7 @@
         </div>
       </div>
       <div class="module-body">
-        <p data-kr>G사 등에서 리콜 제품 모델번호를 기반으로 판매 여부를 자동 탐지. GPT-4 Vision으로 제품 이미지·후기·문의를 멀티모달 분석</p>
+        <p data-kr>G사 등에서 리콜 제품 모델번호를 기반으로 판매 여부 자동 탐지, GPT-4 Vision으로 제품 이미지·후기·문의 멀티모달 분석</p>
         <p data-en>Auto-detects recalled products on Coupang, Naver Shopping using model numbers. GPT-4 Vision analyzes product images, reviews, and Q&A for risk signals.</p>
         <div class="process-steps">
           <div class="step"><div class="step-num">1</div><span data-kr>ScrapingBee로 쿠키 기반 상품정보 자동 수집</span><span data-en>Cookie-based scraping with ScrapingBee</span></div>
@@ -651,6 +688,10 @@
         <div class="screenshot-label">n8n workflow · news monitoring &amp; alert pipeline</div>
         <img src="screenshots/workflow-marketplace.png" alt="n8n News Monitoring Workflow" loading="lazy">
       </div>
+      <button class="video-trigger" onclick="openVideoModal('videos/ecommerce-recall-detection.mp4','시연 영상 · e커머스 리콜제품 자동 판별','Demo video · E-commerce recalled product auto-detection')">
+        <span class="play-icon">&#9654;</span>
+        <span data-kr>시연 영상 보기 · e커머스 리콜제품 자동 판별</span><span data-en>Watch demo video · E-commerce recall detection</span>
+      </button>
     </div>
 
     <!-- Module 4 -->
@@ -665,7 +706,7 @@
         </div>
       </div>
       <div class="module-body">
-        <p data-kr>네이버 뉴스·소방방재신문을 2시간마다 자동 모니터링. AI가 화재·폭발·감전 등 제품사고 키워드를 분류하고 관계자에게 Telegram으로 즉시 전파</p>
+        <p data-kr>네이버 뉴스·소방방재신문을 2시간마다 자동 모니터링, AI가 화재·폭발·감전 등 제품사고 키워드를 분류해 관계자에게 Telegram으로 즉시 전파</p>
         <p data-en>Auto-monitors Naver News and fire/safety journals every 2 hours. AI classifies fire, explosion, electric shock incidents and sends instant Telegram alerts to stakeholders.</p>
         <div class="process-steps">
           <div class="step"><div class="step-num">1</div><span data-kr>뉴스 포털 RSS/크롤링 (2시간 주기)</span><span data-en>News portal RSS/crawl (every 2 hours)</span></div>
@@ -692,7 +733,7 @@
   <h2 class="section-title" data-kr>기술 스택</h2>
   <h2 class="section-title" data-en>Technology Stack</h2>
   <p class="section-desc" data-kr>
-    서버 관리 없는 클라우드 네이티브 구성. Low-Code 도구로 전문 개발자 없이 운영 가능<br>
+    서버 관리 없는 클라우드 네이티브 구성, Low-Code 도구로 전문 개발자 없이 운영 가능<br>
     <em style="color:var(--teal)">Gemini 선택 이유</em>: 무료 티어의 높은 요청 한도 → 예산 제한 없이 빠르게 PoC 가능
   </p>
   <p class="section-desc" data-en>
@@ -704,37 +745,37 @@
     <div class="stack-card">
       <div class="stack-layer">Automation</div>
       <div class="stack-tech">n8n Cloud</div>
-      <div class="stack-desc" data-kr>워크플로우 오케스트레이션. 노코딩으로 쉽고 빠르게 구축.</div>
+      <div class="stack-desc" data-kr>워크플로우 오케스트레이션, 노코딩으로 쉽고 빠른 구축</div>
       <div class="stack-desc" data-en>Workflow orchestration. No-code, fast and easy to build.</div>
     </div>
     <div class="stack-card">
       <div class="stack-layer">AI / ML</div>
       <div class="stack-tech">ChatGPT · Gemini</div>
-      <div class="stack-desc" data-kr>번역, GPC 분류, 멀티모달 이미지 분석, 위해성 평가.</div>
+      <div class="stack-desc" data-kr>번역, GPC 분류, 멀티모달 이미지 분석, 위해성 평가</div>
       <div class="stack-desc" data-en>Translation, GPC classification, multimodal image analysis, risk assessment.</div>
     </div>
     <div class="stack-card">
       <div class="stack-layer">Database</div>
       <div class="stack-tech">Supabase (PostgreSQL)</div>
-      <div class="stack-desc" data-kr>구조화 데이터 저장, REST API 자동 생성, 실시간 쿼리.</div>
+      <div class="stack-desc" data-kr>구조화 데이터 저장, REST API 자동 생성, 실시간 쿼리</div>
       <div class="stack-desc" data-en>Structured storage, auto-generated REST API, real-time queries.</div>
     </div>
     <div class="stack-card">
       <div class="stack-layer">Web Scraping</div>
       <div class="stack-tech">ScrapingBee · Puppeteer</div>
-      <div class="stack-desc" data-kr>봇 방지 우회, 쿠키 기반 쇼핑몰 데이터 추출.</div>
+      <div class="stack-desc" data-kr>봇 방지 우회, 쿠키 기반 쇼핑몰 데이터 추출</div>
       <div class="stack-desc" data-en>Bot protection bypass, cookie-based e-commerce data extraction.</div>
     </div>
     <div class="stack-card">
       <div class="stack-layer">Integration</div>
       <div class="stack-tech">REST · RSS · Webhooks</div>
-      <div class="stack-desc" data-kr>OECD 포털, safetykorea.kr, 쇼핑몰 API 연동.</div>
+      <div class="stack-desc" data-kr>OECD 포털, safetykorea.kr, 쇼핑몰 API 연동</div>
       <div class="stack-desc" data-en>OECD portal, safetykorea.kr, marketplace API integration.</div>
     </div>
     <div class="stack-card">
       <div class="stack-layer">Alerts</div>
       <div class="stack-tech">Telegram API</div>
-      <div class="stack-desc" data-kr>담당자 실시간 알림. 중대 사고 즉시 전파.</div>
+      <div class="stack-desc" data-kr>담당자 실시간 알림, 중대 사고 즉시 전파</div>
       <div class="stack-desc" data-en>Real-time staff notifications. Instant critical incident alerts.</div>
     </div>
   </div>
@@ -835,8 +876,8 @@
     <div>
       <h3 data-kr>'25년 3분기 우수과제 선정</h3>
       <h3 data-en>Q3 2025 — Proactive Administration Excellence Selection</h3>
-      <p data-kr>산업통상자원부 적극행정위원회에서 심사 · 선정. <br> 
-        민간 전문가 위원회 평가를 통해 적극행정 우수공무원으로 인정받았으며, 성과평가 최고등급(S등급) 및 포상금 수여</p>
+      <p data-kr>산업통상자원부 적극행정위원회 심사·선정 <br>
+        민간 전문가 위원회 평가로 적극행정 우수공무원 인정, 성과평가 최고등급(S등급) 및 포상금 수여</p>
       <p data-en>Selected by the Ministry of Trade, Industry and Energy Proactive Administration Committee. Recognized as an excellent proactive administration civil servant by a private expert panel, receiving top performance grade (S) and commendation.</p>
       <div class="award-highlight" data-kr>
         우수사례명:<br>
@@ -855,6 +896,16 @@
 
 <hr class="divider">
 
+<!-- VIDEO MODAL -->
+<div class="video-modal-overlay" id="videoModalOverlay" onclick="if(event.target===this) closeVideoModal()">
+  <div class="video-modal-box">
+    <button class="video-modal-close" onclick="closeVideoModal()" aria-label="Close">&times;</button>
+    <video id="videoModalPlayer" controls>
+      <source id="videoModalSource" src="" type="video/mp4">
+    </video>
+    <div class="video-modal-label" id="videoModalLabel"></div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -862,7 +913,7 @@
     <a href="https://github.com/HouuYa/ai-product-safety-automation" target="_blank">ai-product-safety-automation(Github page)</a>
     &nbsp;·&nbsp;
   </p>
-  <p style="font-size:12px;" data-kr>본 레포지토리는 비식별화된 워크플로우 샘플과 문서만 포함합니다. 실제 API 키 및 민감 데이터는 미포함.</p>
+  <p style="font-size:12px;" data-kr>본 레포지토리는 비식별화된 워크플로우 샘플과 문서만 포함, 실제 API 키 및 민감 데이터는 미포함</p>
   <p style="font-size:12px;" data-en>This repository contains de-identified sample workflows and documentation only. Production credentials and sensitive data are not included.</p>
 </footer>
 
@@ -889,6 +940,28 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Video modal
+  function openVideoModal(src, labelKr, labelEn) {
+    const overlay = document.getElementById('videoModalOverlay');
+    const source = document.getElementById('videoModalSource');
+    const player = document.getElementById('videoModalPlayer');
+    const label = document.getElementById('videoModalLabel');
+    source.src = src;
+    player.load();
+    label.textContent = document.body.classList.contains('lang-en') ? labelEn : labelKr;
+    overlay.classList.add('open');
+    player.play().catch(() => {});
+  }
+  function closeVideoModal() {
+    const overlay = document.getElementById('videoModalOverlay');
+    const player = document.getElementById('videoModalPlayer');
+    player.pause();
+    overlay.classList.remove('open');
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeVideoModal();
+  });
 </script>
 </body>
 </html>

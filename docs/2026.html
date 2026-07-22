@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2026 AI-Based Product Safety AX Plan | 배승호 · Seungho Bae</title>
-  <meta name="description" content="2026년 제품안전 AX 추진 계획 — 5개 세부과제(Sub-Agent) + 기반과제(Master Agent) | 제품안전정보과">
+  <meta name="description" content="2026년 제품안전 정보화 AX 추진 계획 — 6개 세부과제(Sub-Agent) + 기반과제(Master Agent) | 제품안전정보과">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -45,6 +45,8 @@
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     /* ── LANG TOGGLE ── */
@@ -239,6 +241,11 @@
       margin-bottom: 48px;
       line-height: 1.8;
       animation: fadeInUp 0.7s ease 0.3s both;
+    }
+
+    .bullet-line {
+      padding-left: 1.15em;
+      text-indent: -1.15em;
     }
 
     .hero-cta {
@@ -634,6 +641,127 @@
       margin-bottom: 16px;
     }
 
+    .module-screenshot {
+      margin: 0;
+      border-top: 1px solid var(--border);
+      background: var(--navy3);
+      overflow: hidden;
+    }
+
+    .screenshot-label {
+      padding: 8px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── VIDEO TRIGGER + MODAL ── */
+    .video-trigger {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(255, 180, 0, 0.08);
+      border: none;
+      border-top: 2px solid rgba(255, 180, 0, 0.35);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .video-trigger:hover {
+      background: rgba(255, 180, 0, 0.16);
+      border-top-color: var(--gold);
+    }
+
+    .video-trigger-row {
+      display: flex;
+    }
+
+    .video-trigger-row .video-trigger {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .video-trigger-row .video-trigger + .video-trigger {
+      border-left: 1px solid rgba(255, 180, 0, 0.25);
+    }
+
+    .video-trigger .play-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 11px;
+    }
+
+    .video-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(7, 17, 31, 0.92);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+    }
+
+    .video-modal-overlay.open {
+      display: flex;
+    }
+
+    .video-modal-box {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .video-modal-box video {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+      background: #000;
+    }
+
+    .video-modal-label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .video-modal-close {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+    }
+
+    .video-modal-close:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
     .process-steps {
       display: flex;
       flex-direction: column;
@@ -930,22 +1058,22 @@
       <div class="dot"></div>
     </div>
 
-    <h1 data-kr>2026 제품안전 <em>AX 추진 계획</em></h1>
+    <h1 data-kr>2026 제품안전 정보화 <em>AX 추진 계획</em></h1>
     <h1 data-en>2026 Product Safety <em>AX Implementation</em></h1>
 
-    <p class="subtitle" data-kr>5개 세부과제(AI Sub-Agent) + 기반과제(AI Master Agent) &middot; 총 7.7억원 + 29.2억원('27 예산 확보 중)</p>
-    <p class="subtitle" data-en>5 Sub-Agents + Base Task (Master Agent) &middot; ₩770M + ₩2.92B (FY2027)</p>
+    <p class="subtitle" data-kr>6개 세부과제(AI Sub-Agent, 총 8.4억원) + 기반과제(AI Master Agent, '27 29.2억원 예산 확보 중)</p>
+    <p class="subtitle" data-en>6 Sub-Agents (Total ₩840M) + Base Task (Master Agent, FY2027 ₩2.92B in progress)</p>
 
-    <p class="desc" data-kr>
-      &bull; 2025년 4개 자동화 모듈(OECD 등록·해외리콜·유통감시·뉴스모니터링) 구축 성과를 확대<br>
-      &bull; 2026년에는 정보화 단계(수집→분류·표준화→분석·검색→확산)별 5개 세부과제를 AI Sub-Agent로 추진<br>
-      &bull; 5개 Sub-Agent는 2027년 기반과제 플랫폼(AI Master Agent)으로 통합되어, Migration 및 maintenance 비용을 최소화
-    </p>
-    <p class="desc" data-en>
-      &bull; Building on 2025's four automation modules (OECD, overseas recall, marketplace, news monitoring),<br>
-      &bull; 2026 advances five sub-tasks as AI Sub-Agents across the Collect→Classify→Analyze→Diffuse stages.<br>
-      &bull; The 5 Sub-Agents integrate into the 2027 platform (AI Master Agent), minimizing migration costs.
-    </p>
+    <div class="desc" data-kr>
+      <div class="bullet-line">&bull; 2025년 4개 자동화 모듈(OECD 등록·해외리콜·유통감시·뉴스모니터링) 구축 성과 확대</div>
+      <div class="bullet-line">&bull; 2026년 정보화 단계(수집→분류·표준화→분석·검색→확산)별 6개 세부과제를 AI Sub-Agent로 추진</div>
+      <div class="bullet-line">&bull; 6개 Sub-Agent는 2027년 기반과제 플랫폼(AI Master Agent)으로 통합, Migration·maintenance 비용 최소화</div>
+    </div>
+    <div class="desc" data-en>
+      <div class="bullet-line">&bull; Building on 2025's four automation modules (OECD, overseas recall, marketplace, news monitoring),</div>
+      <div class="bullet-line">&bull; 2026 advances six sub-tasks as AI Sub-Agents across the Collect→Classify→Analyze→Diffuse stages.</div>
+      <div class="bullet-line">&bull; The 6 Sub-Agents integrate into the 2027 platform (AI Master Agent), minimizing migration costs.</div>
+    </div>
 
     <div class="hero-cta">
       <a href="#tasks" class="btn-primary" data-kr>세부과제 보기</a>
@@ -961,14 +1089,14 @@
   <!-- STATS STRIP -->
   <div class="stats-strip" id="overview">
     <div class="stat-item">
-      <div class="stat-num">7.7<span style="font-size:0.45em;color:var(--muted)">억</span></div>
-      <div class="stat-label" data-kr>세부과제 총 예산<br>5종 합산 ('26년 기준)</div>
-      <div class="stat-label" data-en>Sub-Task Budget<br>5 Tasks Total (FY26)</div>
+      <div class="stat-num">8.4<span style="font-size:0.45em;color:var(--muted)">억</span></div>
+      <div class="stat-label" data-kr>6개 세부과제 총 예산<br>('26년 기준)</div>
+      <div class="stat-label" data-en>Sub-Task Budget<br>6 Tasks Total (FY26)</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">5</div>
-      <div class="stat-label" data-kr>세부과제 Sub-Agent<br>+ 1 Master Agent</div>
-      <div class="stat-label" data-en>Sub-Agents<br>+ 1 Master Agent</div>
+      <div class="stat-num">7</div>
+      <div class="stat-label" data-kr>6개 세부과제 Sub-Agent<br>+ 1 기반과제 Master Agent</div>
+      <div class="stat-label" data-en>6 Sub-Agents<br>+ 1 Master Agent</div>
     </div>
     <div class="stat-item">
       <div class="stat-num">329</div>
@@ -982,8 +1110,8 @@
     </div>
     <div class="stat-item">
       <div class="stat-num gold">29.2<span style="font-size:0.45em;color:var(--muted)">억</span></div>
-      <div class="stat-label" data-kr>기반과제 예산<br>2027년 포털 재구축</div>
-      <div class="stat-label" data-en>Base Task Budget<br>2027 Portal Rebuild</div>
+      <div class="stat-label" data-kr>1개 기반과제 예산<br>('27년 포털 재구축)</div>
+      <div class="stat-label" data-en>1 Base Task Budget<br>(FY2027 Portal Rebuild)</div>
     </div>
   </div>
 
@@ -996,7 +1124,7 @@
       2025년 ISP 수립 및 AI활용 자동화 업무 혁신을 시작으로, <br>
       2026년 신규 업무 혁신 등을 통해 선행 기술 검증과 2027년 포털 전면 재구축을 추진<br>
       각 과제들은 유기적으로 연결되어 각 과제들의 결과물들이 포털 고도화와 통합<br>
-      (5개 세부과제 AI Sub-Agent + 1개 기반과제 AI Master Agent로 구성)
+      (6개 세부과제 AI Sub-Agent + 1개 기반과제 AI Master Agent로 구성)
     </p>
     <p class="section-desc" data-en>
       Starting from the 2025 ISP, 2026 pilot tasks validate technologies before the full 2027 portal rebuild.
@@ -1009,25 +1137,25 @@
         <div class="rm-name" data-kr>제품안전정보 포털 고도화 ISP 수립 &amp; 및 업무 자동화 구축</div>
         <div class="rm-name" data-en>ISP &amp; Automation</div>
         <div class="rm-budget">0.5억</div>
-        <div class="rm-desc" data-kr>4개 자동화 모듈 구축. 해외 43개국 리콜 정보 수집, OECD 자동 등록 예산95% 절감, 유통감시 체계 완성.</div>
+        <div class="rm-desc" data-kr>4개 자동화 모듈 구축을 통해 AX 실증 — 해외 43개국 리콜 정보 수집, OECD 자동 등록 예산 95% 절감, 유통감시 체계 완성</div>
         <div class="rm-desc" data-en>4 automation modules: 43-country recall, 95% OECD cost cut, marketplace
           surveillance.</div>
       </div>
       <div class="rm-step active">
-        <div class="rm-year">'26년 수행 중</div>
-        <div class="rm-name" data-kr>세부과제 5개(Sub-Agent) 선행 수행</div>
-        <div class="rm-name" data-en>5 Sub-Agent Pilots</div>
-        <div class="rm-budget">7.7억</div>
-        <div class="rm-desc" data-kr>KC 디지털화, 해외리콜·SNS 사고징후 수집, 위해요인 2차원 분류, 민간 자율 AX 확산 등 업무 검증 및 포털 기능 모듈 설계</div>
+        <div class="rm-year">'26년 진행 중</div>
+        <div class="rm-name" data-kr>세부과제 6개(AI Sub-Agent) 추진</div>
+        <div class="rm-name" data-en>6 Sub-Agent Pilots</div>
+        <div class="rm-budget">8.4억</div>
+        <div class="rm-desc" data-kr>KC 디지털화(76개 품목 선정·파싱정확도 90%), 해외리콜·SNS 사고징후 수집, 위해요인 2차원 분류, 민간 자율 AX 확산 등 업무 검증 및 포털 기능 모듈 설계</div>
         <div class="rm-desc" data-en>KC digitization, SNS early warning, AI call center pilots. Portal module design.
         </div>
       </div>
       <div class="rm-step">
-        <div class="rm-year">'27년 착수를 위해 예산확보 중</div>
+        <div class="rm-year">'27년 예산확보 중</div>
         <div class="rm-name" data-kr>포털 고도화 (기반과제)</div>
         <div class="rm-name" data-en>Portal Rebuild (Base)</div>
         <div class="rm-budget">29.2억</div>
-        <div class="rm-desc" data-kr>SafetyKorea 클라우드 재구축, 범정부 AI 에이전트, Office.SafetyKorea 운영체계.</div>
+        <div class="rm-desc" data-kr>SafetyKorea 포털 클라우드 및 범정부 AI 공통기반으로 전면 재구축 — '26년 6개 세부과제 Sub-Agent를 Master AI Agent 형태로 통합</div>
         <div class="rm-desc" data-en>SafetyKorea cloud rebuild, gov't AI agent, Office.SafetyKorea operation.</div>
       </div>
       <div class="rm-step">
@@ -1035,7 +1163,7 @@
         <div class="rm-name" data-kr>AI 지능화 &amp; 고도화</div>
         <div class="rm-name" data-en>AI Intelligence &amp; Scale</div>
         <div class="rm-budget">14.5억</div>
-        <div class="rm-desc" data-kr>AI 지능화 개발(6.2억), 기능 고도화 및 확산(8.3억). 전국 확산 체계 완비.</div>
+        <div class="rm-desc" data-kr>AI 지능화 개발(6.2억)·기능 고도화 및 확산(8.3억)</div>
         <div class="rm-desc" data-en>AI intelligence dev (₩620M), enhancement &amp; scaling (₩830M).</div>
       </div>
       <div class="rm-step">
@@ -1043,7 +1171,7 @@
         <div class="rm-name" data-kr>포털 운영 안정화</div>
         <div class="rm-name" data-en>Operations Stabilization</div>
         <div class="rm-budget">4.55억</div>
-        <div class="rm-desc" data-kr>전체 시스템 운영 안정화 및 유지·관리 체계 확립.</div>
+        <div class="rm-desc" data-kr>전체 시스템 운영 안정화 및 유지·관리 체계 확립</div>
         <div class="rm-desc" data-en>Full system stabilization and sustained operations.</div>
       </div>
     </div>
@@ -1108,9 +1236,11 @@
         <div class="ba-item" data-en><span class="ba-icon">→</span><span class="ba-text">SNS/community <strong>early
               warning</strong> (1 day→2 hours)</span></div>
         <div class="ba-item" data-kr><span class="ba-icon">→</span><span class="ba-text">위해요인 <strong>2차원 분류(HF·DT)</strong>
-              국제표준 정렬 + 민간 자율 AX 확산(100개사)</span></div>
+              국제표준 정렬</span></div>
         <div class="ba-item" data-en><span class="ba-icon">→</span><span class="ba-text"><strong>2-axis hazard coding (HF·DT)</strong>
-              aligned to ISO + private-sector AX diffusion (100 firms)</span></div>
+              aligned to ISO</span></div>
+        <div class="ba-item" data-kr><span class="ba-icon">→</span><span class="ba-text">민간 자율 AX 확산(포럼을 통해 <strong>50개사 이상</strong>)</span></div>
+        <div class="ba-item" data-en><span class="ba-icon">→</span><span class="ba-text">Private-sector AX diffusion (<strong>50+ firms</strong> via forum)</span></div>
       </div>
     </div>
   </section>
@@ -1121,13 +1251,13 @@
   <section id="agents">
     <span class="section-tag" data-kr>멀티 에이전트 구조</span>
     <span class="section-tag" data-en>Multi-Agent Architecture</span>
-    <h2 class="section-title" data-kr>5개 Sub-Agent → 1개 Master Agent</h2>
-    <h2 class="section-title" data-en>5 Sub-Agents → 1 Master Agent</h2>
+    <h2 class="section-title" data-kr>6개 AI Sub-Agent → 1개 Master AI Agent</h2>
+    <h2 class="section-title" data-en>6 AI Sub-Agents → 1 Master AI Agent</h2>
     <p class="section-desc" data-kr>
-      제품안전 정보화는 <strong>수집 → 분류·표준화 → 분석·검색 → 확산</strong>의 4단계로 흐릅니다.<br>
-      각 단계를 담당하는 5개 세부과제는 독립적으로 일하는 <strong>AI Sub-Agent</strong>이고,<br>
-      2027년 기반과제 플랫폼이 이들을 지휘·통합하는 <strong>AI Master Agent</strong>가 됩니다.<br>
-      <span style="color:var(--muted);font-size:0.92em;">(비유: 5명의 전문 비서가 각자 일을 처리하고, 한 명의 총괄 비서(플랫폼)가 이를 모아 정책 결정으로 연결합니다.)</span>
+      제품안전 정보화의 4단계 — <strong>수집 → 분류·표준화 → 분석·검색 → 확산</strong><br>
+      각 단계를 담당하는 6개 세부과제는 독립적으로 일하는 <strong>AI Sub-Agent</strong><br>
+      2027년 기반과제 플랫폼은 이들을 지휘·통합하는 <strong>AI Master Agent</strong>로 전환<br>
+      <span style="color:var(--muted);font-size:0.92em;">(비유: 6명의 전문 비서가 각자 일을 처리하고, 한 명의 총괄 비서(플랫폼)가 이를 모아 정책 결정으로 연결)</span>
     </p>
     <p class="section-desc" data-en>
       Product-safety informatization flows through four stages — <strong>Collect → Classify/Standardize → Analyze/Search → Diffuse</strong>.
@@ -1135,7 +1265,7 @@
     </p>
 
     <div class="reveal" style="overflow-x:auto; padding:8px 0 4px;">
-      <svg viewBox="0 0 1200 820" width="100%" style="min-width:760px; display:block; margin:0 auto; font-family:'Noto Sans KR',sans-serif;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="5개 Sub-Agent와 1개 Master Agent 관계도 및 정보화 단계 흐름도">
+      <svg viewBox="0 0 1200 820" width="100%" style="min-width:760px; display:block; margin:0 auto; font-family:'Noto Sans KR',sans-serif;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="6개 Sub-Agent와 1개 Master Agent 관계도 및 정보화 단계 흐름도">
         <defs>
           <marker id="ah" markerWidth="11" markerHeight="11" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
             <path d="M0,0 L9,4 L0,8 Z" fill="#6B8FAD"/>
@@ -1153,18 +1283,18 @@
         <circle cx="120" cy="56" r="7" fill="#FFB400"/>
         <text x="138" y="55" fill="#FFB400" font-size="17" font-weight="700">기반과제 · AI Master Agent</text>
         <text x="138" y="78" fill="#F0F6FC" font-size="15" font-weight="600">AI기반 제품안전정보 플랫폼 (SafetyKorea 재구축)</text>
-        <text x="138" y="99" fill="#6B8FAD" font-size="12.5">2027년 착수 목표 · 4년간 48.3억원('27년 29.2억원) · 5개 Sub-Agent를 통합·오케스트레이션</text>
+        <text x="138" y="99" fill="#6B8FAD" font-size="12.5">2027년 착수 목표 · 4년간 48.3억원('27년 29.2억원) · 6개 Sub-Agent를 통합·오케스트레이션</text>
         <text x="1096" y="62" fill="#FFB400" font-size="12" font-weight="600" text-anchor="end">2027~</text>
-        <text x="1096" y="80" fill="#6B8FAD" font-size="11" text-anchor="end">통합·지휘</text>
+        <text x="1096" y="80" fill="#6B8FAD" font-size="11" text-anchor="end">클라우드 전환·범정부 AI공통기반 활용</text>
 
-        <!-- dashed orchestration arrows from master down to each stage -->
+        <!-- dashed orchestration arrows from each stage up into master -->
         <g stroke="#FFB400" stroke-width="1.6" stroke-dasharray="5 5" fill="none" opacity="0.7">
-          <path d="M190,118 L190,178" marker-end="url(#ahg)"/>
-          <path d="M463,118 L463,178" marker-end="url(#ahg)"/>
-          <path d="M736,118 L736,178" marker-end="url(#ahg)"/>
-          <path d="M1009,118 L1009,178" marker-end="url(#ahg)"/>
+          <path d="M190,178 L190,122" marker-end="url(#ahg)"/>
+          <path d="M463,178 L463,122" marker-end="url(#ahg)"/>
+          <path d="M736,178 L736,122" marker-end="url(#ahg)"/>
+          <path d="M1009,178 L1009,122" marker-end="url(#ahg)"/>
         </g>
-        <text x="600" y="150" fill="#FFB400" font-size="11.5" text-anchor="middle" opacity="0.8">▲ 2026년 5개 Sub-Agent가 실증한 데이터·서비스를 2027년 Master Agent로 통합</text>
+        <text x="600" y="150" fill="#FFB400" font-size="11.5" text-anchor="middle" opacity="0.8">▲ 2026년 6개 Sub-Agent가 실증한 데이터·서비스를 2027년 Master Agent로 통합</text>
 
         <!-- ===== STAGE HEADER BAND ===== -->
         <!-- Stage 1 수집 -->
@@ -1194,20 +1324,23 @@
         <text x="872" y="438" fill="#9DB4C9" font-size="10.5" text-anchor="middle">지식화</text>
 
         <!-- ===== SUB-AGENT CARDS ===== -->
-        <!-- Stage1 수집: 과제2 + 과제3 -->
-        <rect x="83" y="226" width="215" height="120" rx="10" fill="#0F1E30" stroke="#00CFA8" stroke-width="1.3"/>
-        <text x="97" y="250" fill="#00CFA8" font-size="12.5" font-weight="700">과제 ② Sub-Agent</text>
-        <text x="97" y="271" fill="#F0F6FC" font-size="13" font-weight="600">해외리콜 유통차단</text>
-        <text x="97" y="291" fill="#9DB4C9" font-size="11">43개국·13개 사이트 자동수집</text>
-        <text x="97" y="308" fill="#9DB4C9" font-size="11">직구 위해제품 AI 판독</text>
-        <text x="97" y="332" fill="#6B8FAD" font-size="10.5">0.8억 · 보조금+용역 · 제품안전협회</text>
+        <!-- Stage1 수집: 과제2 + 과제3 + 과제6(검토중, 개념 편입) -->
+        <rect x="83" y="226" width="215" height="94" rx="10" fill="#0F1E30" stroke="#00CFA8" stroke-width="1.3"/>
+        <text x="97" y="248" fill="#00CFA8" font-size="12.5" font-weight="700">과제 ② Sub-Agent</text>
+        <text x="97" y="268" fill="#F0F6FC" font-size="13" font-weight="600">해외리콜 유통차단</text>
+        <text x="97" y="288" fill="#9DB4C9" font-size="11">43개국·13개 사이트 자동수집·AI 판독</text>
+        <text x="97" y="308" fill="#6B8FAD" font-size="10.5">0.8억 · 보조금+용역 · 제품안전협회</text>
 
-        <rect x="83" y="356" width="215" height="120" rx="10" fill="#0F1E30" stroke="#00CFA8" stroke-width="1.3"/>
-        <text x="97" y="380" fill="#00CFA8" font-size="12.5" font-weight="700">과제 ③ Sub-Agent</text>
-        <text x="97" y="401" fill="#F0F6FC" font-size="13" font-weight="600">SNS 사고징후 선제포착</text>
-        <text x="97" y="421" fill="#9DB4C9" font-size="11">SNS·맘카페 24시간 AI 탐지</text>
-        <text x="97" y="438" fill="#9DB4C9" font-size="11">리콜 공식화 前 위험 포착</text>
-        <text x="97" y="462" fill="#6B8FAD" font-size="10.5">1.97억 · R&amp;D · 안전관리원+뉴엔AI</text>
+        <rect x="83" y="328" width="215" height="94" rx="10" fill="#0F1E30" stroke="#00CFA8" stroke-width="1.3"/>
+        <text x="97" y="350" fill="#00CFA8" font-size="12.5" font-weight="700">과제 ③ Sub-Agent</text>
+        <text x="97" y="370" fill="#F0F6FC" font-size="13" font-weight="600">SNS 사고징후 선제포착</text>
+        <text x="97" y="390" fill="#9DB4C9" font-size="11">SNS·맘카페 24시간 탐지, 리콜 前 포착</text>
+        <text x="97" y="410" fill="#6B8FAD" font-size="10.5">1.97억 · R&amp;D · 안전관리원+뉴엔AI</text>
+
+        <rect x="83" y="430" width="215" height="46" rx="10" fill="#0F1E30" stroke="#FFB400" stroke-width="1.3" stroke-dasharray="4 4"/>
+        <text x="97" y="444" fill="#FFB400" font-size="11.5" font-weight="700">세부과제 ⑥ Sub-Agent (검토중)</text>
+        <text x="97" y="458" fill="#F0F6FC" font-size="11" font-weight="600">AI콜센터 제품사고접수</text>
+        <text x="97" y="472" fill="#6B8FAD" font-size="10">제품사고 신고 접수 정보 · 0.1억</text>
 
         <!-- Stage2 분류·표준화: 과제4 -->
         <rect x="356" y="226" width="215" height="250" rx="10" fill="#0F1E30" stroke="#8B5CF6" stroke-width="1.3"/>
@@ -1235,7 +1368,8 @@
         <text x="653" y="392" fill="#9FD0EC" font-size="10.5">사고원인(③) ↔ 안전기준</text>
         <text x="653" y="408" fill="#9FD0EC" font-size="10.5">즉시 대조 → 기준 미비 시</text>
         <text x="653" y="423" fill="#9FD0EC" font-size="10.5">선제 정비 판단 지원</text>
-        <text x="643" y="462" fill="#6B8FAD" font-size="10.5">4.45억 · R&amp;D · 제품안전협회+뤼튼</text>
+        <text x="643" y="456" fill="#6B8FAD" font-size="10.5">4.806억(정부3.9+기관0.906) · R&amp;D</text>
+        <text x="643" y="470" fill="#6B8FAD" font-size="10.5">제품안전협회+뤼튼 · 76개품목 선정·파싱90%</text>
 
         <!-- Stage4 확산: 과제5 -->
         <rect x="902" y="226" width="215" height="250" rx="10" fill="#0F1E30" stroke="#FF6B35" stroke-width="1.3"/>
@@ -1244,22 +1378,23 @@
         <text x="916" y="293" fill="#9DB4C9" font-size="11">기업 위해제품 관리 AX</text>
         <text x="916" y="310" fill="#9DB4C9" font-size="11">노코드 모범사례 보급</text>
         <text x="916" y="334" fill="#9DB4C9" font-size="11">맞춤형 AI 숏폼 제작·배포</text>
-        <text x="916" y="351" fill="#9DB4C9" font-size="11">AX포럼 100개사 운영</text>
+        <text x="916" y="351" fill="#9DB4C9" font-size="11">AX포럼 50개사 이상 운영</text>
         <rect x="916" y="372" width="187" height="58" rx="7" fill="#2A1A12" stroke="#4A2A1E" stroke-width="1"/>
         <text x="926" y="392" fill="#F0B79A" font-size="10.5">정부→기업·소비자에게</text>
         <text x="926" y="408" fill="#F0B79A" font-size="10.5">위해정보를 AI가 검색·학습</text>
-        <text x="926" y="423" fill="#F0B79A" font-size="10.5">하기 쉬운 형태로 즉시 제공</text>
-        <text x="916" y="462" fill="#6B8FAD" font-size="10.5">0.5억 · 연구용역 · 제품안전협회</text>
+        <text x="926" y="423" fill="#F0B79A" font-size="10.5">하기 쉬운 형태(MCP)로 즉시 제공</text>
+        <text x="916" y="462" fill="#6B8FAD" font-size="10.5">0.8억(용역 2건) · 제품안전협회</text>
 
         <!-- input sources row -->
-        <text x="190" y="506" fill="#6B8FAD" font-size="11" text-anchor="middle">입력원: 해외 공표사이트·SNS·소방청·소비자원</text>
+        <text x="190" y="502" fill="#6B8FAD" font-size="11" text-anchor="middle">입력원: 해외 공표사이트·SNS</text>
+        <text x="190" y="518" fill="#6B8FAD" font-size="11" text-anchor="middle">소방청·소비자원·콜센터 신고</text>
         <text x="463" y="506" fill="#6B8FAD" font-size="11" text-anchor="middle">입력원: 리콜·사고조사·리스크평가 3개 시스템</text>
         <text x="736" y="506" fill="#6B8FAD" font-size="11" text-anchor="middle">입력원: KC 안전기준 고시(HWP)</text>
         <text x="1009" y="506" fill="#6B8FAD" font-size="11" text-anchor="middle">출력: 기업·소비자 자율 안전망</text>
 
         <!-- ===== OUTCOME BAR ===== -->
         <rect x="80" y="540" width="1040" height="92" rx="14" fill="#0C1A14" stroke="#00CFA8" stroke-width="1.6"/>
-        <text x="600" y="568" fill="#00CFA8" font-size="14.5" font-weight="700" text-anchor="middle">패러다임 전환 — "사후 대응" 에서 "사전 징후 포착·예방" 으로</text>
+        <text x="600" y="568" fill="#00CFA8" font-size="13.5" font-weight="700" text-anchor="middle">위해제품 유통, 제품사고 "사후 대응" 에서 "사전 징후 포착·예방" 으로 정책 패러다임 전환</text>
         <line x1="375" y1="585" x2="375" y2="618" stroke="#1A3048"/>
         <line x1="825" y1="585" x2="825" y2="618" stroke="#1A3048"/>
         <text x="227" y="602" fill="#F0F6FC" font-size="12.5" font-weight="600" text-anchor="middle">정책 의사결정 지원</text>
@@ -1267,7 +1402,7 @@
         <text x="600" y="602" fill="#F0F6FC" font-size="12.5" font-weight="600" text-anchor="middle">국제 정합성</text>
         <text x="600" y="621" fill="#6B8FAD" font-size="11" text-anchor="middle">OECD·EU Safety Gate 자동 연계</text>
         <text x="973" y="602" fill="#F0F6FC" font-size="12.5" font-weight="600" text-anchor="middle">민간 자율 안전망</text>
-        <text x="973" y="621" fill="#6B8FAD" font-size="11" text-anchor="middle">기업·소비자 주도 위해제품 관리</text>
+        <text x="973" y="621" fill="#6B8FAD" font-size="11" text-anchor="middle">기업·소비자 자율 위해제품 관리 지원</text>
 
         <!-- ===== LEGEND ===== -->
         <g font-size="11.5">
@@ -1285,13 +1420,15 @@
           <text x="768" y="673" fill="#9DB4C9">2027년 통합·지휘</text>
           <line x1="905" y1="668" x2="935" y2="668" stroke="#6B8FAD" stroke-width="2" marker-end="url(#ah)"/>
           <text x="948" y="673" fill="#9DB4C9">정보화 단계 흐름</text>
+          <rect x="80" y="686" width="13" height="13" rx="3" fill="#0F1E30" stroke="#FFB400" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <text x="100" y="697" fill="#9DB4C9">점선 테두리 = 기획·검토 중(예산·수행기관 미확정)</text>
         </g>
       </svg>
     </div>
 
     <p class="section-desc" data-kr style="margin-top:6px;font-size:0.92em;color:var(--muted);">
-      실제 구현은 외주 의존을 줄이고자 노코드 도구(n8n 등)로 실무자가 주도하여, 구축 후 유지보수 용이성을 확보합니다.<br>
-      ※ 세부과제 ⑥ 제품사고 접수 AI 콜센터는 현재 <strong style="color:var(--gold)">기획·검토 중</strong>으로, 위 5종 Sub-Agent 구조와 별도입니다(데이터 일부 확보).
+      실제 구현은 외주 의존을 줄이고자 노코드 도구(n8n 등)로 실무자가 주도, 구축 후 유지보수 용이성 확보<br>
+      ※ 세부과제 ⑥ 제품사고 접수 AI 콜센터는 제품사고 신고 정보 '수집' 단계에 표시, 예산 가용성과 공공기관 보안성 등 <strong style="color:var(--gold)">검토 중</strong>
     </p>
     <p class="section-desc" data-en style="margin-top:6px;font-size:0.92em;color:var(--muted);">
       Implementation is led in-house with no-code tools (e.g., n8n) to reduce outsourcing dependency and ease long-term maintenance.
@@ -1304,8 +1441,8 @@
   <section id="tasks">
     <span class="section-tag" data-kr>2026 세부과제</span>
     <span class="section-tag" data-en>2026 Sub-Tasks</span>
-    <h2 class="section-title" data-kr>세부과제 (5종 추진 + 1종 기획·검토)</h2>
-    <h2 class="section-title" data-en>Sub-Tasks (5 Active + 1 Under Review)</h2>
+    <h2 class="section-title" data-kr>세부과제 6종(⑥ 기획·검토 중)</h2>
+    <h2 class="section-title" data-en>Sub-Tasks (6 Total, ⑥ Under Review)</h2>
     <p class="section-desc" data-kr>
       각 과제는 독립적으로 성과를 내면서도, 2027년 포털 고도화의 기능 모듈로 직접 통합<br>
       지금 만드는 코드와 데이터가 곧 포털의 엔진 · <span style="color:var(--gold)">과제 ⑥ AI 콜센터는 기획·검토 단계</span>
@@ -1324,15 +1461,14 @@
           <div>
             <div class="module-title" data-kr>KC안전기준 디지털화</div>
             <div class="module-title" data-en>KC Safety Standard Digitization</div>
-            <span class="module-impact" data-kr>예산 총 2년간 4.45억 (1차년 1.7억) · R&D · [분석·검색 단계] · 제품안전협회+뤼튼테크놀로지스 선정('26.3.27)</span>
-            <span class="module-impact" data-en>Total ₩445M (Year 1: ₩170M) · R&D · [Analyze/Search] · KPSA+Wrtn selected</span>
+            <span class="module-impact" data-kr>총사업비 2년간 4.806억(정부3.9억+기관0.906억) · R&D · [분석·검색 단계] · 제품안전협회+뤼튼테크놀로지스 선정('26.3.27)</span>
+            <span class="module-impact" data-en>Total ₩480.6M (Gov ₩390M+Institution ₩90.6M) · R&D · [Analyze/Search] · KPSA+Wrtn selected</span>
           </div>
         </div>
         <div class="module-body">
-          <p data-kr>329종 KC 안전기준을 조항 단위 정형 DB로 구축하고 자연어 AI 검색 엔진(RAG) 구현<br>
-            "이 제품에 어떤 기준이 적용되나요?"라는 질의에 AI가 99% 정확도로 즉시 답변(26년: 파서 구축, 27년: 에디터 구현)</p>
-          <p data-en>Converts 329 KC standards into structured DB with AI NLP engine.<br>Phase 1 Parser dev (26'), Phase
-            2 Editor dev (27')</p>
+          <p data-kr>329종 KC 안전기준을 조항 단위 정형 DB로 구축, 자연어 AI 검색 엔진(RAG) 구현 목표<br>
+            1차년도 중간점검('26.7.3) — 위해다발 76개 품목 선정 완료, 계위 파싱 시범 정확도 약 90%(목표 99%), 8월 구조화 DB 구축 착수</p>
+          <p data-en>Converts 329 KC standards into structured DB with AI NLP engine.<br>Mid-year review (Jul 2026): 76 priority items selected, ~90% parsing accuracy (target 99%)</p>
           <div class="process-steps">
             <div class="step">
               <div class="step-num">1</div>
@@ -1393,7 +1529,7 @@
             <div class="step">
               <div class="step-num">4</div>
               <div class="step-content"><span data-kr>과제4 연계(위해성 이중코드화) 및 다국어 번역 고도화</span><span data-en>Align with
-                  PHICS (Task 4) &amp; multilingual translation upgrade</span></div>
+                  Task 4 hazard dual-coding &amp; multilingual translation upgrade</span></div>
             </div>
           </div>
         </div>
@@ -1412,19 +1548,19 @@
         </div>
         <div class="module-body">
           <p data-kr>SNS, 맘카페 등 비정형 소비자 게시글을 AI(감정분석)로 분석해 리콜 공식화 전에 위험 포착<br>
-            징후 포착 소요기간을 30일 → 3일로 단축, 노이즈 필터링으로 분석 정확도 85% 달성 목표</p>
-          <p data-en>Analyzes public SNS texts with AI (Sentiment) to detect hazards before recalls. Cuts detection
-            time from 30 to 3 days.</p>
+            감시 사이트 180개→약 6,700개(37배↑), 탐지 주기 1일 1회→5분 간격(288배↑), 분석 소요 10분→5분 미만(50%↓)</p>
+          <p data-en>Analyzes public SNS texts with AI (Sentiment) to detect hazards before recalls. Monitoring sites
+            180→6,700 (37x), detection cycle 288x faster, analysis time cut 50%.</p>
           <div class="process-steps">
             <div class="step">
               <div class="step-num">1</div>
-              <div class="step-content"><span data-kr>다채널 크롤링 (SNS/커뮤니티 + 소방청/소비자원 DB 연계)</span><span
-                  data-en>Multi-channel scrape (+ Fire protection/Consumer agency DB)</span></div>
+              <div class="step-content"><span data-kr>다채널 크롤링 — 감시 사이트 180개→약 6,700개 확대(소방청·소비자원 DB 연계)</span><span
+                  data-en>Multi-channel scrape, sites expanded 180→6,700 (+ Fire/Consumer agency DB)</span></div>
             </div>
             <div class="step">
               <div class="step-num">2</div>
-              <div class="step-content"><span data-kr>노이즈 텍스트 필터링 &amp; NLP 감정분석 기반 위해키워드 식별</span><span data-en>Noise
-                  filtering &amp; NLP Sentiment based hazard extraction</span></div>
+              <div class="step-content"><span data-kr>노이즈 텍스트 필터링 &amp; NLP 감정분석 기반 위해키워드 식별, 분석 소요 10분→5분 미만</span><span data-en>Noise
+                  filtering &amp; NLP Sentiment based hazard extraction, analysis time under 5 min</span></div>
             </div>
             <div class="step">
               <div class="step-num">3</div>
@@ -1433,8 +1569,8 @@
             </div>
             <div class="step">
               <div class="step-num">4</div>
-              <div class="step-content"><span data-kr>안전기준 제·개정 조기 경보 (과제4 PHICS 코드 연계)</span><span data-en>Early
-                  warning alert (Linked with PHICS dual-coding)</span></div>
+              <div class="step-content"><span data-kr>탐지 주기 1일 1회→1일 288회(5분 간격), 안전기준 제·개정 조기 경보</span><span data-en>Detection
+                  cycle 1/day→288/day (5-min interval), early warning for standard revisions</span></div>
             </div>
           </div>
         </div>
@@ -1452,10 +1588,9 @@
           </div>
         </div>
         <div class="module-body">
-          <p data-kr>PHICS(Product Hazard Information Classification System): 위해 원인(HF)과 피해 결과(DT)를 이중 코드로 분류하는 국제
-            표준(ISO 5665) 정렬 체계<br>
+          <p data-kr>위해 원인(HF)과 피해 결과(DT)를 이중 코드로 분류하는 국제표준(ISO 5665) 정렬 체계<br>
             리콜 통계·사고조사·리스크평가 3개 시스템의 데이터 품질을 근본적으로 개선</p>
-          <p data-en>PHICS: Dual-code classification aligning Hazard Factor (HF) and Damage Type (DT) with ISO 5665.
+          <p data-en>Dual-code classification aligning Hazard Factor (HF) and Damage Type (DT) with ISO 5665.
             Improves recall stats, incident investigation, and risk assessment data.</p>
           <div class="process-steps">
             <div class="step">
@@ -1491,8 +1626,8 @@
           <div>
             <div class="module-title" data-kr>민간 자율 AX 확산 (기업 AX 지원)</div>
             <div class="module-title" data-en>Private-Sector Autonomous AX Diffusion</div>
-            <span class="module-impact teal" data-kr>예산 0.5억 · 연구용역 · 수행기관 선정 완료, 진행 중 (제품안전협회)</span>
-            <span class="module-impact teal" data-en>Budget ₩50M · Contracted (KPSA)</span>
+            <span class="module-impact teal" data-kr>예산 0.8억(용역 2건: 0.5억+0.3억) · 수행기관 선정 완료, 진행 중 (제품안전협회)</span>
+            <span class="module-impact teal" data-en>Budget ₩80M (2 contracts) · Contracted (KPSA)</span>
           </div>
         </div>
         <div class="module-body">
@@ -1523,6 +1658,16 @@
             </div>
           </div>
         </div>
+        <div class="video-trigger-row">
+          <button class="video-trigger" onclick="openVideoModal('videos/ecommerce-recall-detection.mp4','시연 영상 · e커머스 리콜제품 자동 판별(기업 모범사례)','Demo video · E-commerce recalled product auto-detection (best practice)')">
+            <span class="play-icon">&#9654;</span>
+            <span data-kr>시연 영상 보기 · e커머스 리콜제품 자동 판별</span><span data-en>Watch demo video · E-commerce recall detection</span>
+          </button>
+          <button class="video-trigger" onclick="openVideoModal('videos/overseas-recall-mcp-demo.mp4','시연 영상 · 해외 43개국 리콜 ChatGPT MCP 연계','Demo video · Overseas recall data via ChatGPT MCP')">
+            <span class="play-icon">&#9654;</span>
+            <span data-kr>시연 영상 보기 · 해외리콜 ChatGPT MCP 연계</span><span data-en>Watch demo video · Overseas recall via MCP</span>
+          </button>
+        </div>
       </div>
 
       <!-- 과제 6 (기획·검토 중) -->
@@ -1532,13 +1677,13 @@
           <div>
             <div class="module-title" data-kr>제품사고 접수 AI 콜센터 시범 구축</div>
             <div class="module-title" data-en>AI Call Center Pilot for Product Incidents</div>
-            <span class="module-impact" data-kr style="background:rgba(255,180,0,0.12);color:var(--gold);">기획·검토 중 · 데이터 일부 확보 · 출품 5종 Sub-Agent와 별도</span>
-            <span class="module-impact" data-en style="background:rgba(255,180,0,0.12);color:var(--gold);">Under Review · partial data secured · separate from the 5 Sub-Agents</span>
+            <span class="module-impact" data-kr style="background:rgba(255,180,0,0.12);color:var(--gold);">기획·검토 중 · 데이터 일부 확보</span>
+            <span class="module-impact" data-en style="background:rgba(255,180,0,0.12);color:var(--gold);">Under Review · partial data secured</span>
           </div>
         </div>
         <div class="module-body">
           <p data-kr>1670-4920(2번 내선) 전화 문의의 약 55%를 차지하는 단순·반복 민원을 AI 챗봇이 24시간 자동 응대하는 구상<br>
-            개인정보 수집이나 복잡한 판단이 필요한 민원만 담당자에게 연결(야간·공휴일 포함). <strong style="color:var(--gold)">현재 기획·검토 단계로, VOC·단순문의 패턴 등 일부 데이터를 확보한 상태</strong></p>
+            개인정보 수집이나 복잡한 판단이 필요한 민원만 담당자에게 연결(야간·공휴일 포함) — <strong style="color:var(--gold)">현재 기획·검토 단계로 VOC·단순문의 패턴 등 일부 데이터 확보 상태</strong></p>
           <p data-en>Concept: an AI chatbot handling ~55% of simple inquiries on the hotline 24/7, escalating complex cases to staff. Currently under planning/review with partial VOC data secured.</p>
           <div class="process-steps">
             <div class="step">
@@ -1553,8 +1698,8 @@
             </div>
             <div class="step">
               <div class="step-num">3</div>
-              <div class="step-content"><span data-kr>추진 방식·예산(0.2억) 및 차기 체계 편입 여부 검토</span><span data-en>Review delivery
-                  model, budget (₩20M) &amp; future roadmap fit</span></div>
+              <div class="step-content"><span data-kr>추진 방식·예산(약 0.1억) 및 차기 체계 편입 여부 검토</span><span data-en>Review delivery
+                  model, budget (~₩10M) &amp; future roadmap fit</span></div>
             </div>
           </div>
         </div>
@@ -1572,7 +1717,7 @@
     <h2 class="section-title" data-kr>제품안전정보 포털 고도화</h2>
     <h2 class="section-title" data-en>Product Safety Info Portal Enhancement</h2>
     <p class="section-desc" data-kr>
-      2025년 ISP 수행, 2026년 5개 세부과제(Sub-Agent)를 본 기반과제에 모듈형태로 서비스 구현을 검증 <br>
+      2025년 ISP 수행, 2026년 6개 세부과제(Sub-Agent)를 본 기반과제에 모듈형태로 서비스 구현을 검증 <br>
       2027년에는 검증된 Sub-Agent들을 통합·지휘하는 AI Master Agent로서 SafetyKorea를 전면 재구축
     </p>
     <p class="section-desc" data-en>
@@ -1592,11 +1737,11 @@
       </div>
       <div class="base-task-inner">
         <div class="module-body">
-          <p data-kr>SafetyKorea(제품안전정보 포털)를 클라우드·AI 네이티브로 전면 재구축 → 범정부 AI 에이전트를 커스터마이징하여 2026년에 검증된 5개 Sub-Agent 서비스 모듈을
+          <p data-kr>SafetyKorea(제품안전정보 포털)를 클라우드·AI 네이티브로 전면 재구축 → 범정부 AI 에이전트를 커스터마이징하여 2026년에 검증된 6개 Sub-Agent 서비스 모듈을
             통합<br>
             급증하는 해외직구 제품 등 제품안전관리 강화 법률 시행('26.6월)에 맞춰 법집행 정보 기반을 적기에 마련</p>
           <p data-en>Full cloud-native rebuild of SafetyKorea portal, customizing government-wide AI agents, integrating
-            6 validated modules from 2026. Prepares the legal enforcement information base in time for the new direct
+            6 validated Sub-Agent modules from 2026. Prepares the legal enforcement information base in time for the new direct
             overseas purchase safety laws (effective Jun 2026).</p>
           <div class="process-steps">
             <div class="step">
@@ -1611,13 +1756,13 @@
             </div>
             <div class="step">
               <div class="step-num">3</div>
-              <div class="step-content"><span data-kr>2026 세부과제 5종(Sub-Agent) → 포털 서비스 모듈 통합(Master Agent)</span><span data-en>2026 sub-tasks
-                  (5 Sub-Agents) → portal module integration (Master Agent)</span></div>
+              <div class="step-content"><span data-kr>2026 세부과제 6종(Sub-Agent) → 포털 서비스 모듈 통합(Master Agent)</span><span data-en>2026 sub-tasks
+                  (6 Sub-Agents) → portal module integration (Master Agent)</span></div>
             </div>
             <div class="step">
               <div class="step-num">4</div>
-              <div class="step-content"><span data-kr>Office.SafetyKorea 운영 체계 확립</span><span data-en>Office.SafetyKorea
-                  operation model establishment</span></div>
+              <div class="step-content"><span data-kr>내부 업무 지원을 위한 Office.SafetyKorea 운영 체계 확립</span><span data-en>Office.SafetyKorea
+                  operation model establishment for internal staff support</span></div>
             </div>
           </div>
         </div>
@@ -1684,28 +1829,28 @@
       <div class="stack-card">
         <div class="stack-layer">Document AI</div>
         <div class="stack-tech">RAG · Vector DB</div>
-        <div class="stack-desc" data-kr>KC 안전기준 329종 자연어 검색. 문서를 분해하여 AI가 맥락 기반으로 답변</div>
-        <div class="stack-desc" data-en>Natural language search for 330 KC standards. AI answers context-based queries
+        <div class="stack-desc" data-kr>KC 안전기준 329종 자연어 검색, 문서를 분해해 AI가 맥락 기반으로 답변</div>
+        <div class="stack-desc" data-en>Natural language search for 329 KC standards. AI answers context-based queries
           from chunked documents.</div>
       </div>
       <div class="stack-card">
         <div class="stack-layer">AI Agent</div>
         <div class="stack-tech">A2A (Agent-to-Agent) Interface</div>
-        <div class="stack-desc" data-kr>시스템 간 자동 연계. 담당자 개입 없이 에이전트끼리 데이터를 주고받는 구조</div>
+        <div class="stack-desc" data-kr>시스템 간 자동 연계 — 담당자 개입 없이 에이전트끼리 데이터를 주고받는 구조</div>
         <div class="stack-desc" data-en>Automated system-to-system connectivity. Agents exchange data without human
           intervention.</div>
       </div>
       <div class="stack-card">
         <div class="stack-layer">Validation</div>
         <div class="stack-tech">HITL (Human-In-The-Loop)</div>
-        <div class="stack-desc" data-kr>AI 결과의 사람 검증 단계. 정확도를 보장하면서 자동화 효율을 유지하는 균형 구조</div>
+        <div class="stack-desc" data-kr>AI 결과의 사람 검증 단계 — 정확도를 보장하며 자동화 효율을 유지하는 균형 구조</div>
         <div class="stack-desc" data-en>Human verification of AI outputs. Balances automation efficiency with accuracy
           assurance.</div>
       </div>
       <div class="stack-card">
         <div class="stack-layer">NLP / Signal</div>
         <div class="stack-tech">자연어 처리 · 이상탐지</div>
-        <div class="stack-desc" data-kr>SNS 사고 징후 조기 포착. 비정형 텍스트에서 위해 신호를 추출.</div>
+        <div class="stack-desc" data-kr>SNS 사고 징후 조기 포착, 비정형 텍스트에서 위해 신호 추출</div>
         <div class="stack-desc" data-en>Early detection of accident signals from SNS. Extracts hazard signals from
           unstructured text.</div>
       </div>
@@ -1728,6 +1873,17 @@
 
   <hr class="divider">
 
+  <!-- VIDEO MODAL -->
+  <div class="video-modal-overlay" id="videoModalOverlay" onclick="if(event.target===this) closeVideoModal()">
+    <div class="video-modal-box">
+      <button class="video-modal-close" onclick="closeVideoModal()" aria-label="Close">&times;</button>
+      <video id="videoModalPlayer" controls>
+        <source id="videoModalSource" src="" type="video/mp4">
+      </video>
+      <div class="video-modal-label" id="videoModalLabel"></div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <p style="margin-bottom:8px;">
@@ -1735,7 +1891,7 @@
         target="_blank">ai-product-safety-automation(Github page)</a>
       &nbsp;·&nbsp;
     </p>
-    <p style="font-size:12px;" data-kr>본 레포지토리는 비식별화된 워크플로우 샘플과 문서만 포함합니다. 실제 API 키 및 민감 데이터는 미포함.</p>
+    <p style="font-size:12px;" data-kr>본 레포지토리는 비식별화된 워크플로우 샘플과 문서만 포함, 실제 API 키 및 민감 데이터는 미포함</p>
     <p style="font-size:12px;" data-en>This repository contains de-identified sample workflows and documentation only.
       Production credentials and sensitive data are not included.</p>
   </footer>
@@ -1762,6 +1918,28 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Video modal
+    function openVideoModal(src, labelKr, labelEn) {
+      const overlay = document.getElementById('videoModalOverlay');
+      const source = document.getElementById('videoModalSource');
+      const player = document.getElementById('videoModalPlayer');
+      const label = document.getElementById('videoModalLabel');
+      source.src = src;
+      player.load();
+      label.textContent = document.body.classList.contains('lang-en') ? labelEn : labelKr;
+      overlay.classList.add('open');
+      player.play().catch(() => {});
+    }
+    function closeVideoModal() {
+      const overlay = document.getElementById('videoModalOverlay');
+      const player = document.getElementById('videoModalPlayer');
+      player.pause();
+      overlay.classList.remove('open');
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeVideoModal();
+    });
   </script>
 </body>
 
