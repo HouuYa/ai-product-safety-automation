@@ -1,4 +1,4 @@
-> **[한국어 →](./README_KR.md)**
+> **[한국어 →](./README.md)**
 
 <div align="center">
 
