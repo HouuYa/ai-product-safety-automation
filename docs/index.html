@@ -277,10 +277,16 @@
   }
   .module-screenshot img {
     width: 100%; display: block; opacity: 0.88;
-    max-height: 220px; object-fit: cover; object-position: top;
+    max-height: 140px; object-fit: cover; object-position: top;
     transition: opacity 0.3s;
+    cursor: zoom-in;
   }
   .module-card:hover .module-screenshot img { opacity: 1; }
+  .screenshot-zoom-hint {
+    padding: 6px 16px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--muted); letter-spacing: 0.06em;
+  }
   .screenshot-label {
     padding: 8px 16px;
     font-family: 'JetBrains Mono', monospace;
@@ -309,6 +315,11 @@
   .video-modal-overlay.open { display: flex; }
   .video-modal-box { position: relative; width: 100%; max-width: 900px; }
   .video-modal-box video { width: 100%; display: block; border-radius: 8px; background: #000; }
+  .video-modal-box img {
+    width: 100%; max-height: 82vh; object-fit: contain;
+    display: block; border-radius: 8px; background: var(--navy3);
+  }
+  #imgModalOverlay .video-modal-box { max-width: 1400px; }
   .video-modal-label { color: var(--muted); font-size: 13px; margin-top: 10px; text-align: center; }
   .video-modal-close {
     position: absolute; top: -44px; right: 0;
@@ -718,7 +729,7 @@
       <div class="module-screenshot" style="padding:24px 28px; background: var(--navy3);">
         <div class="screenshot-label" style="margin-bottom:12px;" data-kr>시스템 운영 체계 개요</div>
         <div class="screenshot-label" style="margin-bottom:12px;" data-en>System Architecture Overview</div>
-        <img src="screenshots/workflow-news.png" alt="Safety Management System Architecture" loading="lazy" style="border-radius:6px; opacity:0.9; max-height:200px; width:100%; object-fit:cover; object-position:top;">
+        <img src="screenshots/workflow-news.png" alt="Safety Management System Architecture" loading="lazy" style="border-radius:6px; opacity:0.9; max-height:140px; width:100%; object-fit:cover; object-position:top;">
       </div>
     </div>
 
@@ -907,6 +918,15 @@
   </div>
 </div>
 
+<!-- IMAGE MODAL -->
+<div class="video-modal-overlay" id="imgModalOverlay" onclick="if(event.target===this) closeImageModal()">
+  <div class="video-modal-box">
+    <button class="video-modal-close" onclick="closeImageModal()" aria-label="Close">&times;</button>
+    <img id="imgModalPicture" src="" alt="">
+    <div class="video-modal-label" id="imgModalLabel"></div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <p style="margin-bottom:8px;">
@@ -959,8 +979,40 @@
     player.pause();
     overlay.classList.remove('open');
   }
+  // Image modal (click a module screenshot to enlarge)
+  function openImageModal(src, label) {
+    const overlay = document.getElementById('imgModalOverlay');
+    document.getElementById('imgModalPicture').src = src;
+    document.getElementById('imgModalLabel').textContent = label || '';
+    overlay.classList.add('open');
+  }
+  function closeImageModal() {
+    document.getElementById('imgModalOverlay').classList.remove('open');
+  }
+
+  document.querySelectorAll('.module-screenshot img').forEach(img => {
+    const box = img.closest('.module-screenshot');
+    const labels = box ? box.querySelectorAll('.screenshot-label') : [];
+    const pickLabel = () => {
+      const en = document.body.classList.contains('lang-en');
+      for (const l of labels) {
+        if (l.hasAttribute('data-kr') && en) continue;
+        if (l.hasAttribute('data-en') && !en) continue;
+        return l.textContent.trim();
+      }
+      return img.alt;
+    };
+    img.addEventListener('click', () => openImageModal(img.currentSrc || img.src, pickLabel()));
+    if (box && !box.querySelector('.screenshot-zoom-hint')) {
+      const hint = document.createElement('div');
+      hint.className = 'screenshot-zoom-hint';
+      hint.innerHTML = '<span data-kr>클릭하면 크게 보기</span><span data-en>Click to enlarge</span>';
+      box.appendChild(hint);
+    }
+  });
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeVideoModal();
+    if (e.key === 'Escape') { closeVideoModal(); closeImageModal(); }
   });
 </script>
 </body>
