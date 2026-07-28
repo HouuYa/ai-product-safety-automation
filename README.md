@@ -48,7 +48,7 @@ n8n · ChatGPT / Gemini (incl. Vision) · Supabase (PostgreSQL) · ScrapingBee �
 
 [System architecture →](./ARCHITECTURE.md)
 
-## 📂 Sample Workflow
+## 📂 Sample Workflow(n8n)
 
 [Domestic Recall OECD Registration](./workflows/domestic-recall-oecd-sample.json) — de-identified sample.
 
