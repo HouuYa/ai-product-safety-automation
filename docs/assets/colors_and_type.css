@@ -1,0 +1,107 @@
+/* ==============================================================
+   Seungho Bae — Career Design System
+   Tokens: colors + type + spacing + radii + shadows + motion
+   Source: Claude Design project "Seungho Bae — Career Design System"
+   ============================================================== */
+
+/* Fonts — Malgun Gothic (Korean system font) with Noto Sans KR fallback */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Noto+Serif+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Navy (primary — "regulatory" blue) */
+  --navy-950: #0b1a2c;
+  --navy-900: #10263f;
+  --navy-800: #173456;
+  --navy-700: #1f4572;
+  --navy-600: #2a5a94;   /* primary */
+  --navy-500: #3a72b5;
+  --navy-400: #6b97cc;
+  --navy-300: #a2bdd9;
+  --navy-200: #ccdbe8;
+  --navy-100: #e6edf4;
+  --navy-50:  #f3f6fa;
+
+  /* Oxblood / deep red (accent — "alert / seal" red) */
+  --oxblood-900: #4a1419;
+  --oxblood-800: #661a22;
+  --oxblood-700: #85232c;   /* accent */
+  --oxblood-600: #a33642;
+  --oxblood-500: #bf5864;
+  --oxblood-300: #e1a8ae;
+  --oxblood-100: #f4dbdf;
+
+  /* Clay / brown (secondary — "paper stamp" brown) */
+  --clay-900: #3a2a1f;
+  --clay-800: #5a3d2b;
+  --clay-700: #7a5238;   /* secondary */
+  --clay-600: #946846;
+  --clay-500: #b08863;
+  --clay-300: #d9bfa3;
+  --clay-100: #efe4d4;
+
+  /* Neutrals — warm paper */
+  --paper-0:   #ffffff;
+  --paper-50:  #faf8f4;
+  --paper-100: #f2eee6;
+  --paper-200: #e5dfd3;
+  --paper-300: #cfc6b5;
+  --paper-500: #948a77;
+  --paper-700: #4c4536;
+  --paper-900: #211d14;
+
+  /* Ink — text */
+  --ink-900: #141821;
+  --ink-800: #1f2635;
+  --ink-700: #2f384a;
+  --ink-600: #4a5468;
+  --ink-500: #6b7588;
+  --ink-400: #94a0b5;
+
+  /* Semantic (success/warning approximated from the README; danger/info are exact aliases) */
+  --success: #2f6b4a;
+  --warning: #9a6a1a;
+  --danger:  var(--oxblood-700);
+  --info:    var(--navy-600);
+
+  /* Roles */
+  --bg:          var(--paper-50);
+  --bg-sunken:   var(--paper-100);
+  --surface:     var(--paper-0);
+  --fg-1:        var(--ink-900);
+  --fg-2:        var(--ink-700);
+  --fg-3:        var(--ink-500);
+  --brand:       var(--navy-600);
+  --brand-hover: var(--navy-700);
+  --accent:      var(--oxblood-700);
+  --secondary:   var(--clay-700);
+  --border-1:    var(--paper-200);
+  --border-2:    var(--paper-300);
+
+  /* Type */
+  --font-sans:  'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --font-serif: 'Noto Serif KR', 'Source Serif Pro', serif;
+  --font-mono:  'JetBrains Mono', ui-monospace, monospace;
+  --lh-base: 1.55;
+
+  /* Spacing (sp-1 4px → sp-9 96px) */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
+  --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 96px;
+
+  /* Radii */
+  --r-0: 0; --r-1: 2px; --r-2: 4px; --r-3: 8px; --r-4: 12px; --r-pill: 999px;
+
+  /* Shadows — navy-tinted */
+  --shadow-1: 0 1px 2px rgba(16,38,63,.06), 0 1px 1px rgba(16,38,63,.04);
+  --shadow-2: 0 4px 12px rgba(16,38,63,.08), 0 2px 4px rgba(16,38,63,.05);
+  --shadow-3: 0 16px 40px rgba(16,38,63,.16), 0 4px 10px rgba(16,38,63,.08);
+  --shadow-inset: inset 0 1px 0 rgba(255,255,255,.18);
+
+  /* Motion */
+  --motion-fast: 140ms;
+  --motion-base: 220ms;
+  --motion-slow: 400ms;
+  --ease: cubic-bezier(.2,.6,.2,1);
+
+  /* Layout */
+  --content-max: 1100px;
+}

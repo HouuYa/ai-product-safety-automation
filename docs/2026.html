@@ -10,24 +10,26 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="assets/colors_and_type.css">
   <style>
     :root {
-      --navy: #07111F;
-      --navy2: #0D1C2E;
-      --navy3: #122236;
-      --card: #0F1E30;
-      --teal: #00CFA8;
-      --teal2: #00A888;
-      --gold: #FFB400;
-      --gold2: #E09E00;
-      --orange: #FF6B35;
-      --blue: #3A9BD5;
-      --purple: #8B5CF6;
-      --text: #D8E4EE;
-      --muted: #6B8FAD;
-      --border: #1A3048;
-      --white: #F0F6FC;
-    }
+    /* legacy names → design-system roles (kept so existing rules/inline styles still resolve) */
+    --navy:   var(--paper-50);
+    --navy2:  var(--paper-100);
+    --navy3:  var(--paper-100);
+    --card:   var(--paper-0);
+    --teal:   var(--navy-600);
+    --teal2:  var(--navy-700);
+    --gold:   var(--oxblood-700);
+    --gold2:  var(--oxblood-800);
+    --orange: var(--clay-700);
+    --blue:   var(--navy-500);
+    --purple: var(--navy-800);
+    --text:   var(--ink-700);
+    --muted:  var(--ink-500);
+    --border: var(--paper-200);
+    --white:  var(--ink-900);
+  }
 
     * {
       margin: 0;
@@ -97,7 +99,7 @@
       left: 0;
       right: 0;
       z-index: 100;
-      background: rgba(7, 17, 31, 0.92);
+      background: rgba(16,38,63,0.88);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 14px 40px;
@@ -153,7 +155,7 @@
       width: 700px;
       height: 700px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 207, 168, 0.07) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(42,90,148, 0.07) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -165,7 +167,7 @@
       width: 500px;
       height: 500px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(23,52,86, 0.05) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -173,8 +175,8 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: linear-gradient(135deg, rgba(0, 207, 168, 0.12), rgba(0, 207, 168, 0.05));
-      border: 1px solid rgba(0, 207, 168, 0.35);
+      background: rgba(42,90,148, 0.12);
+      border: 1px solid rgba(42,90,148, 0.35);
       border-radius: 100px;
       padding: 8px 20px;
       margin-bottom: 32px;
@@ -262,7 +264,7 @@
       background: var(--teal);
       color: var(--navy);
       padding: 13px 28px;
-      border-radius: 6px;
+      border-radius: 4px;
       font-weight: 700;
       font-size: 14px;
       text-decoration: none;
@@ -282,7 +284,7 @@
       border: 1.5px solid var(--border);
       color: var(--text);
       padding: 13px 28px;
-      border-radius: 6px;
+      border-radius: 4px;
       font-weight: 500;
       font-size: 14px;
       text-decoration: none;
@@ -403,7 +405,7 @@
       margin-bottom: 64px;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
     }
 
@@ -424,8 +426,8 @@
     }
 
     .rm-step.active {
-      background: rgba(0, 207, 168, 0.06);
-      border-color: rgba(0, 207, 168, 0.3);
+      background: rgba(42,90,148, 0.06);
+      border-color: rgba(42,90,148, 0.3);
     }
 
     .rm-year {
@@ -476,7 +478,7 @@
       margin-bottom: 64px;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
     }
 
@@ -550,7 +552,7 @@
     .module-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
       transition: border-color 0.2s, transform 0.2s;
     }
@@ -562,8 +564,8 @@
 
     .module-card.base-task {
       grid-column: 1 / -1;
-      border-color: rgba(255, 180, 0, 0.3);
-      background: linear-gradient(135deg, rgba(255, 180, 0, 0.04), var(--card));
+      border-color: rgba(133,35,44, 0.3);
+      background: rgba(133,35,44, 0.04);
     }
 
     .module-card.base-task:hover {
@@ -583,8 +585,8 @@
       font-size: 11px;
       font-weight: 600;
       color: var(--teal);
-      background: rgba(0, 207, 168, 0.08);
-      border: 1px solid rgba(0, 207, 168, 0.2);
+      background: rgba(42,90,148, 0.08);
+      border: 1px solid rgba(42,90,148, 0.2);
       border-radius: 4px;
       padding: 3px 8px;
       white-space: nowrap;
@@ -593,14 +595,14 @@
 
     .module-num.gold-num {
       color: var(--gold);
-      background: rgba(255, 180, 0, 0.08);
-      border-color: rgba(255, 180, 0, 0.25);
+      background: rgba(133,35,44, 0.08);
+      border-color: rgba(133,35,44, 0.25);
     }
 
     .module-num.internal {
       color: var(--purple);
-      background: rgba(139, 92, 246, 0.08);
-      border-color: rgba(139, 92, 246, 0.25);
+      background: rgba(23,52,86, 0.08);
+      border-color: rgba(23,52,86, 0.25);
     }
 
     .module-title {
@@ -615,19 +617,19 @@
       font-size: 12px;
       font-weight: 600;
       color: var(--gold);
-      background: rgba(255, 180, 0, 0.1);
+      background: rgba(133,35,44, 0.1);
       border-radius: 4px;
       padding: 2px 8px;
     }
 
     .module-impact.teal {
       color: var(--teal);
-      background: rgba(0, 207, 168, 0.1);
+      background: rgba(42,90,148, 0.1);
     }
 
     .module-impact.purple {
       color: var(--purple);
-      background: rgba(139, 92, 246, 0.1);
+      background: rgba(23,52,86, 0.1);
     }
 
     .module-body {
@@ -697,9 +699,9 @@
       gap: 10px;
       width: 100%;
       padding: 13px 16px;
-      background: rgba(255, 180, 0, 0.08);
+      background: rgba(133,35,44, 0.08);
       border: none;
-      border-top: 2px solid rgba(255, 180, 0, 0.35);
+      border-top: 2px solid rgba(133,35,44, 0.35);
       color: var(--gold);
       font-size: 13px;
       font-weight: 600;
@@ -710,7 +712,7 @@
     }
 
     .video-trigger:hover {
-      background: rgba(255, 180, 0, 0.16);
+      background: rgba(133,35,44, 0.16);
       border-top-color: var(--gold);
     }
 
@@ -724,7 +726,7 @@
     }
 
     .video-trigger-row .video-trigger+.video-trigger {
-      border-left: 1px solid rgba(255, 180, 0, 0.25);
+      border-left: 1px solid rgba(133,35,44, 0.25);
     }
 
     .video-trigger .play-icon {
@@ -745,7 +747,7 @@
       position: fixed;
       inset: 0;
       z-index: 2000;
-      background: rgba(7, 17, 31, 0.92);
+      background: rgba(16,38,63,0.88);
       backdrop-filter: blur(4px);
       align-items: center;
       justify-content: center;
@@ -795,7 +797,7 @@
       right: 0;
       background: none;
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 4px;
       color: var(--text);
       font-size: 20px;
       line-height: 1;
@@ -825,7 +827,7 @@
       bottom: 8px;
       left: 10px;
       width: 2px;
-      background: rgba(0, 207, 168, 0.2);
+      background: rgba(42,90,148, 0.2);
     }
 
     .step {
@@ -844,7 +846,7 @@
       border-radius: 50%;
       flex-shrink: 0;
       background: var(--card);
-      border: 2px solid rgba(0, 207, 168, 0.5);
+      border: 2px solid rgba(42,90,148, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -858,11 +860,11 @@
     }
 
     .module-card.internal-task .process-steps::before {
-      background: rgba(139, 92, 246, 0.2);
+      background: rgba(23,52,86, 0.2);
     }
 
     .module-card.internal-task .step-num {
-      border-color: rgba(139, 92, 246, 0.5);
+      border-color: rgba(23,52,86, 0.5);
       color: var(--purple);
     }
 
@@ -903,7 +905,7 @@
       font-size: 11px;
       font-weight: 700;
       color: var(--gold);
-      background: rgba(255, 180, 0, 0.1);
+      background: rgba(133,35,44, 0.1);
       border-radius: 4px;
       padding: 2px 8px;
       white-space: nowrap;
@@ -926,7 +928,7 @@
     .stack-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 8px;
       padding: 20px 22px;
     }
 
@@ -1060,7 +1062,165 @@
         padding: 24px 20px;
       }
     }
-  </style>
+  
+  /* ================================================================
+     Design-system layer (Seungho Bae — Career Design System)
+     ================================================================ */
+  body { font-family: var(--font-sans); background: var(--bg); color: var(--fg-2); line-height: 1.7; }
+  ::selection { background: var(--navy-100); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--navy-500); outline-offset: 2px; }
+
+  /* still, like a printed page: no entrance / pulse animation */
+  *, *::before, *::after { animation: none !important; }
+  .reveal, .reveal.visible { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+
+  /* 1100px document column */
+  section { padding: 72px max(24px, calc((100% - 1100px) / 2)); }
+  .hero { min-height: auto; padding: 136px max(24px, calc((100% - 1100px) / 2)) 72px;
+          background: var(--paper-50);
+          background-image: radial-gradient(rgba(42,90,148,.08) 1px, transparent 1px);
+          background-size: 20px 20px; border-bottom: 1px solid var(--border-1); }
+  .hero::before, .hero::after { display: none; }
+  footer { padding: 32px max(24px, calc((100% - 1100px) / 2)); background: var(--paper-100); }
+
+  /* masthead */
+  nav { background: rgba(250,248,244,.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-1); padding: 12px max(24px, calc((100% - 1100px) / 2)); }
+  .nav-logo { font-family: var(--font-sans); color: var(--ink-900); font-size: 15px; font-weight: 900;
+              letter-spacing: -.01em; display: inline-flex; align-items: baseline; gap: 8px; }
+  .nav-logo .wm-en { font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--ink-500); }
+  .nav-links { margin-right: 140px; }
+  .nav-links a { color: var(--ink-600); transition: color var(--motion-fast) var(--ease); }
+  .nav-links a:hover { color: var(--oxblood-700); }
+  .lang-bar { padding: 12px 20px; }
+  .lang-btn { background: var(--paper-0); color: var(--ink-600); border-color: var(--border-2);
+              transition: all var(--motion-fast) var(--ease); }
+  .lang-btn.active { background: var(--navy-600); border-color: var(--navy-600); color: var(--paper-0); }
+  .lang-btn:hover:not(.active) { color: var(--ink-900); background: var(--paper-100); }
+
+  /* hero */
+  .award-badge, .plan-badge { background: var(--paper-0); border: 1px solid var(--border-2);
+              border-radius: var(--r-pill); box-shadow: var(--shadow-1); }
+  .award-badge .dot, .plan-badge .dot { box-shadow: none; }
+  .award-badge:not(:has(span)), .plan-badge:not(:has(span)) { display: none; }
+  .award-badge .dot { background: var(--oxblood-700); }
+  .plan-badge .dot { background: var(--navy-600); }
+  .award-badge span { color: var(--oxblood-700); }
+  .plan-badge span { color: var(--navy-700); }
+  .hero h1 { color: var(--ink-900); letter-spacing: -.02em; line-height: 1.2; }
+  .hero h1 em { background: none; -webkit-text-fill-color: currentColor; color: var(--navy-600); }
+  .hero .subtitle { color: var(--clay-700); font-family: var(--font-serif); font-weight: 500; }
+  .hero .desc { color: var(--ink-700); }
+
+  /* buttons */
+  .btn-primary { background: var(--navy-600); color: var(--paper-0); border-radius: var(--r-2);
+                 box-shadow: var(--shadow-inset), var(--shadow-1);
+                 transition: background var(--motion-fast) var(--ease), box-shadow var(--motion-fast) var(--ease); }
+  .btn-primary:hover { background: var(--navy-700); transform: none; box-shadow: var(--shadow-inset), var(--shadow-2); }
+  .btn-primary:active { transform: translateY(1px); box-shadow: var(--shadow-1); }
+  .btn-outline { background: var(--paper-0); border: 1px solid var(--border-2); color: var(--ink-800); border-radius: var(--r-2);
+                 transition: all var(--motion-fast) var(--ease); }
+  .btn-outline:hover { border-color: var(--navy-600); color: var(--navy-700); }
+
+  /* stats strip */
+  .stats-strip { background: var(--border-1); border-color: var(--border-1); }
+  .stat-item { background: var(--paper-0); }
+  .stat-item:hover { background: var(--navy-50); }
+  .stat-num { font-family: var(--font-sans); font-weight: 800; letter-spacing: -.02em; color: var(--navy-700);
+              font-variant-numeric: tabular-nums; }
+  .stat-num.gold { color: var(--oxblood-700); }
+  .stat-label { color: var(--ink-600); }
+
+  /* section heads: oxblood eyebrow → heavy title */
+  .section-tag { color: var(--oxblood-700); font-weight: 600; letter-spacing: .16em; }
+  .section-title { color: var(--ink-900); letter-spacing: -.015em; }
+  .section-desc { color: var(--ink-600); }
+
+  /* cards: white on paper, hairline, navy-tinted resting shadow, no lift */
+  .module-card, .stack-card, .forum-card, .about-card, .before-after,
+  .agent-card, .task-card, .rm-card, .tl-item, .base-card {
+    background: var(--paper-0); border: 1px solid var(--border-1); box-shadow: var(--shadow-1); }
+  .module-card, .stack-card, .forum-card, .agent-card, .task-card {
+    transition: border-color var(--motion-fast) var(--ease), box-shadow var(--motion-base) var(--ease); }
+  .module-card:hover, .stack-card:hover, .forum-card:hover, .agent-card:hover, .task-card:hover {
+    border-color: var(--border-2); box-shadow: var(--shadow-2); transform: none; }
+  .module-card.base-task { background: var(--paper-0); border-color: var(--border-1); border-top: 3px solid var(--oxblood-700); }
+  .module-card.base-task:hover { border-color: var(--border-2); border-top-color: var(--oxblood-700); }
+  .module-header { border-bottom-color: var(--border-1); }
+  .module-num { color: var(--navy-700); background: var(--navy-50); border-color: var(--navy-200); }
+  .module-title, .stack-tech, .forum-name, .about-name { color: var(--ink-900); }
+  .module-impact { color: var(--oxblood-700); background: var(--oxblood-100); font-family: var(--font-mono); font-size: 11.5px; }
+  .module-body p, .stack-desc, .forum-desc { color: var(--ink-600); }
+  .step { color: var(--ink-700); }
+  .step-num { background: var(--paper-0); border: 1px solid var(--navy-300); color: var(--navy-700); }
+  .stack-layer, .forum-members { color: var(--navy-600); }
+  .module-screenshot { background: var(--paper-100); border-top-color: var(--border-1); }
+  .module-screenshot img { opacity: 1; }
+  .screenshot-zoom-hint, .screenshot-label { color: var(--ink-500); }
+
+  /* before → after: metric-table look */
+  .before-after { border-radius: var(--r-3); }
+  .ba-side.before { background: var(--paper-50); border-right-color: var(--border-1); }
+  .ba-label { font-weight: 700; letter-spacing: .16em; padding-bottom: 12px; border-bottom: 1px solid var(--border-1); }
+  .ba-label.before { color: var(--clay-700); }
+  .ba-label.after { color: var(--navy-700); }
+  .ba-arrow { background: var(--paper-100); border-right: 1px solid var(--border-1); }
+  .ba-arrow svg { color: var(--navy-600); }
+  .ba-item { padding-bottom: 12px; border-bottom: 1px dashed var(--border-1); }
+  .ba-item:last-child { border-bottom: 0; }
+  .ba-icon { width: 16px; height: 16px; margin-top: 4px; font-size: 0; }
+  .ba-icon::before { content: ''; display: block; width: 16px; height: 16px; background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 16px no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 16px no-repeat; }
+  .ba-side.before .ba-icon { color: var(--clay-600); }
+  .ba-side:not(.before) .ba-icon { color: var(--navy-600); }
+  .ba-side.before .ba-icon.is-issue::before { -webkit-mask: none; mask: none; height: 2px; width: 10px; margin: 7px 3px; }
+  .ba-text { color: var(--ink-700); }
+  .ba-text strong { color: var(--ink-900); }
+  .ba-side:not(.before) .ba-text strong { color: var(--navy-700); }
+
+  /* video trigger + modals */
+  .video-trigger { background: var(--paper-50); border-top: 1px solid var(--border-1); color: var(--oxblood-700);
+                   transition: background var(--motion-fast) var(--ease); }
+  .video-trigger:hover { background: var(--oxblood-100); border-top-color: var(--oxblood-300); }
+  .video-trigger .play-icon { background: var(--oxblood-700); color: var(--paper-0); }
+  .video-modal-overlay { background: rgba(16,38,63,.88); }
+  .video-modal-box img { background: var(--paper-0); }
+  .video-modal-label { color: var(--paper-200); }
+  .video-modal-close { background: var(--paper-0); border-color: var(--paper-0); color: var(--ink-900); }
+  .video-modal-close:hover { border-color: var(--navy-300); color: var(--navy-700); }
+
+  /* award: oxblood seal, paper surface */
+  .award-section { background: var(--paper-0); border: 1px solid var(--border-1); border-top: 3px solid var(--oxblood-700);
+                   box-shadow: var(--shadow-1); border-radius: var(--r-3); }
+  .award-section h3 { color: var(--ink-900); }
+  .award-section p { color: var(--ink-600); }
+  .award-highlight { color: var(--oxblood-800); background: var(--oxblood-100); border-left-color: var(--oxblood-700);
+                     font-family: var(--font-serif); font-weight: 600; }
+  .award-screenshot { border-color: var(--border-1); }
+  .award-seal { width: 56px; height: 56px; color: var(--oxblood-700); margin-bottom: 16px; display: block; }
+
+  .arch-image-wrap { border-color: var(--border-1); box-shadow: var(--shadow-1); border-radius: var(--r-3); }
+  .about-avatar { background: var(--navy-700); color: var(--paper-0); }
+  .about-title { color: var(--navy-600); }
+  .about-item::before { color: var(--clay-500); }
+
+  footer { color: var(--ink-500); border-top-color: var(--border-1); }
+  footer a { color: var(--navy-600); }
+  footer a:hover { color: var(--oxblood-700); }
+  .divider { border-top-color: var(--border-1); }
+
+  @media (max-width: 900px) {
+    nav { padding: 12px 124px 12px 16px; gap: 12px; }
+    nav > div:not(.nav-links) { margin-left: 0 !important; gap: 12px !important; white-space: nowrap; }
+    .nav-logo .wm-en { display: none; }
+    .lang-bar { padding: 10px 12px; }
+    .hero { padding: 112px 20px 56px; }
+    section { padding: 56px 20px; }
+    footer { padding: 24px 20px; }
+    .ba-side.before { border-right: 0; border-bottom: 1px solid var(--border-1); }
+  }
+</style>
 </head>
 
 <!-- Google tag (gtag.js) -->
@@ -1082,7 +1242,7 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="index.html" class="nav-logo">ai-product-safety-automation</a>
+    <a href="index.html" class="nav-logo" title="ai-product-safety-automation"><span class="wm-ko">배승호</span><span class="wm-en">SEUNGHO BAE</span></a>
     <!-- 연도 이동 탭 -->
     <div style="display:flex;gap:16px;margin-left:32px;">
       <a href="index.html" style="color:var(--muted);font-weight:500;text-decoration:none;font-size:14px;">2025 성과</a>
@@ -1252,21 +1412,21 @@
       <div class="ba-side before">
         <div class="ba-label before" data-kr>2025년 달성</div>
         <div class="ba-label before" data-en>2025 Achievements</div>
-        <div class="ba-item" data-kr><span class="ba-icon">✔</span><span class="ba-text">OECD 자동등록 — <strong>예산 95%
+        <div class="ba-item" data-kr><span class="ba-icon" aria-hidden="true"></span><span class="ba-text">OECD 자동등록 — <strong>예산 95%
               절감</strong>(2,000만→100만원), <strong>시간 83.3% 단축</strong>(30분→5분)</span></div>
-        <div class="ba-item" data-en><span class="ba-icon">✔</span><span class="ba-text">OECD auto-registration —
+        <div class="ba-item" data-en><span class="ba-icon" aria-hidden="true"></span><span class="ba-text">OECD auto-registration —
             <strong>95% budget saved</strong> (₩20M→₩1M), <strong>time 83.3% cut</strong> (30m→5m)</span></div>
-        <div class="ba-item" data-kr><span class="ba-icon">✔</span><span class="ba-text">해외 리콜 <strong>43개국</strong> 자동
+        <div class="ba-item" data-kr><span class="ba-icon" aria-hidden="true"></span><span class="ba-text">해외 리콜 <strong>43개국</strong> 자동
             수집 (4일→1시간)</span></div>
-        <div class="ba-item" data-en><span class="ba-icon">✔</span><span class="ba-text">Overseas recall <strong>43
+        <div class="ba-item" data-en><span class="ba-icon" aria-hidden="true"></span><span class="ba-text">Overseas recall <strong>43
               countries</strong> automated (4 days→1 hour)</span></div>
-        <div class="ba-item" data-kr><span class="ba-icon">✔</span><span class="ba-text">온라인 유통 해외리콜 제품 멀티모달 <strong>자동
+        <div class="ba-item" data-kr><span class="ba-icon" aria-hidden="true"></span><span class="ba-text">온라인 유통 해외리콜 제품 멀티모달 <strong>자동
               감시</strong></span></div>
-        <div class="ba-item" data-en><span class="ba-icon">✔</span><span class="ba-text">AI multimodal
+        <div class="ba-item" data-en><span class="ba-icon" aria-hidden="true"></span><span class="ba-text">AI multimodal
             <strong>marketplace surveillance</strong></span></div>
-        <div class="ba-item" data-kr><span class="ba-icon">✔</span><span class="ba-text">제품사고 뉴스 2시간 주기 <strong>Telegram
+        <div class="ba-item" data-kr><span class="ba-icon" aria-hidden="true"></span><span class="ba-text">제품사고 뉴스 2시간 주기 <strong>Telegram
               자동 전파</strong></span></div>
-        <div class="ba-item" data-en><span class="ba-icon">✔</span><span class="ba-text">Product incident news
+        <div class="ba-item" data-en><span class="ba-icon" aria-hidden="true"></span><span class="ba-text">Product incident news
             <strong>auto-alert</strong> every 2 hours</span></div>
       </div>
       <div class="ba-arrow">
@@ -1336,165 +1496,165 @@
         <defs>
           <marker id="ah" markerWidth="11" markerHeight="11" refX="8" refY="4" orient="auto"
             markerUnits="userSpaceOnUse">
-            <path d="M0,0 L9,4 L0,8 Z" fill="#6B8FAD" />
+            <path d="M0,0 L9,4 L0,8 Z" fill="#6b7588" />
           </marker>
           <marker id="ahg" markerWidth="13" markerHeight="13" refX="9" refY="4.5" orient="auto"
             markerUnits="userSpaceOnUse">
-            <path d="M0,0 L10,4.5 L0,9 Z" fill="#FFB400" />
+            <path d="M0,0 L10,4.5 L0,9 Z" fill="#85232c" />
           </marker>
           <linearGradient id="masterFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#1C2A18" />
-            <stop offset="1" stop-color="#12200E" />
+            <stop offset="0" stop-color="#ffffff" />
+            <stop offset="1" stop-color="#ffffff" />
           </linearGradient>
         </defs>
 
         <!-- ===== MASTER AGENT (기반과제) ===== -->
-        <rect x="80" y="22" width="1040" height="96" rx="14" fill="url(#masterFill)" stroke="#FFB400"
+        <rect x="80" y="22" width="1040" height="96" rx="14" fill="url(#masterFill)" stroke="#85232c"
           stroke-width="2" />
-        <circle cx="120" cy="56" r="7" fill="#FFB400" />
-        <text x="138" y="55" fill="#FFB400" font-size="17" font-weight="700">기반과제 · AI Master Agent</text>
-        <text x="138" y="78" fill="#F0F6FC" font-size="15" font-weight="600">AI기반 제품안전정보 플랫폼 (SafetyKorea 재구축)</text>
-        <text x="138" y="99" fill="#6B8FAD" font-size="12.5">2027년 착수 목표 · 4년간 48.3억원('27년 29.2억원) · 6개 Sub-Agent를
+        <circle cx="120" cy="56" r="7" fill="#85232c" />
+        <text x="138" y="55" fill="#85232c" font-size="17" font-weight="700">기반과제 · AI Master Agent</text>
+        <text x="138" y="78" fill="#141821" font-size="15" font-weight="600">AI기반 제품안전정보 플랫폼 (SafetyKorea 재구축)</text>
+        <text x="138" y="99" fill="#6b7588" font-size="12.5">2027년 착수 목표 · 4년간 48.3억원('27년 29.2억원) · 6개 Sub-Agent를
           통합·오케스트레이션</text>
-        <text x="1096" y="62" fill="#FFB400" font-size="12" font-weight="600" text-anchor="end">2027~</text>
-        <text x="1096" y="80" fill="#6B8FAD" font-size="11" text-anchor="end">클라우드 전환·범정부 AI공통기반 활용</text>
+        <text x="1096" y="62" fill="#85232c" font-size="12" font-weight="600" text-anchor="end">2027~</text>
+        <text x="1096" y="80" fill="#6b7588" font-size="11" text-anchor="end">클라우드 전환·범정부 AI공통기반 활용</text>
 
         <!-- dashed orchestration arrows from each stage up into master -->
-        <g stroke="#FFB400" stroke-width="1.6" stroke-dasharray="5 5" fill="none" opacity="0.7">
+        <g stroke="#85232c" stroke-width="1.6" stroke-dasharray="5 5" fill="none" opacity="0.7">
           <path d="M190,178 L190,122" marker-end="url(#ahg)" />
           <path d="M463,178 L463,122" marker-end="url(#ahg)" />
           <path d="M736,178 L736,122" marker-end="url(#ahg)" />
           <path d="M1009,178 L1009,122" marker-end="url(#ahg)" />
         </g>
-        <text x="600" y="150" fill="#FFB400" font-size="11.5" text-anchor="middle" opacity="0.8">▲ 2026년 6개 Sub-Agent가
+        <text x="600" y="150" fill="#85232c" font-size="11.5" text-anchor="middle" opacity="0.8">▲ 2026년 6개 Sub-Agent가
           실증한 데이터·서비스를 2027년 Master Agent로 통합</text>
 
         <!-- ===== STAGE HEADER BAND ===== -->
         <!-- Stage 1 수집 -->
-        <rect x="83" y="178" width="215" height="34" rx="8" fill="#0F1E30" stroke="#00CFA8" stroke-width="1.5" />
-        <text x="190" y="200" fill="#00CFA8" font-size="14" font-weight="700" text-anchor="middle">① 수집 Collect</text>
+        <rect x="83" y="178" width="215" height="34" rx="8" fill="#ffffff" stroke="#3a72b5" stroke-width="1.5" />
+        <text x="190" y="200" fill="#3a72b5" font-size="14" font-weight="700" text-anchor="middle">① 수집 Collect</text>
         <!-- Stage 2 분류·표준화 -->
-        <rect x="356" y="178" width="215" height="34" rx="8" fill="#0F1E30" stroke="#8B5CF6" stroke-width="1.5" />
-        <text x="463" y="200" fill="#8B5CF6" font-size="14" font-weight="700" text-anchor="middle">② 분류·표준화</text>
+        <rect x="356" y="178" width="215" height="34" rx="8" fill="#ffffff" stroke="#1f4572" stroke-width="1.5" />
+        <text x="463" y="200" fill="#1f4572" font-size="14" font-weight="700" text-anchor="middle">② 분류·표준화</text>
         <!-- Stage 3 분석·검색 -->
-        <rect x="629" y="178" width="215" height="34" rx="8" fill="#0F1E30" stroke="#3A9BD5" stroke-width="1.5" />
-        <text x="736" y="200" fill="#3A9BD5" font-size="14" font-weight="700" text-anchor="middle">③ 분석·검색</text>
+        <rect x="629" y="178" width="215" height="34" rx="8" fill="#ffffff" stroke="#7a5238" stroke-width="1.5" />
+        <text x="736" y="200" fill="#7a5238" font-size="14" font-weight="700" text-anchor="middle">③ 분석·검색</text>
         <!-- Stage 4 확산 -->
-        <rect x="902" y="178" width="215" height="34" rx="8" fill="#0F1E30" stroke="#FF6B35" stroke-width="1.5" />
-        <text x="1009" y="200" fill="#FF6B35" font-size="14" font-weight="700" text-anchor="middle">④ 확산 Diffuse</text>
+        <rect x="902" y="178" width="215" height="34" rx="8" fill="#ffffff" stroke="#5a3d2b" stroke-width="1.5" />
+        <text x="1009" y="200" fill="#5a3d2b" font-size="14" font-weight="700" text-anchor="middle">④ 확산 Diffuse</text>
 
         <!-- horizontal pipeline arrows between stages -->
-        <g fill="none" stroke="#6B8FAD" stroke-width="2">
+        <g fill="none" stroke="#6b7588" stroke-width="2">
           <path d="M300,444 L353,444" marker-end="url(#ah)" />
           <path d="M573,444 L626,444" marker-end="url(#ah)" />
           <path d="M846,444 L899,444" marker-end="url(#ah)" />
         </g>
-        <text x="326" y="432" fill="#9DB4C9" font-size="10.5" text-anchor="middle">위해</text>
-        <text x="326" y="462" fill="#9DB4C9" font-size="10.5" text-anchor="middle">데이터</text>
-        <text x="599" y="432" fill="#9DB4C9" font-size="10.5" text-anchor="middle">2차원</text>
-        <text x="599" y="462" fill="#9DB4C9" font-size="10.5" text-anchor="middle">코드태깅</text>
-        <text x="872" y="432" fill="#9DB4C9" font-size="10.5" text-anchor="middle">안전정보</text>
-        <text x="872" y="462" fill="#9DB4C9" font-size="10.5" text-anchor="middle">지식화</text>
+        <text x="326" y="432" fill="#2f384a" font-size="10.5" text-anchor="middle">위해</text>
+        <text x="326" y="462" fill="#2f384a" font-size="10.5" text-anchor="middle">데이터</text>
+        <text x="599" y="432" fill="#2f384a" font-size="10.5" text-anchor="middle">2차원</text>
+        <text x="599" y="462" fill="#2f384a" font-size="10.5" text-anchor="middle">코드태깅</text>
+        <text x="872" y="432" fill="#2f384a" font-size="10.5" text-anchor="middle">안전정보</text>
+        <text x="872" y="462" fill="#2f384a" font-size="10.5" text-anchor="middle">지식화</text>
 
         <!-- ===== SUB-AGENT CARDS ===== -->
         <!-- Stage1 수집: 과제2 + 과제3 + 과제6 -->
-        <rect x="83" y="226" width="215" height="94" rx="10" fill="#0F1E30" stroke="#00CFA8" stroke-width="1.3" />
-        <text x="97" y="248" fill="#00CFA8" font-size="12.5" font-weight="700">과제 ② Sub-Agent</text>
-        <text x="97" y="268" fill="#F0F6FC" font-size="13" font-weight="600">해외리콜 유통차단</text>
-        <text x="97" y="288" fill="#9DB4C9" font-size="11">43개국·13개 사이트 자동수집·AI 판독</text>
-        <text x="97" y="308" fill="#6B8FAD" font-size="10.5">보조사업 0.8억 · 제품안전협회</text>
+        <rect x="83" y="226" width="215" height="94" rx="10" fill="#ffffff" stroke="#3a72b5" stroke-width="1.3" />
+        <text x="97" y="248" fill="#3a72b5" font-size="12.5" font-weight="700">과제 ② Sub-Agent</text>
+        <text x="97" y="268" fill="#141821" font-size="13" font-weight="600">해외리콜 유통차단</text>
+        <text x="97" y="288" fill="#2f384a" font-size="11">43개국·13개 사이트 자동수집·AI 판독</text>
+        <text x="97" y="308" fill="#6b7588" font-size="10.5">보조사업 0.8억 · 제품안전협회</text>
 
-        <rect x="83" y="328" width="215" height="94" rx="10" fill="#0F1E30" stroke="#00CFA8" stroke-width="1.3" />
-        <text x="97" y="350" fill="#00CFA8" font-size="12.5" font-weight="700">과제 ③ Sub-Agent</text>
-        <text x="97" y="370" fill="#F0F6FC" font-size="13" font-weight="600">SNS 사고징후 선제포착</text>
-        <text x="97" y="390" fill="#9DB4C9" font-size="11">SNS·맘카페 24시간 탐지, 리콜 前 포착</text>
-        <text x="97" y="410" fill="#6B8FAD" font-size="10.5">R&amp;D 1.7억(정부지원) · 안전관리원+뉴엔AI</text>
+        <rect x="83" y="328" width="215" height="94" rx="10" fill="#ffffff" stroke="#3a72b5" stroke-width="1.3" />
+        <text x="97" y="350" fill="#3a72b5" font-size="12.5" font-weight="700">과제 ③ Sub-Agent</text>
+        <text x="97" y="370" fill="#141821" font-size="13" font-weight="600">SNS 사고징후 선제포착</text>
+        <text x="97" y="390" fill="#2f384a" font-size="11">SNS·맘카페 24시간 탐지, 리콜 前 포착</text>
+        <text x="97" y="410" fill="#6b7588" font-size="10.5">R&amp;D 1.7억(정부지원) · 안전관리원+뉴엔AI</text>
 
-        <rect x="83" y="430" width="215" height="94" rx="10" fill="#0F1E30" stroke="#00CFA8" stroke-width="1.3" />
-        <text x="97" y="452" fill="#00CFA8" font-size="12.5" font-weight="700">과제 ⑥ Sub-Agent</text>
-        <text x="97" y="472" fill="#F0F6FC" font-size="13" font-weight="600">제품사고 접수 AI 콜센터</text>
-        <text x="97" y="492" fill="#9DB4C9" font-size="11">ARS 비사고신고 자동처리·상시 접수</text>
-        <text x="97" y="512" fill="#6B8FAD" font-size="10.5">보조사업 0.1억 · 관리원+제품안전협회</text>
+        <rect x="83" y="430" width="215" height="94" rx="10" fill="#ffffff" stroke="#3a72b5" stroke-width="1.3" />
+        <text x="97" y="452" fill="#3a72b5" font-size="12.5" font-weight="700">과제 ⑥ Sub-Agent</text>
+        <text x="97" y="472" fill="#141821" font-size="13" font-weight="600">제품사고 접수 AI 콜센터</text>
+        <text x="97" y="492" fill="#2f384a" font-size="11">ARS 비사고신고 자동처리·상시 접수</text>
+        <text x="97" y="512" fill="#6b7588" font-size="10.5">보조사업 0.1억 · 관리원+제품안전협회</text>
 
         <!-- Stage2 분류·표준화: 과제4 -->
-        <rect x="356" y="226" width="215" height="298" rx="10" fill="#0F1E30" stroke="#8B5CF6" stroke-width="1.3" />
-        <text x="370" y="250" fill="#8B5CF6" font-size="12.5" font-weight="700">과제 ④ Sub-Agent</text>
-        <text x="370" y="271" fill="#F0F6FC" font-size="13" font-weight="600">위해요인 2차원 분류</text>
-        <text x="370" y="293" fill="#9DB4C9" font-size="11">HF(원인) + DT(결과)</text>
-        <text x="370" y="310" fill="#9DB4C9" font-size="11">이중 코드 표준화</text>
-        <text x="370" y="334" fill="#9DB4C9" font-size="11">ISO 5665:2024 정렬</text>
-        <text x="370" y="351" fill="#9DB4C9" font-size="11">EU·일본·미국 규정 매핑</text>
-        <rect x="370" y="372" width="187" height="58" rx="7" fill="#161B2E" stroke="#2A2050" stroke-width="1" />
-        <text x="380" y="392" fill="#B9A8E8" font-size="10.5">모든 단계 데이터에 동일</text>
-        <text x="380" y="408" fill="#B9A8E8" font-size="10.5">위해코드 부여 →</text>
-        <text x="380" y="423" fill="#B9A8E8" font-size="10.5">교차분석·글로벌 비교 가능</text>
-        <text x="370" y="510" fill="#6B8FAD" font-size="10.5">자체추진(완료) · ISO 표준</text>
+        <rect x="356" y="226" width="215" height="298" rx="10" fill="#ffffff" stroke="#1f4572" stroke-width="1.3" />
+        <text x="370" y="250" fill="#1f4572" font-size="12.5" font-weight="700">과제 ④ Sub-Agent</text>
+        <text x="370" y="271" fill="#141821" font-size="13" font-weight="600">위해요인 2차원 분류</text>
+        <text x="370" y="293" fill="#2f384a" font-size="11">HF(원인) + DT(결과)</text>
+        <text x="370" y="310" fill="#2f384a" font-size="11">이중 코드 표준화</text>
+        <text x="370" y="334" fill="#2f384a" font-size="11">ISO 5665:2024 정렬</text>
+        <text x="370" y="351" fill="#2f384a" font-size="11">EU·일본·미국 규정 매핑</text>
+        <rect x="370" y="372" width="187" height="58" rx="7" fill="#f3f6fa" stroke="#ccdbe8" stroke-width="1" />
+        <text x="380" y="392" fill="#1f4572" font-size="10.5">모든 단계 데이터에 동일</text>
+        <text x="380" y="408" fill="#1f4572" font-size="10.5">위해코드 부여 →</text>
+        <text x="380" y="423" fill="#1f4572" font-size="10.5">교차분석·글로벌 비교 가능</text>
+        <text x="370" y="510" fill="#6b7588" font-size="10.5">자체추진(완료) · ISO 표준</text>
 
         <!-- Stage3 분석·검색: 과제1 -->
-        <rect x="629" y="226" width="215" height="298" rx="10" fill="#0F1E30" stroke="#3A9BD5" stroke-width="1.3" />
-        <text x="643" y="250" fill="#3A9BD5" font-size="12.5" font-weight="700">과제 ① Sub-Agent</text>
-        <text x="643" y="271" fill="#F0F6FC" font-size="13" font-weight="600">KC안전기준 디지털화</text>
-        <text x="643" y="293" fill="#9DB4C9" font-size="11">329종 HWP → JSON/XML</text>
-        <text x="643" y="310" fill="#9DB4C9" font-size="11">기계가독형 구조화 DB</text>
-        <text x="643" y="334" fill="#9DB4C9" font-size="11">RAG 자연어 검색·추론</text>
-        <text x="643" y="351" fill="#9DB4C9" font-size="11">제·개정 AI 에디터</text>
-        <rect x="643" y="372" width="187" height="58" rx="7" fill="#13202C" stroke="#1E3A4A" stroke-width="1" />
-        <text x="653" y="392" fill="#9FD0EC" font-size="10.5">사고원인(③) ↔ 안전기준</text>
-        <text x="653" y="408" fill="#9FD0EC" font-size="10.5">즉시 대조 → 기준 미비 시</text>
-        <text x="653" y="423" fill="#9FD0EC" font-size="10.5">선제 정비 판단 지원</text>
-        <text x="643" y="504" fill="#6B8FAD" font-size="10.5">R&amp;D 3.9억(정부지원) · 제품안전협회+뤼튼</text>
-        <text x="643" y="518" fill="#6B8FAD" font-size="10.5">76개 품목 선정 · 파싱 정확도 90%</text>
+        <rect x="629" y="226" width="215" height="298" rx="10" fill="#ffffff" stroke="#7a5238" stroke-width="1.3" />
+        <text x="643" y="250" fill="#7a5238" font-size="12.5" font-weight="700">과제 ① Sub-Agent</text>
+        <text x="643" y="271" fill="#141821" font-size="13" font-weight="600">KC안전기준 디지털화</text>
+        <text x="643" y="293" fill="#2f384a" font-size="11">329종 HWP → JSON/XML</text>
+        <text x="643" y="310" fill="#2f384a" font-size="11">기계가독형 구조화 DB</text>
+        <text x="643" y="334" fill="#2f384a" font-size="11">RAG 자연어 검색·추론</text>
+        <text x="643" y="351" fill="#2f384a" font-size="11">제·개정 AI 에디터</text>
+        <rect x="643" y="372" width="187" height="58" rx="7" fill="#efe4d4" stroke="#d9bfa3" stroke-width="1" />
+        <text x="653" y="392" fill="#5a3d2b" font-size="10.5">사고원인(③) ↔ 안전기준</text>
+        <text x="653" y="408" fill="#5a3d2b" font-size="10.5">즉시 대조 → 기준 미비 시</text>
+        <text x="653" y="423" fill="#5a3d2b" font-size="10.5">선제 정비 판단 지원</text>
+        <text x="643" y="504" fill="#6b7588" font-size="10.5">R&amp;D 3.9억(정부지원) · 제품안전협회+뤼튼</text>
+        <text x="643" y="518" fill="#6b7588" font-size="10.5">76개 품목 선정 · 파싱 정확도 90%</text>
 
         <!-- Stage4 확산: 과제5 -->
-        <rect x="902" y="226" width="215" height="298" rx="10" fill="#0F1E30" stroke="#FF6B35" stroke-width="1.3" />
-        <text x="916" y="250" fill="#FF6B35" font-size="12.5" font-weight="700">과제 ⑤ Sub-Agent</text>
-        <text x="916" y="271" fill="#F0F6FC" font-size="13" font-weight="600">민간 자율 AX 확산</text>
-        <text x="916" y="293" fill="#9DB4C9" font-size="11">기업 위해제품 관리 AX</text>
-        <text x="916" y="310" fill="#9DB4C9" font-size="11">노코드 모범사례 보급</text>
-        <text x="916" y="334" fill="#9DB4C9" font-size="11">맞춤형 AI 숏폼 제작·배포</text>
-        <text x="916" y="351" fill="#9DB4C9" font-size="11">오픈포럼 30여 개사 운영</text>
-        <rect x="916" y="372" width="187" height="58" rx="7" fill="#2A1A12" stroke="#4A2A1E" stroke-width="1" />
-        <text x="926" y="392" fill="#F0B79A" font-size="10.5">정부→기업·소비자에게</text>
-        <text x="926" y="408" fill="#F0B79A" font-size="10.5">위해정보를 AI가 검색·학습</text>
-        <text x="926" y="423" fill="#F0B79A" font-size="10.5">하기 쉬운 형태(MCP)로 즉시 제공</text>
-        <text x="916" y="510" fill="#6B8FAD" font-size="10.5">연구용역·보조사업 0.8억 · 제품안전협회</text>
+        <rect x="902" y="226" width="215" height="298" rx="10" fill="#ffffff" stroke="#5a3d2b" stroke-width="1.3" />
+        <text x="916" y="250" fill="#5a3d2b" font-size="12.5" font-weight="700">과제 ⑤ Sub-Agent</text>
+        <text x="916" y="271" fill="#141821" font-size="13" font-weight="600">민간 자율 AX 확산</text>
+        <text x="916" y="293" fill="#2f384a" font-size="11">기업 위해제품 관리 AX</text>
+        <text x="916" y="310" fill="#2f384a" font-size="11">노코드 모범사례 보급</text>
+        <text x="916" y="334" fill="#2f384a" font-size="11">맞춤형 AI 숏폼 제작·배포</text>
+        <text x="916" y="351" fill="#2f384a" font-size="11">오픈포럼 30여 개사 운영</text>
+        <rect x="916" y="372" width="187" height="58" rx="7" fill="#f2eee6" stroke="#cfc6b5" stroke-width="1" />
+        <text x="926" y="392" fill="#5a3d2b" font-size="10.5">정부→기업·소비자에게</text>
+        <text x="926" y="408" fill="#5a3d2b" font-size="10.5">위해정보를 AI가 검색·학습</text>
+        <text x="926" y="423" fill="#5a3d2b" font-size="10.5">하기 쉬운 형태(MCP)로 즉시 제공</text>
+        <text x="916" y="510" fill="#6b7588" font-size="10.5">연구용역·보조사업 0.8억 · 제품안전협회</text>
 
         <!-- input sources row -->
-        <text x="190" y="550" fill="#6B8FAD" font-size="11" text-anchor="middle">입력원: 해외 공표사이트·SNS</text>
-        <text x="190" y="566" fill="#6B8FAD" font-size="11" text-anchor="middle">소방청·소비자원·콜센터 신고</text>
-        <text x="463" y="554" fill="#6B8FAD" font-size="11" text-anchor="middle">입력원: 리콜·사고조사·리스크평가 3개 시스템</text>
-        <text x="736" y="554" fill="#6B8FAD" font-size="11" text-anchor="middle">입력원: KC 안전기준 고시(HWP)</text>
-        <text x="1009" y="554" fill="#6B8FAD" font-size="11" text-anchor="middle">출력: 기업·소비자 자율 안전망</text>
+        <text x="190" y="550" fill="#6b7588" font-size="11" text-anchor="middle">입력원: 해외 공표사이트·SNS</text>
+        <text x="190" y="566" fill="#6b7588" font-size="11" text-anchor="middle">소방청·소비자원·콜센터 신고</text>
+        <text x="463" y="554" fill="#6b7588" font-size="11" text-anchor="middle">입력원: 리콜·사고조사·리스크평가 3개 시스템</text>
+        <text x="736" y="554" fill="#6b7588" font-size="11" text-anchor="middle">입력원: KC 안전기준 고시(HWP)</text>
+        <text x="1009" y="554" fill="#6b7588" font-size="11" text-anchor="middle">출력: 기업·소비자 자율 안전망</text>
 
         <!-- ===== OUTCOME BAR ===== -->
-        <rect x="80" y="588" width="1040" height="92" rx="14" fill="#0C1A14" stroke="#00CFA8" stroke-width="1.6" />
-        <text x="600" y="616" fill="#00CFA8" font-size="13.5" font-weight="700" text-anchor="middle">위해제품 유통, 제품사고 "사후
+        <rect x="80" y="588" width="1040" height="92" rx="14" fill="#f3f6fa" stroke="#3a72b5" stroke-width="1.6" />
+        <text x="600" y="616" fill="#3a72b5" font-size="13.5" font-weight="700" text-anchor="middle">위해제품 유통, 제품사고 "사후
           대응" 에서 "사전 징후 포착·예방" 으로 정책 패러다임 전환</text>
-        <line x1="375" y1="633" x2="375" y2="666" stroke="#1A3048" />
-        <line x1="825" y1="633" x2="825" y2="666" stroke="#1A3048" />
-        <text x="227" y="650" fill="#F0F6FC" font-size="12.5" font-weight="600" text-anchor="middle">정책 의사결정 지원</text>
-        <text x="227" y="669" fill="#6B8FAD" font-size="11" text-anchor="middle">안전기준 개정·리콜 발동 판단</text>
-        <text x="600" y="650" fill="#F0F6FC" font-size="12.5" font-weight="600" text-anchor="middle">국제 정합성</text>
-        <text x="600" y="669" fill="#6B8FAD" font-size="11" text-anchor="middle">OECD·EU Safety Gate 자동 연계</text>
-        <text x="973" y="650" fill="#F0F6FC" font-size="12.5" font-weight="600" text-anchor="middle">민간 자율 안전망</text>
-        <text x="973" y="669" fill="#6B8FAD" font-size="11" text-anchor="middle">기업·소비자 자율 위해제품 관리 지원</text>
+        <line x1="375" y1="633" x2="375" y2="666" stroke="#e5dfd3" />
+        <line x1="825" y1="633" x2="825" y2="666" stroke="#e5dfd3" />
+        <text x="227" y="650" fill="#141821" font-size="12.5" font-weight="600" text-anchor="middle">정책 의사결정 지원</text>
+        <text x="227" y="669" fill="#6b7588" font-size="11" text-anchor="middle">안전기준 개정·리콜 발동 판단</text>
+        <text x="600" y="650" fill="#141821" font-size="12.5" font-weight="600" text-anchor="middle">국제 정합성</text>
+        <text x="600" y="669" fill="#6b7588" font-size="11" text-anchor="middle">OECD·EU Safety Gate 자동 연계</text>
+        <text x="973" y="650" fill="#141821" font-size="12.5" font-weight="600" text-anchor="middle">민간 자율 안전망</text>
+        <text x="973" y="669" fill="#6b7588" font-size="11" text-anchor="middle">기업·소비자 자율 위해제품 관리 지원</text>
 
         <!-- ===== LEGEND ===== -->
         <g font-size="11.5">
-          <rect x="80" y="710" width="13" height="13" rx="3" fill="#0F1E30" stroke="#FFB400" stroke-width="1.5" />
-          <text x="100" y="721" fill="#9DB4C9">Master Agent (기반과제·플랫폼)</text>
-          <rect x="320" y="710" width="13" height="13" rx="3" fill="#0F1E30" stroke="#00CFA8" stroke-width="1.5" />
-          <text x="340" y="721" fill="#9DB4C9">수집</text>
-          <rect x="392" y="710" width="13" height="13" rx="3" fill="#0F1E30" stroke="#8B5CF6" stroke-width="1.5" />
-          <text x="412" y="721" fill="#9DB4C9">분류·표준화</text>
-          <rect x="510" y="710" width="13" height="13" rx="3" fill="#0F1E30" stroke="#3A9BD5" stroke-width="1.5" />
-          <text x="530" y="721" fill="#9DB4C9">분석·검색</text>
-          <rect x="620" y="710" width="13" height="13" rx="3" fill="#0F1E30" stroke="#FF6B35" stroke-width="1.5" />
-          <text x="640" y="721" fill="#9DB4C9">확산</text>
-          <line x1="730" y1="716" x2="760" y2="716" stroke="#FFB400" stroke-width="1.6" stroke-dasharray="5 5" />
-          <text x="768" y="721" fill="#9DB4C9">2027년 통합·지휘</text>
-          <line x1="905" y1="716" x2="935" y2="716" stroke="#6B8FAD" stroke-width="2" marker-end="url(#ah)" />
-          <text x="948" y="721" fill="#9DB4C9">정보화 단계 흐름</text>
+          <rect x="80" y="710" width="13" height="13" rx="3" fill="#ffffff" stroke="#85232c" stroke-width="1.5" />
+          <text x="100" y="721" fill="#2f384a">Master Agent (기반과제·플랫폼)</text>
+          <rect x="320" y="710" width="13" height="13" rx="3" fill="#ffffff" stroke="#3a72b5" stroke-width="1.5" />
+          <text x="340" y="721" fill="#2f384a">수집</text>
+          <rect x="392" y="710" width="13" height="13" rx="3" fill="#ffffff" stroke="#1f4572" stroke-width="1.5" />
+          <text x="412" y="721" fill="#2f384a">분류·표준화</text>
+          <rect x="510" y="710" width="13" height="13" rx="3" fill="#ffffff" stroke="#7a5238" stroke-width="1.5" />
+          <text x="530" y="721" fill="#2f384a">분석·검색</text>
+          <rect x="620" y="710" width="13" height="13" rx="3" fill="#ffffff" stroke="#5a3d2b" stroke-width="1.5" />
+          <text x="640" y="721" fill="#2f384a">확산</text>
+          <line x1="730" y1="716" x2="760" y2="716" stroke="#85232c" stroke-width="1.6" stroke-dasharray="5 5" />
+          <text x="768" y="721" fill="#2f384a">2027년 통합·지휘</text>
+          <line x1="905" y1="716" x2="935" y2="716" stroke="#6b7588" stroke-width="2" marker-end="url(#ah)" />
+          <text x="948" y="721" fill="#2f384a">정보화 단계 흐름</text>
         </g>
       </svg>
     </div>
